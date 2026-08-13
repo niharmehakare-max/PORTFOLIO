@@ -4597,5 +4597,708 @@ body {
   }
 }
 
+/* ============================================
+   GLOBAL PAPER INK CURSOR
+   ============================================ */
+@media (pointer: fine) {
+  body {
+    cursor: none !important;
+  }
+  a, button, input, textarea, select, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+.ink-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: #2a241e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
+  box-shadow: 0 0 2px rgba(40, 35, 25, 0.4);
+}
+
+.ink-cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.2px solid rgba(50, 42, 32, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ink-cursor-circle.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.15);
+  border-color: #2a241e;
+}
+
+.ink-cursor-circle.link {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+  border-color: #1c1a17;
+  background: rgba(244, 238, 226, 0.65);
+}
+
+.ink-cursor-icon {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1c1a17;
+  display: none;
+}
+
+.ink-cursor-circle.link .ink-cursor-icon {
+  display: block;
+}
+
+/* ============================================
+   INK DRAW UNDERLINE EFFECT (Left -> Right)
+   ============================================ */
+.ink-draw-link {
+  position: relative;
+  text-decoration: none !important;
+}
+
+.ink-draw-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.85;
+}
+
+.ink-draw-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   PAPER DISPLACEMENT (LIFTING A SHEET OF PAPER)
+   ============================================ */
+.paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .paper-music-card, .hobby-col {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.paper-card:hover, .paper-project-card:hover, .paper-skill-card:hover, .paper-lead-card:hover, .paper-edu-card:hover, .paper-music-card:hover, .hobby-col:hover {
+  transform: translateY(-4px) rotate(0.2deg) !important;
+  box-shadow: 0 16px 36px rgba(40, 32, 22, 0.12) !important;
+  border-color: rgba(50, 42, 32, 0.35) !important;
+}
+
+.paper-card:nth-child(even):hover, .paper-project-card:nth-child(even):hover, .paper-skill-card:nth-child(even):hover {
+  transform: translateY(-4px) rotate(-0.2deg) !important;
+}
+
+/* ============================================
+   TIMELINE INK RIPPLE & STAMP EFFECT
+   ============================================ */
+@keyframes inkStamp {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.step-num.ink-stamp-active, .project-node-circle.ink-stamp-active {
+  animation: inkStamp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.journal-section.active-spine-sec .step-num {
+  background: #3a342c !important;
+  color: #f5f0e6 !important;
+  border-color: #3a342c !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+}
+
+.journal-section.active-spine-sec .spine-pointer-arrow svg line {
+  stroke-dasharray: none;
+  stroke: #1c1a17;
+}
+
+/* Node Stamp Hover Ripple */
+.project-node-circle, .step-num {
+  position: relative;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.project-node-circle:hover, .step-num:hover {
+  background: #3a342c !important;
+  color: #f5f0e6 !important;
+}
+
+.project-node-circle:hover svg, .step-num:hover svg {
+  stroke: #f5f0e6 !important;
+}
+
+/* ============================================
+   PROJECT DIAGRAM MICRO-INTERACTIONS
+   ============================================ */
+/* ARCHITECH: Data Packet Moving Along Knowledge Graph */
+@keyframes packetMoveGraph {
+  0% { cx: 40; cy: 30; }
+  25% { cx: 90; cy: 20; }
+  50% { cx: 140; cy: 40; }
+  75% { cx: 200; cy: 30; }
+  100% { cx: 240; cy: 50; }
+}
+
+.graph-packet-dot {
+  fill: #8b1022;
+  r: 4;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.paper-project-card:hover .graph-packet-dot {
+  opacity: 1;
+  animation: packetMoveGraph 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Eventix: TX Verified Monospace Pulse Badge */
+.tx-verified-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #1b7a43;
+  background: rgba(27, 122, 67, 0.08);
+  border: 1px solid rgba(27, 122, 67, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.paper-project-card:hover .tx-verified-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* AgriSaksham: AI Engine Pulse & Waveform Movement */
+.paper-project-card:hover .arch-node svg {
+  stroke: #8b1022;
+  transition: stroke 0.3s ease;
+}
+
+/* ============================================
+   SPOTIFY EQUALIZER PAUSED / PLAYING WAVEFORM
+   ============================================ */
+.equalizer-waveform.paused .bar {
+  animation: none !important;
+  height: 2px !important;
+  opacity: 0.4;
+}
+
+/* ============================================
+   SKILL CARD TECHNICAL TERMINAL READOUT VIEW
+   ============================================ */
+.paper-skill-card {
+  cursor: pointer;
+}
+
+.paper-skill-card.terminal-mode {
+  background: #1c1a17 !important;
+  color: #ede5d5 !important;
+  border-color: #3d3730 !important;
+}
+
+.paper-skill-card.terminal-mode .skill-cat-name {
+  color: #f5f0e6 !important;
+}
+
+.paper-skill-card.terminal-mode .skill-code {
+  color: #c9c0b0 !important;
+}
+
+.paper-skill-card.terminal-mode .paper-tag {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ede5d5 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.terminal-readout-box {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.terminal-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminal-dots {
+  color: #8c8273;
+}
+
+.terminal-status-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #a89f91;
+  margin-top: 0.5rem;
+  border-top: 1px dashed rgba(255,255,255,0.15);
+  padding-top: 0.4rem;
+}
+
+/* ============================================
+   CONTACT VINTAGE PARCHMENT OVERLAY (RADIAL INK SPLAT)
+   ============================================ */
+
+.parchment-contact-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #f5f0e6 !important;
+  background-image: radial-gradient(ellipse at center, #fcf9f2 0%, #ebe3d2 100%) !important;
+  color: #1c1a17 !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.5s ease !important;
+  z-index: 1000 !important;
+}
+
+.parchment-contact-overlay.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+}
+
+.paper-contact-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem 5rem 2.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  transform: translateY(24px) scale(0.98);
+  opacity: 0;
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 0.5s ease 0.1s;
+}
+
+#contact-overlay.active .paper-contact-layout {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.parchment-contact-overlay .paper-close {
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 100;
+}
+
+.contact-paper-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.contact-header-logo {
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #1c1a17;
+}
+
+.logo-red-dot {
+  color: #c93b2b;
+  margin-left: 2px;
+}
+
+.contact-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.contact-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+  color: #5c5448;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.contact-nav-link:hover, .contact-nav-link.active {
+  color: #1c1a17;
+}
+
+.contact-nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #1c1a17;
+  border-radius: 1px;
+}
+
+.get-in-touch-btn {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #1c1a17;
+  border: 1.2px solid #3a342c;
+  padding: 0.5rem 1.1rem;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.get-in-touch-btn:hover {
+  background: #1c1a17;
+  color: #f5f0e6;
+}
+
+.contact-body-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3rem;
+  align-items: center;
+  flex: 1;
+  margin-top: 1rem;
+}
+
+.contact-left-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.contact-red-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #c93b2b;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contact-main-title {
+  font-family: var(--font-serif);
+  font-size: 4.8rem;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #1c1a17;
+  letter-spacing: -0.02em;
+}
+
+.title-period {
+  color: #1c1a17;
+}
+
+.contact-desc-text {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #4a433a;
+  max-width: 380px;
+}
+
+.contact-script-note {
+  font-family: var(--font-handwriting);
+  font-size: 2.2rem;
+  line-height: 1.1;
+  color: #3b352e;
+  position: relative;
+  margin-top: 1rem;
+  transform: rotate(-2deg);
+}
+
+.script-underline {
+  width: 140px;
+  height: 3px;
+  background: #3b352e;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+}
+
+.contact-bottom-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: #8c8273;
+}
+
+/* ============================================
+   RIGHT HUB: RADIAL INK SPLATTER CENTER & NODES
+   ============================================ */
+.contact-right-hub {
+  position: relative;
+  width: 540px;
+  height: 540px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radial-lines-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.85 !important;
+}
+
+.ink-splatter-wrapper {
+  position: relative;
+  width: 440px;
+  height: 440px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: scale(1) !important;
+  opacity: 1 !important;
+  z-index: 5;
+}
+
+.ink-splatter-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: contrast(1.25) brightness(0.92);
+  opacity: 0.95;
+  pointer-events: none;
+}
+
+#contact-overlay.active .ink-splatter-wrapper {
+  transform: scale(1) rotate(0deg);
+  opacity: 1;
+}
+
+.ink-splatter-svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.22));
+}
+
+.splatter-center-text {
+  position: relative;
+  z-index: 10;
+  font-family: var(--font-handwriting);
+  font-size: 2.6rem;
+  color: #f5f0e6;
+  text-align: center;
+  pointer-events: none;
+  transform: rotate(-3deg);
+}
+
+.center-text-underline {
+  width: 75px;
+  height: 2px;
+  background: #f5f0e6;
+  margin: 0.2rem auto 0 auto;
+  border-radius: 1px;
+}
+
+/* 6 Radial Node Wrappers Positioning */
+.radial-node-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 10;
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+
+/* Precise Coordinate Placement around 540x540 Hub */
+.node-top {
+  top: 15px;
+  left: 270px;
+  transform: translateX(-50%) scale(1) !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node-top-right {
+  top: 105px;
+  left: 405px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.node-bottom-right {
+  top: 375px;
+  left: 405px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.node-bottom {
+  top: 468px;
+  left: 270px;
+  transform: translateX(-50%) scale(1) !important;
+  flex-direction: column;
+  align-items: center;
+}
+
+.node-bottom-left {
+  top: 375px;
+  left: 35px;
+  flex-direction: row;
+  align-items: center;
+}
+
+.node-top-left {
+  top: 105px;
+  left: 35px;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* Badge Circle Styling */
+.radial-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #f6f1e7;
+  border: 2px solid #1c1a17;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1c1a17;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.radial-badge:hover {
+  background: #1c1a17;
+  color: #f5f0e6;
+  transform: scale(1.15);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+}
+
+.radial-badge svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Non-Overlapping Text Metadata Blocks */
+.node-text-block {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.text-top {
+  align-items: center;
+  margin-bottom: 0.6rem;
+}
+
+.text-top-right {
+  align-items: flex-start;
+  margin-left: 0.8rem;
+}
+
+.text-bottom-right {
+  align-items: flex-start;
+  margin-left: 0.8rem;
+}
+
+.text-bottom {
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.text-bottom-left {
+  align-items: flex-end;
+  margin-right: 0.8rem;
+}
+
+.text-top-left {
+  align-items: flex-end;
+  margin-right: 0.8rem;
+}
+
+.meta-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  color: #1c1a17;
+  text-transform: uppercase;
+}
+
+.meta-val {
+  font-size: 0.74rem;
+  color: #4a433a;
+  font-weight: 600;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 950px) {
+  .contact-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .contact-right-hub {
+    width: 360px;
+    height: 360px;
+  }
+  .radial-lines-layer { display: none; }
+  .ink-splatter-wrapper { width: 260px; height: 260px; }
+  .node-top-right, .node-bottom-right, .node-bottom-left, .node-top-left {
+    position: relative;
+    top: auto; left: auto; right: auto; bottom: auto;
+  }
+}
+
 
 
