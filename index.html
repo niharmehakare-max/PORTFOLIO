@@ -995,156 +995,465 @@
     </div>
   </div>
 
-  <!-- Projects Overlay -->
-  <div class="about-overlay" id="projects-overlay">
-    <!-- Corner ink panels -->
-    <div class="about-ink-corner corner-tl"></div>
-    <div class="about-ink-corner corner-tr"></div>
-    <div class="about-ink-corner corner-bl"></div>
-    <div class="about-ink-corner corner-br"></div>
-
-    <!-- HUD Layout Decorations -->
-    <div class="about-hud-corner corner-tl"></div>
-    <div class="about-hud-corner corner-tr"></div>
-    <div class="about-hud-corner corner-bl"></div>
-    <div class="about-hud-corner corner-br"></div>
-
+  <!-- Projects Overlay (Paper Parchment Vintage Layout) -->
+  <div class="about-overlay parchment-projects-overlay" id="projects-overlay">
     <!-- Close button -->
-    <button class="about-close" id="projects-close" aria-label="Close Projects">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-        stroke-linejoin="round">
+    <button class="about-close paper-close" id="projects-close" aria-label="Close Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
 
-    <!-- Glass header background for desktop -->
-    <div class="about-header-bg" id="projects-header-bg"></div>
+    <!-- Scrollable Parchment Container -->
+    <div class="parchment-scroll-container" id="projects-scroll">
+      <div class="parchment-content-wrapper paper-projects-layout">
 
-    <!-- Scrollable content -->
-    <div class="about-scroll" id="projects-scroll">
-      <div class="overlay-container">
+        <!-- Top Header Decorations & Compass Illustration -->
+        <div class="projects-header-decorations">
+          <!-- Drafting Compass Illustration Top Left -->
+          <div class="compass-sketch-illustration">
+            <svg viewBox="0 0 100 120" fill="none" stroke="#3a342c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="50" y1="10" x2="20" y2="90" stroke-width="2"/>
+              <line x1="50" y1="10" x2="80" y2="90" stroke-width="2"/>
+              <circle cx="50" cy="10" r="6" fill="#f4eee2" stroke="#3a342c" stroke-width="1.8"/>
+              <line x1="30" y1="60" x2="70" y2="60"/>
+              <path d="M 15 95 A 35 35 0 0 0 85 95" stroke-dasharray="2,2"/>
+              <circle cx="20" cy="90" r="2.5" fill="#3a342c"/>
+              <circle cx="80" cy="90" r="2.5" fill="#3a342c"/>
+            </svg>
+          </div>
 
-        <div class="overlay-section-header">
-          <span class="overlay-section-label">// Featured Systems & Architecture</span>
-          <h2>Projects</h2>
-          <p class="overlay-subtitle">Production-grade software architectures, blockchain protocol infrastructure, and
-            AI platforms built for performance and scalability.</p>
+          <!-- Top Right Cursive Script Note -->
+          <div class="projects-top-script-note">
+            <span class="script-quote">Engineering ideas into impact.</span>
+            <div class="script-underline-double">
+              <svg width="115" height="12" viewBox="0 0 115 12" fill="none">
+                <path d="M 2 4 Q 55 1 113 5 M 5 9 Q 60 6 108 10" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
         </div>
 
-        <div class="projects-list">
+        <!-- Main Section Header -->
+        <div class="paper-header projects-paper-header">
+          <div class="paper-section-num">04</div>
+          <div class="paper-num-line"></div>
+          <span class="paper-meta-label">FEATURED SYSTEMS & ARCHITECTURE</span>
+          <h2 class="paper-main-title">Projects</h2>
+          <div class="paper-subtitle-wrapper">
+            <span class="paper-subtitle-script">built to solve real problems.</span>
+            <svg class="paper-subtitle-underline" viewBox="0 0 180 12" fill="none">
+              <path d="M 3 8 Q 45 2 90 7 T 177 5" stroke="#3a342c" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <p class="paper-description">
+            Production-grade software architectures, blockchain protocol infrastructure, and AI platforms built for performance and scalability.
+          </p>
+        </div>
 
-          <!-- Project 1: ARCHITECH -->
-          <div class="project-hud-card">
-            <div class="project-hud-header">
-              <div class="project-hud-meta">
-                <span class="project-badge">PRJ_01</span>
-                <span class="project-type-tag">Software Architecture & Knowledge Graphs</span>
-              </div>
-              <h3 class="project-title">ARCHITECH – Architectural Recovery & Semantic Synthesis</h3>
-            </div>
+        <!-- Main Body Grid: Left Timeline Spine + Right Project Cards Column -->
+        <div class="projects-body-grid">
 
-            <p class="project-description">
-              Developed a full-stack software architecture analysis platform that extracts repository structure using
-              AST parsing and builds knowledge graphs for architectural insights.
-            </p>
-
-            <ul class="project-bullet-list">
-              <li>Implemented dependency analysis, coupling measurement, blast-radius estimation, and architectural
-                pattern detection using Neo4j and NetworkX.</li>
-              <li>Integrated LLM-powered explanations to generate human-readable summaries of codebases and
-                architectural decisions.</li>
-              <li>Extracted repository structure using AST parsing to synthesize interactive knowledge graphs.</li>
-            </ul>
-
-            <div class="project-tech-footer">
-              <span class="tech-label">Tech Stack</span>
-              <div class="tech-tags">
-                <span class="tech-tag accent">FastAPI</span>
-                <span class="tech-tag accent">React</span>
-                <span class="tech-tag">Neo4j</span>
-                <span class="tech-tag">NetworkX</span>
-                <span class="tech-tag">Tree-sitter</span>
-                <span class="tech-tag">Groq LLM</span>
-              </div>
-            </div>
+          <!-- Left Organic Spine Line -->
+          <div class="projects-spine-column">
+            <svg class="projects-spine-svg" viewBox="0 0 80 1600" preserveAspectRatio="none">
+              <path d="M 40 0 Q 70 250 40 500 T 40 1000 T 40 1500 L 40 1600" stroke="#3a342c" stroke-width="1.5" fill="none"/>
+            </svg>
           </div>
 
-          <!-- Project 2: Eventix -->
-          <div class="project-hud-card">
-            <div class="project-hud-header">
-              <div class="project-hud-meta">
-                <span class="project-badge">PRJ_02</span>
-                <span class="project-type-tag">Blockchain & Decentralized Protocol</span>
+          <!-- Project Cards Column -->
+          <div class="projects-cards-column">
+
+            <!-- PROJECT 1: ARCHITECH -->
+            <div class="paper-project-card-wrapper" id="prj-sec-1">
+
+              <!-- Left Node Connector Badge -->
+              <div class="project-node-badge-group">
+                <div class="spine-pointer-arrow">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <div class="project-node-circle">
+                  <svg viewBox="0 0 32 32" fill="none" stroke="#3a342c" stroke-width="1.6" stroke-linecap="round">
+                    <circle cx="16" cy="8" r="3"/>
+                    <circle cx="8" cy="22" r="3"/>
+                    <circle cx="24" cy="22" r="3"/>
+                    <line x1="14" y1="10" x2="10" y2="20"/>
+                    <line x1="18" y1="10" x2="22" y2="20"/>
+                    <line x1="11" y1="22" x2="21" y2="22"/>
+                  </svg>
+                </div>
+                <span class="project-node-label">PRJ_01</span>
               </div>
-              <h3 class="project-title">Eventix – Blockchain Event Ticketing Platform</h3>
+
+              <!-- Main Project Card Container -->
+              <div class="paper-project-card">
+                <div class="project-card-body-grid">
+
+                  <!-- Left Column: Details -->
+                  <div class="project-card-left">
+                    <span class="paper-meta-label">SOFTWARE ARCHITECTURE & KNOWLEDGE GRAPHS</span>
+                    <h3 class="paper-project-title">
+                      ARCHITECH – Architectural Recovery & Semantic Synthesis
+                      <a href="https://github.com/nhr-09" target="_blank" class="project-ext-link" title="Open repository">↗</a>
+                    </h3>
+
+                    <p class="paper-project-desc">
+                      Developed a full-stack software architecture analysis platform that extracts repository structure using AST parsing and builds knowledge graphs for architectural insights.
+                    </p>
+
+                    <ul class="paper-project-bullets">
+                      <li>Implemented dependency analysis, coupling measurement, blast-radius estimation, and architectural pattern detection using Neo4j and NetworkX.</li>
+                      <li>Integrated LLM-powered explanations to generate human-readable summaries of codebases and architectural decisions.</li>
+                      <li>Extracted repository structure using AST parsing to synthesize interactive knowledge graphs.</li>
+                    </ul>
+
+                    <div class="paper-project-tech-footer">
+                      <span class="tech-stack-label">TECH STACK</span>
+                      <div class="paper-tech-pills">
+                        <span class="paper-pill">FastAPI</span>
+                        <span class="paper-pill">React</span>
+                        <span class="paper-pill">Neo4j</span>
+                        <span class="paper-pill">NetworkX</span>
+                        <span class="paper-pill">Tree-sitter</span>
+                        <span class="paper-pill">Groq LLM</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Column: Architectural Visual Diagram Panel -->
+                  <div class="project-card-right-panel">
+                    <span class="panel-meta-title">ARCHITECTURAL KNOWLEDGE GRAPH</span>
+
+                    <!-- Network Graph Illustration -->
+                    <div class="graph-illustration-box">
+                      <svg viewBox="0 0 280 120" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                        <line x1="40" y1="30" x2="90" y2="20"/>
+                        <line x1="40" y1="30" x2="80" y2="70"/>
+                        <line x1="90" y1="20" x2="140" y2="40"/>
+                        <line x1="90" y1="20" x2="150" y2="15"/>
+                        <line x1="80" y1="70" x2="140" y2="40"/>
+                        <line x1="80" y1="70" x2="130" y2="95"/>
+                        <line x1="140" y1="40" x2="200" y2="30"/>
+                        <line x1="140" y1="40" x2="190" y2="80"/>
+                        <line x1="200" y1="30" x2="240" y2="50"/>
+                        <line x1="190" y1="80" x2="240" y2="50"/>
+                        <circle cx="40" cy="30" r="5" fill="#ede5d5"/>
+                        <circle cx="90" cy="20" r="5" fill="#ede5d5"/>
+                        <circle cx="80" cy="70" r="5" fill="#ede5d5"/>
+                        <circle cx="140" cy="40" r="6" fill="#3a342c"/>
+                        <circle cx="150" cy="15" r="4" fill="#ede5d5"/>
+                        <circle cx="130" cy="95" r="4" fill="#ede5d5"/>
+                        <circle cx="200" cy="30" r="5" fill="#ede5d5"/>
+                        <circle cx="190" cy="80" r="5" fill="#ede5d5"/>
+                        <circle cx="240" cy="50" r="5" fill="#ede5d5"/>
+                      </svg>
+
+                      <div class="code-snippet-tag">
+                        <code>class Parser {<br>&nbsp;+ parse()<br>&nbsp;+ buildAST()<br>}</code>
+                      </div>
+                    </div>
+
+                    <!-- Insights Metrics List -->
+                    <div class="panel-insights-box">
+                      <span class="insights-title">INSIGHTS</span>
+                      <div class="insight-item">
+                        <span class="insight-label">✓ High Coupling Module</span>
+                        <div class="insight-bar"><span class="bar-fill" style="width: 83%;"></span></div>
+                        <span class="insight-val">83%</span>
+                      </div>
+                      <div class="insight-item">
+                        <span class="insight-label">✓ Blast Radius</span>
+                        <div class="insight-bar"><span class="bar-fill" style="width: 70%;"></span></div>
+                        <span class="insight-val">High</span>
+                      </div>
+                      <div class="insight-item">
+                        <span class="insight-label">✓ Architecture Pattern</span>
+                        <div class="insight-bar"><span class="bar-fill" style="width: 100%;"></span></div>
+                        <span class="insight-val">Layered</span>
+                      </div>
+                      <div class="insight-item">
+                        <span class="insight-label">✓ LLM Summary</span>
+                        <div class="insight-bar"><span class="bar-fill" style="width: 90%;"></span></div>
+                        <span class="insight-val">Generated</span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
             </div>
 
-            <p class="project-description">
-              Developed a decentralized ticketing platform leveraging Solana NFTs, smart contracts, and IPFS for secure
-              event ticket ownership and verification.
-            </p>
+            <!-- PROJECT 2: Eventix -->
+            <div class="paper-project-card-wrapper" id="prj-sec-2">
 
-            <ul class="project-bullet-list">
-              <li>Implemented anti-scalping mechanisms through Rust smart contracts, enforcing resale limits and price
-                markup restrictions on-chain.</li>
-              <li>Designed NFT minting workflows, wallet integration, decentralized metadata storage, and QR-based
-                ticket validation.</li>
-              <li>Engineered secure token minting & validation workflows with Solana ecosystem tools.</li>
-            </ul>
-
-            <div class="project-tech-footer">
-              <span class="tech-label">Tech Stack</span>
-              <div class="tech-tags">
-                <span class="tech-tag accent">Solana</span>
-                <span class="tech-tag accent">Rust</span>
-                <span class="tech-tag">Anchor</span>
-                <span class="tech-tag">Node.js</span>
-                <span class="tech-tag">MySQL</span>
-                <span class="tech-tag">IPFS</span>
-                <span class="tech-tag">Metaplex</span>
+              <!-- Left Node Connector Badge -->
+              <div class="project-node-badge-group">
+                <div class="spine-pointer-arrow">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <div class="project-node-circle">
+                  <svg viewBox="0 0 32 32" fill="none" stroke="#3a342c" stroke-width="1.6" stroke-linecap="round">
+                    <rect x="10" y="4" width="12" height="12" rx="2"/>
+                    <rect x="4" y="16" width="10" height="10" rx="2"/>
+                    <rect x="18" y="16" width="10" height="10" rx="2"/>
+                    <line x1="12" y1="16" x2="9" y2="16"/>
+                    <line x1="20" y1="16" x2="23" y2="16"/>
+                  </svg>
+                </div>
+                <span class="project-node-label">PRJ_02</span>
               </div>
-            </div>
-          </div>
 
-          <!-- Project 3: AgriSaksham -->
-          <div class="project-hud-card">
-            <div class="project-hud-header">
-              <div class="project-hud-meta">
-                <span class="project-badge">PRJ_03</span>
-                <span class="project-type-tag">AI / Machine Learning & Voice</span>
+              <!-- Main Project Card Container -->
+              <div class="paper-project-card">
+                <div class="project-card-body-grid">
+
+                  <!-- Left Column: Details -->
+                  <div class="project-card-left">
+                    <span class="paper-meta-label">BLOCKCHAIN & DECENTRALIZED PROTOCOL</span>
+                    <h3 class="paper-project-title">
+                      Eventix – Blockchain Event Ticketing Platform
+                      <a href="https://github.com/nhr-09" target="_blank" class="project-ext-link" title="Open repository">↗</a>
+                    </h3>
+
+                    <p class="paper-project-desc">
+                      Developed a decentralized ticketing platform leveraging Solana NFTs, smart contracts, and IPFS for secure event ticket ownership and verification.
+                    </p>
+
+                    <ul class="paper-project-bullets">
+                      <li>Implemented anti-scalping mechanisms through Rust smart contracts, enforcing resale limits and price markup restrictions on-chain.</li>
+                      <li>Designed NFT minting workflows, wallet integration, decentralized metadata storage, and QR-based ticket validation.</li>
+                      <li>Engineered secure token minting & validation workflows with Solana ecosystem tools.</li>
+                    </ul>
+
+                    <div class="paper-project-tech-footer">
+                      <span class="tech-stack-label">TECH STACK</span>
+                      <div class="paper-tech-pills">
+                        <span class="paper-pill">Solana</span>
+                        <span class="paper-pill">Rust</span>
+                        <span class="paper-pill">Anchor</span>
+                        <span class="paper-pill">Node.js</span>
+                        <span class="paper-pill">MySQL</span>
+                        <span class="paper-pill">IPFS</span>
+                        <span class="paper-pill">Metaplex</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Column: System Architecture Visual Diagram Panel -->
+                  <div class="project-card-right-panel">
+                    <span class="panel-meta-title">SYSTEM ARCHITECTURE</span>
+
+                    <div class="architecture-diagram-box">
+                      <div class="arch-flow-row">
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          <span>User</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                          <span>Web / App</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                          <span>Smart Contract (Rust)</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+                          <span>NFT (Mint)</span>
+                        </div>
+                      </div>
+
+                      <div class="arch-storage-row">
+                        <div class="arch-subnode">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                          <span>IPFS (Metadata)</span>
+                        </div>
+                        <div class="arch-subnode">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                          <span>DB (MySQL)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- On-Chain Workflow Stepper -->
+                    <div class="panel-insights-box">
+                      <span class="insights-title">ON-CHAIN WORKFLOW</span>
+                      <div class="stepper-row">
+                        <div class="step-item"><span class="step-circle">1</span><span>Mint</span></div>
+                        <span class="step-dash">--</span>
+                        <div class="step-item"><span class="step-circle">2</span><span>Validate</span></div>
+                        <span class="step-arrow">→</span>
+                        <div class="step-item"><span class="step-circle">3</span><span>Transfer</span></div>
+                        <span class="step-arrow">→</span>
+                        <div class="step-item"><span class="step-circle">4</span><span>Verify</span></div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
               </div>
-              <h3 class="project-title">AgriSaksham – AI-Powered Farming Assistant</h3>
+
             </div>
 
-            <p class="project-description">
-              Developed an AI-driven agricultural platform providing crop disease detection, fertilizer recommendations,
-              and intelligent chatbot assistance.
-            </p>
+            <!-- PROJECT 3: AgriSaksham -->
+            <div class="paper-project-card-wrapper" id="prj-sec-3">
 
-            <ul class="project-bullet-list">
-              <li>Integrated machine learning models for disease prediction and fertilizer recommendation using
-                TensorFlow and Scikit-Learn.</li>
-              <li>Implemented voice-enabled interactions using speech recognition and text-to-speech technologies for
-                improved accessibility.</li>
-              <li>Engineered an end-to-end intelligent agricultural assistant for real-time diagnosis.</li>
-            </ul>
-
-            <div class="project-tech-footer">
-              <span class="tech-label">Tech Stack</span>
-              <div class="tech-tags">
-                <span class="tech-tag accent">Python</span>
-                <span class="tech-tag accent">Flask</span>
-                <span class="tech-tag">TensorFlow</span>
-                <span class="tech-tag">Scikit-Learn</span>
-                <span class="tech-tag">Vosk</span>
-                <span class="tech-tag">pyttsx3</span>
+              <!-- Left Node Connector Badge -->
+              <div class="project-node-badge-group">
+                <div class="spine-pointer-arrow">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <div class="project-node-circle">
+                  <svg viewBox="0 0 32 32" fill="none" stroke="#3a342c" stroke-width="1.6" stroke-linecap="round">
+                    <circle cx="16" cy="16" r="6"/>
+                    <path d="M 16 4 L 16 10 M 16 22 L 16 28 M 4 16 L 10 16 M 22 16 L 28 16"/>
+                    <path d="M 7.5 7.5 L 11.7 11.7 M 20.3 20.3 L 24.5 24.5 M 7.5 24.5 L 11.7 20.3 M 20.3 11.7 L 24.5 7.5"/>
+                  </svg>
+                </div>
+                <span class="project-node-label">PRJ_03</span>
               </div>
+
+              <!-- Main Project Card Container -->
+              <div class="paper-project-card">
+                <div class="project-card-body-grid">
+
+                  <!-- Left Column: Details -->
+                  <div class="project-card-left">
+                    <span class="paper-meta-label">AI / MACHINE LEARNING & VOICE</span>
+                    <h3 class="paper-project-title">
+                      AgriSaksham – AI-Powered Farming Assistant
+                      <a href="https://github.com/nhr-09" target="_blank" class="project-ext-link" title="Open repository">↗</a>
+                    </h3>
+
+                    <p class="paper-project-desc">
+                      Developed an AI-driven agricultural platform providing crop disease detection, fertilizer recommendations, and intelligent chatbot assistance.
+                    </p>
+
+                    <ul class="paper-project-bullets">
+                      <li>Integrated machine learning models for disease prediction and fertilizer recommendation using TensorFlow and Scikit-Learn.</li>
+                      <li>Implemented voice-enabled interactions using speech recognition and text-to-speech technologies for improved accessibility.</li>
+                      <li>Engineered an end-to-end intelligent agricultural assistant for real-time diagnosis.</li>
+                    </ul>
+
+                    <div class="paper-project-tech-footer">
+                      <span class="tech-stack-label">TECH STACK</span>
+                      <div class="paper-tech-pills">
+                        <span class="paper-pill">Python</span>
+                        <span class="paper-pill">Flask</span>
+                        <span class="paper-pill">TensorFlow</span>
+                        <span class="paper-pill">Scikit-Learn</span>
+                        <span class="paper-pill">Vosk</span>
+                        <span class="paper-pill">pyttsx3</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Column: AI Platform Architecture Diagram Panel -->
+                  <div class="project-card-right-panel">
+                    <span class="panel-meta-title">AI PLATFORM ARCHITECTURE</span>
+
+                    <div class="architecture-diagram-box">
+                      <div class="arch-flow-row">
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                          <span>User</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                          <span>Voice Input</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="8" y1="8" x2="10" y2="10"/><line x1="16" y1="8" x2="14" y2="10"/></svg>
+                          <span>AI Engine</span>
+                        </div>
+                        <span class="arch-arrow">→</span>
+                        <div class="arch-node">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                          <span>Response</span>
+                        </div>
+                      </div>
+
+                      <div class="ai-models-row">
+                        <div class="ai-model-box">
+                          <span class="model-icon">🌿</span>
+                          <span class="model-title">Disease Detection</span>
+                          <span class="model-sub">(Model)</span>
+                        </div>
+                        <div class="ai-model-box">
+                          <span class="model-icon">🧪</span>
+                          <span class="model-title">Fertilizer Recommend</span>
+                          <span class="model-sub">(Model)</span>
+                        </div>
+                        <div class="ai-model-box">
+                          <span class="model-icon">💬</span>
+                          <span class="model-title">Chatbot</span>
+                          <span class="model-sub">(Assistant)</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Tech Snapshot Metrics -->
+                    <div class="panel-insights-box">
+                      <span class="insights-title">TECH SNAPSHOT</span>
+                      <div class="metrics-grid">
+                        <div class="metric-col">
+                          <span class="metric-icon">🎯</span>
+                          <span class="metric-val">92%</span>
+                          <span class="metric-label">Accuracy</span>
+                        </div>
+                        <div class="metric-col">
+                          <span class="metric-icon">📶</span>
+                          <span class="metric-val">&lt; 1.2s</span>
+                          <span class="metric-label">Voice Latency</span>
+                        </div>
+                        <div class="metric-col">
+                          <span class="metric-icon">🧊</span>
+                          <span class="metric-val">3</span>
+                          <span class="metric-label">Models Deployed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
             </div>
+
           </div>
 
         </div>
-        <div style="height: 4rem;"></div>
+
+        <!-- Bottom Cursive Script & Airplane Illustration -->
+        <div class="projects-footer-script">
+          <span class="footer-script-text">More projects coming soon...</span>
+          <div class="paper-plane-sketch">
+            <svg viewBox="0 0 100 50" fill="none" stroke="#4a433a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 10 25 L 85 10 L 45 40 L 35 28 L 10 25 Z M 45 40 L 40 23 L 85 10"/>
+              <path d="M 5 28 Q 15 32 25 29" stroke-dasharray="2,2"/>
+            </svg>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
