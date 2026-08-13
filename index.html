@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Nihar Mehakare — AI/ML Engineer & Full-Stack Developer. Building intelligent systems with RAG, LLMs, Computer Vision, and scalable backend architectures.">
+  <title>Nihar Mehakare — AI Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+  <!-- Loading Screen -->
+  <div class="loader" id="loader">
+    <div class="loader-text">Initializing</div>
+    <div class="loader-bar-track">
+      <div class="loader-bar-fill" id="loader-fill"></div>
+    </div>
+    <div class="loader-percent" id="loader-percent">0%</div>
+  </div>
+
+  <!-- Intro Overlay (Slice Reveal) -->
+  <div class="intro-overlay">
+    <div class="slice"></div>
+    <div class="slice"></div>
+    <div class="slice"></div>
+  </div>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-follower"></div>
+
+  <!-- Navigation -->
+  <nav class="nav" id="main-nav">
+    <a href="#" class="nav-logo">NIHAR<span class="dot"></span></a>
+    <ul class="nav-links">
+      <li><a href="#" id="nav-about-btn">About</a></li>
+      <li><a href="#" id="nav-projects-btn">Projects</a></li>
+      <li><a href="#" id="nav-experience-btn">Experience</a></li>
+      <li><a href="#" id="nav-contact-btn">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="mailto:niharmehakare@gmiil.com">Get In Touch ↗</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+
+    <!-- Subtle Grid BG via CSS ::before -->
+
+    <!-- Center Divider Line -->
+    <div class="center-divider"></div>
+
+    <!-- Cross Decorations -->
+    <div class="cross-deco c1"></div>
+    <div class="cross-deco c2"></div>
+    <div class="cross-deco c3"></div>
+
+    <!-- Left Panel — Text & Stats -->
+    <div class="hero-left">
+      <div class="vertical-label">AI / ML Engineer</div>
+
+      <div class="stats-row">
+        <div class="stat-item" id="stat-1">
+          <div class="stat-number" data-target="3"><span class="plus">+</span>0</div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+        <div class="stat-item" id="stat-2">
+          <div class="stat-number" data-target="3"><span class="plus">+</span>0</div>
+          <div class="stat-label">Industry collabs</div>
+        </div>
+        <div class="stat-item" id="stat-3">
+          <div class="stat-number" data-target="9"><span class="plus">.</span>0</div>
+          <div class="stat-label">CGPA // VIT Pune</div>
+        </div>
+      </div>
+
+      <div class="hero-title-wrapper">
+        <h1 class="hero-title" data-text="Nihar">
+          <span class="line"><span class="line-inner">Nihar</span></span>
+        </h1>
+        <div class="jp-accent">知</div>
+      </div>
+
+      <div class="hero-subtitle">
+        <div class="subtitle-dash"></div>
+        <p class="subtitle-text">I'm <strong>Mehakare</strong> — I build intelligent systems</p>
+      </div>
+
+      <div class="role-tag">
+        <div class="role-tag-dot"></div>
+        <span class="role-tag-text" data-text="AI TEAM LEAD // RAG · LLMs · VISION // STATUS: ACTIVE">AI TEAM LEAD //
+          RAG · LLMs · VISION // STATUS: ACTIVE</span>
+      </div>
+    </div>
+
+    <!-- Right Panel — Character Image -->
+    <div class="hero-right">
+      <div class="character-container">
+        <img src="assets/CHAR1.png" alt="Nihar Mehakare — AI/ML Engineer" class="character-img" id="character-img">
+
+        <!-- HUD Corners -->
+        <div class="hud-corner top-left"></div>
+        <div class="hud-corner top-right"></div>
+        <div class="hud-corner bottom-left"></div>
+        <div class="hud-corner bottom-right"></div>
+
+        <!-- Scan Line -->
+        <div class="scan-line"></div>
+
+        <!-- Floating particles -->
+        <div class="particles"></div>
+      </div>
+
+      <!-- Character Data Overlay -->
+      <div class="char-data-overlay">
+        <div class="char-data-item">
+          <div class="char-data-label">Class</div>
+          <div class="char-data-value">AI/ML Engineer</div>
+        </div>
+        <div class="char-data-item">
+          <div class="char-data-label">Skill // AI & ML</div>
+          <div class="char-skill-bar">
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill accent" data-width="95%"></div>
+            </div>
+            <span class="skill-bar-value">95</span>
+          </div>
+        </div>
+        <div class="char-data-item">
+          <div class="char-data-label">Skill // Backend</div>
+          <div class="char-skill-bar">
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="90%"></div>
+            </div>
+            <span class="skill-bar-value">90</span>
+          </div>
+        </div>
+        <div class="char-data-item">
+          <div class="char-data-label">Skill // Blockchain</div>
+          <div class="char-skill-bar">
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-width="75%"></div>
+            </div>
+            <span class="skill-bar-value">75</span>
+          </div>
+        </div>
+        <div class="char-data-item">
+          <div class="char-data-label">Rank</div>
+          <div class="char-data-value">SEM IV // 9.13 ████████░░</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Large Background Text -->
+    <div class="bg-text">MEHAKARE</div>
+
+    <!-- Ink Splatter Overlay -->
+    <div class="ink-overlay">
+      <img src="assets/ink-splatter.png" alt="">
+    </div>
+
+    <!-- Dynamic Ink System (populated by JS) -->
+    <div class="ink-system" id="ink-system"></div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll down</span>
+      <div class="scroll-line"></div>
+    </div>
+
+    <!-- Year Marker -->
+    <div class="year-marker">2026</div>
+
+    <!-- Sound Toggle (decorative) -->
+    <button class="sound-toggle" id="sound-toggle" aria-label="Toggle sound">
+      <div class="sound-bars">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span class="sound-label">SFX</span>
+    </button>
+
+  </section>
+
+  <!-- Contact Socials Popup -->
+  <div class="contact-popup" id="contact-popup">
+    <div class="contact-ink-bg"></div>
+    <div class="contact-links">
+      <!-- GitHub -->
+      <div class="contact-icon-wrapper">
+        <a href="https://github.com/nhr-09" target="_blank" class="contact-icon-btn github" aria-label="GitHub"
+          title="GitHub: nhr-09">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+            </path>
+          </svg>
+        </a>
+      </div>
+      <!-- Twitter / X -->
+      <div class="contact-icon-wrapper">
+        <a href="https://x.com/" target="_blank" class="contact-icon-btn twitter" aria-label="X (Twitter)" title="X">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </div>
+      <!-- Instagram -->
+      <div class="contact-icon-wrapper">
+        <a href="https://instagram.com/nhr_091" target="_blank" class="contact-icon-btn insta" aria-label="Instagram"
+          title="Instagram: nhr_092">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+        </a>
+      </div>
+      <!-- Telegram -->
+      <div class="contact-icon-wrapper">
+        <a href="https://t.me/nhr_091" target="_blank" class="contact-icon-btn telegram" aria-label="Telegram"
+          title="Telegram: nhr_091">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </a>
+      </div>
+      <!-- Email -->
+      <div class="contact-icon-wrapper">
+        <a href="mailto:niharmehakare@gmiil.com" class="contact-icon-btn gmail" aria-label="Email"
+          title="Email: niharmehakare@gmiil.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Overlay (Paper Parchment Vintage Journal UI) -->
+  <div class="about-overlay parchment-about-overlay" id="about-overlay">
+    <!-- Close button -->
+    <button class="about-close paper-close" id="about-close" aria-label="Close About">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <!-- Scrollable Parchment Container -->
+    <div class="parchment-scroll-container" id="about-scroll">
+      <div class="parchment-content-wrapper paper-journal-layout">
+        
+        <!-- Header (Matching Reference Image) -->
+        <div class="paper-header">
+          <div class="paper-section-num">02</div>
+          <div class="paper-num-line"></div>
+          <h2 class="paper-main-title">About Me</h2>
+          <div class="paper-subtitle-wrapper">
+            <span class="paper-subtitle-script">Get to know who I am</span>
+            <svg class="paper-subtitle-underline" viewBox="0 0 160 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 3 8 Q 40 2 80 7 T 157 5" stroke="#3a342c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+            </svg>
+          </div>
+          <!-- Vintage Pen Sketch Illustration top right -->
+          <div class="paper-header-pen-sketch">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#4a433a" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M 75 10 L 90 25 L 40 75 L 20 80 L 25 60 Z"/>
+              <path d="M 65 20 L 80 35"/>
+              <path d="M 20 80 L 10 90 M 20 80 Q 30 85 45 88 T 85 92" stroke-dasharray="2,2"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Main Journal Body Grid with Left Spine Timeline -->
+        <div class="journal-body-grid">
+          
+          <!-- Left Timeline Spine -->
+          <div class="journal-timeline-spine">
+            <svg class="spine-svg" id="about-spine-svg" viewBox="0 0 80 2200" preserveAspectRatio="none">
+              <path d="M 40 0 Q 75 200 40 400 T 40 800 T 40 1200 T 40 1600 T 40 2000 L 40 2200" stroke="#3a342c" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+
+          <!-- Journal Sections Column -->
+          <div class="journal-sections-column">
+            
+            <!-- SECTION 01: Profile Summary & Specs -->
+            <div class="journal-section" id="journal-sec-1">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">01</span>
+                <span class="step-script">Who I am</span>
+                <div class="mountain-sketch">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                    <path d="M 5 35 L 30 10 L 45 25 L 60 5 L 75 35 Z"/>
+                    <path d="M 30 10 L 35 18 M 60 5 L 64 12 M 20 22 L 25 35"/>
+                  </svg>
+                </div>
+              </div>
+
+              <div class="profile-grid">
+                <div class="profile-left">
+                  <span class="paper-meta-label">PROFILE SUMMARY</span>
+                  <h3 class="profile-name">Nihar Mehakare</h3>
+                  <p class="profile-bio">
+                    Computer Engineering student with experience developing AI-powered and full-stack applications for industry-sponsored projects. Led teams in building scalable backend systems, OCR-based automation platforms, and intelligent search solutions using Java, Spring Boot, Python, Flask, React, and SQL. Strong problem-solving skills with a solid foundation in Data Structures, Algorithms, DBMS, and software development.
+                  </p>
+                  <div class="profile-scroll-note">
+                    <span class="scroll-script">Scroll to explore</span>
+                    <span class="scroll-arrow">↓</span>
+                  </div>
+                </div>
+
+                <div class="profile-right-specs">
+                  <div class="spec-item">
+                    <div class="spec-icon">
+                      <svg class="paper-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.7C17.3 17 20 13 20 9a8 8 0 1 0-16 0c0 4 2.7 8 8 12.7z"/><circle cx="12" cy="9" r="3"/></svg>
+                    </div>
+                    <div class="spec-text">
+                      <span class="spec-label">Location</span>
+                      <span class="spec-val">Pune, India 411037</span>
+                    </div>
+                  </div>
+                  <div class="spec-item">
+                    <div class="spec-icon">
+                      <svg class="paper-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </div>
+                    <div class="spec-text">
+                      <span class="spec-label">Phone</span>
+                      <span class="spec-val">+91 8379084867</span>
+                    </div>
+                  </div>
+                  <div class="spec-item">
+                    <div class="spec-icon">
+                      <svg class="paper-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <div class="spec-text">
+                      <span class="spec-label">Education</span>
+                      <span class="spec-val">VIT Pune — B.Tech CSE (AI & ML)</span>
+                    </div>
+                  </div>
+                  <div class="spec-item">
+                    <div class="spec-icon">
+                      <svg class="paper-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                    </div>
+                    <div class="spec-text">
+                      <span class="spec-label">CGPA</span>
+                      <span class="spec-val">9.13 / 10.0 (Expected 04/2028)</span>
+                    </div>
+                  </div>
+                  <div class="spec-item">
+                    <div class="spec-icon">
+                      <svg class="paper-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <div class="spec-text">
+                      <span class="spec-label">Status</span>
+                      <span class="spec-val">Open to Engineering & AI Roles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 02: Academic Foundation -->
+            <div class="journal-section" id="journal-sec-2">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">02</span>
+                <span class="step-script">Where I learn</span>
+              </div>
+
+              <span class="paper-meta-label">ACADEMIC FOUNDATION</span>
+              <h3 class="journal-sec-title">Education & Training</h3>
+
+              <div class="paper-edu-card">
+                <div class="edu-building-sketch">
+                  <svg viewBox="0 0 100 80" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M 10 70 L 10 30 L 50 10 L 90 30 L 90 70 Z M 10 70 L 90 70"/>
+                    <path d="M 30 70 L 30 45 L 45 45 L 45 70 M 55 70 L 55 45 L 70 45 L 70 70"/>
+                    <path d="M 20 35 L 35 35 M 65 35 L 80 35 M 42 25 L 58 25"/>
+                  </svg>
+                </div>
+                <div class="edu-card-body">
+                  <h4 class="edu-institution">Vishwakarma Institute of Technology (VIT Pune)</h4>
+                  <div class="edu-degree-text">Bachelor of Technology in CSE (AI & ML)</div>
+                  <div class="edu-pills-row">
+                    <span class="paper-pill">
+                      <svg class="pill-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                      Expected 04/2028
+                    </span>
+                    <span class="paper-pill accent-pill">
+                      <svg class="pill-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#8b1022" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                      CGPA: 9.13 / 10.0
+                    </span>
+                    <span class="paper-pill">
+                      <svg class="pill-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21.7C17.3 17 20 13 20 9a8 8 0 1 0-16 0c0 4 2.7 8 8 12.7z"/><circle cx="12" cy="9" r="3"/></svg>
+                      Pune, India 411037
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 03: Technical Matrix -->
+            <div class="journal-section" id="journal-sec-3">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">03</span>
+                <span class="step-script">What I know</span>
+              </div>
+
+              <span class="paper-meta-label">TECHNICAL MATRIX</span>
+              <h3 class="journal-sec-title">Skills & Competencies</h3>
+
+              <div class="paper-skills-grid">
+                <!-- SKL_01 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_01</span>
+                  </div>
+                  <h4 class="skill-cat-name">Languages</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">Java</span>
+                    <span class="paper-tag">Python</span>
+                    <span class="paper-tag">SQL</span>
+                  </div>
+                </div>
+
+                <!-- SKL_02 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><line x1="8" y1="8" x2="10" y2="10"/><line x1="16" y1="8" x2="14" y2="10"/><line x1="8" y1="16" x2="10" y2="14"/><line x1="16" y1="16" x2="14" y2="14"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_02</span>
+                  </div>
+                  <h4 class="skill-cat-name">AI & Machine Learning</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag accent">RAG</span>
+                    <span class="paper-tag accent">LLMs</span>
+                    <span class="paper-tag accent">Semantic Search</span>
+                    <span class="paper-tag">NLP</span>
+                    <span class="paper-tag">Computer Vision</span>
+                    <span class="paper-tag">OCR</span>
+                    <span class="paper-tag">Vector Embeddings</span>
+                  </div>
+                </div>
+
+                <!-- SKL_03 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_03</span>
+                  </div>
+                  <h4 class="skill-cat-name">Backend Engineering</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">Spring Boot</span>
+                    <span class="paper-tag">Flask</span>
+                    <span class="paper-tag">REST APIs</span>
+                    <span class="paper-tag">JWT Authentication</span>
+                  </div>
+                </div>
+
+                <!-- SKL_04 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_04</span>
+                  </div>
+                  <h4 class="skill-cat-name">Frontend Development</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">HTML5</span>
+                    <span class="paper-tag">CSS3</span>
+                    <span class="paper-tag">JavaScript</span>
+                    <span class="paper-tag">React.js</span>
+                  </div>
+                </div>
+
+                <!-- SKL_05 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_05</span>
+                  </div>
+                  <h4 class="skill-cat-name">Databases & Cloud</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">MySQL</span>
+                    <span class="paper-tag">PostgreSQL</span>
+                    <span class="paper-tag">Firebase</span>
+                  </div>
+                </div>
+
+                <!-- SKL_06 -->
+                <div class="paper-skill-card">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_06</span>
+                  </div>
+                  <h4 class="skill-cat-name">Tools & DevOps</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">Git</span>
+                    <span class="paper-tag">GitHub</span>
+                    <span class="paper-tag">Docker</span>
+                    <span class="paper-tag">Postman</span>
+                  </div>
+                </div>
+
+                <!-- SKL_07 -->
+                <div class="paper-skill-card full-row">
+                  <div class="skill-card-top">
+                    <span class="skill-icon">
+                      <svg class="paper-skill-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    </span>
+                    <span class="skill-code">SKL_07</span>
+                  </div>
+                  <h4 class="skill-cat-name">Core Computer Science</h4>
+                  <div class="skill-tags-wrapper">
+                    <span class="paper-tag">Data Structures & Algorithms (DSA)</span>
+                    <span class="paper-tag">Object-Oriented Programming (OOP)</span>
+                    <span class="paper-tag">DBMS</span>
+                    <span class="paper-tag">Operating Systems</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 04: Impact & Management -->
+            <div class="journal-section" id="journal-sec-4">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">04</span>
+                <span class="step-script">Leading & Growing</span>
+              </div>
+
+              <span class="paper-meta-label">IMPACT & MANAGEMENT</span>
+              <h3 class="journal-sec-title">Leadership & Positions of Responsibility</h3>
+
+              <div class="paper-leadership-list">
+                <div class="paper-lead-card">
+                  <div class="lead-left-content">
+                    <span class="lead-code">LEAD_01 | VIT Pune</span>
+                    <h4 class="lead-title">CSM Head | GedIT Coding Club</h4>
+                    <p class="lead-desc">Led content and social media initiatives for the institute's official coding club, directing media strategy and developer engagement.</p>
+                  </div>
+                  <div class="lead-sketch-img">
+                    <svg viewBox="0 0 120 80" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <circle cx="40" cy="30" r="10"/> <path d="M 25 60 C 25 45 55 45 55 60"/>
+                      <circle cx="80" cy="30" r="10"/> <path d="M 65 60 C 65 45 95 45 95 60"/>
+                      <path d="M 45 40 L 75 40" stroke-dasharray="2,2"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="paper-lead-card">
+                  <div class="lead-left-content">
+                    <span class="lead-code">LEAD_02 | VIT Pune</span>
+                    <h4 class="lead-title">Content Secretary | Abhividdhi</h4>
+                    <div class="lead-sub">Student Training & Development Committee</div>
+                    <p class="lead-desc">Managed official content, communications, and event promotions. Collaborated with committee members to significantly increase student participation and outreach.</p>
+                  </div>
+                  <div class="lead-sketch-img">
+                    <svg viewBox="0 0 120 80" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <ellipse cx="60" cy="50" rx="35" ry="12"/>
+                      <circle cx="30" cy="25" r="8"/> <circle cx="60" cy="22" r="8"/> <circle cx="90" cy="25" r="8"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 05: Hobbies & Interests -->
+            <div class="journal-section" id="journal-sec-5">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">05</span>
+                <span class="step-script">Beyond Code</span>
+              </div>
+
+              <span class="paper-meta-label">HOBBIES & INTERESTS</span>
+              <h3 class="journal-sec-title">What I Do Off-Screen</h3>
+
+              <div class="paper-hobbies-grid">
+                <div class="hobby-col">
+                  <div class="hobby-icon">
+                    <svg class="paper-hobby-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.92 0 1.7-.72 1.7-1.63 0-.43-.17-.83-.44-1.13-.27-.3-.44-.7-.44-1.13 0-.91.78-1.64 1.7-1.64h2.48c3.04 0 5.5-2.46 5.5-5.5C22 6.5 17.5 2 12 2z"/></svg>
+                  </div>
+                  <h4 class="hobby-title">Design & UI</h4>
+                  <p class="hobby-desc">Crafting premium interfaces and exploring design systems, typography, and motion design.</p>
+                </div>
+                <div class="hobby-col">
+                  <div class="hobby-icon">
+                    <svg class="paper-hobby-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                  </div>
+                  <h4 class="hobby-title">Reading</h4>
+                  <p class="hobby-desc">Deep into tech blogs, research papers on LLMs, and the occasional sci-fi novel.</p>
+                </div>
+                <div class="hobby-col">
+                  <div class="hobby-icon">
+                    <svg class="paper-hobby-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M3 10v4M21 10v4M6.5 10v4M17.5 10v4"/></svg>
+                  </div>
+                  <h4 class="hobby-title">Fitness</h4>
+                  <p class="hobby-desc">Gym regular — discipline from the weights translates directly into clean code.</p>
+                </div>
+                <div class="hobby-col">
+                  <div class="hobby-icon">
+                    <svg class="paper-hobby-svg" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg>
+                  </div>
+                  <h4 class="hobby-title">Anime & Cinema</h4>
+                  <p class="hobby-desc">Story-driven animation and film — always looking for the next visual masterpiece.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 06: My Games -->
+            <div class="journal-section" id="journal-sec-6">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">06</span>
+                <span class="step-script">Gaming & Focus</span>
+              </div>
+
+              <span class="paper-meta-label">MY GAMES</span>
+              <h3 class="journal-sec-title">Currently Playing</h3>
+
+              <div class="paper-games-row">
+                <div class="paper-game-card">
+                  <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300" alt="Valorant" class="game-poster-img">
+                  <div class="game-info">
+                    <h4 class="game-title">Valorant</h4>
+                    <span class="game-tag">FPS · Competitive</span>
+                    <span class="game-status active">Active</span>
+                  </div>
+                </div>
+                <div class="paper-game-card">
+                  <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=300" alt="Elden Ring" class="game-poster-img">
+                  <div class="game-info">
+                    <h4 class="game-title">Elden Ring</h4>
+                    <span class="game-tag">RPG · Open World</span>
+                    <span class="game-status">Completed</span>
+                  </div>
+                </div>
+                <div class="paper-game-card">
+                  <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300" alt="Cyberpunk 2077" class="game-poster-img">
+                  <div class="game-info">
+                    <h4 class="game-title">Cyberpunk 2077</h4>
+                    <span class="game-tag">RPG · Story</span>
+                    <span class="game-status">In Progress</span>
+                  </div>
+                </div>
+                <div class="paper-game-card">
+                  <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?w=300" alt="GTA V" class="game-poster-img">
+                  <div class="game-info">
+                    <h4 class="game-title">GTA V</h4>
+                    <span class="game-tag">Open World · Action</span>
+                    <span class="game-status">Classic</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 07: My Music -->
+            <div class="journal-section" id="journal-sec-7">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num">07</span>
+                <span class="step-script">Soundtrack</span>
+              </div>
+
+              <!-- Vintage Handwritten Note & Headphones Illustration Top Right/Left -->
+              <div class="music-header-decorations">
+                <div class="music-headphones-illustration">
+                  <svg viewBox="0 0 100 130" fill="none" stroke="#3a342c" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M 25 65 C 20 20 80 20 75 65" stroke-width="2"/>
+                    <path d="M 29 60 C 26 26 74 26 71 60"/>
+                    <path d="M 25 85 Q 15 100 30 115 T 20 130" stroke-dasharray="2,2"/>
+                    <rect x="14" y="60" width="16" height="28" rx="8" fill="#f4eee2" stroke="#3a342c" stroke-width="1.5"/>
+                    <rect x="70" y="60" width="16" height="28" rx="8" fill="#f4eee2" stroke="#3a342c" stroke-width="1.5"/>
+                    <ellipse cx="22" cy="74" rx="4" ry="8" fill="#3a342c"/>
+                    <ellipse cx="78" cy="74" rx="4" ry="8" fill="#3a342c"/>
+                    <path d="M 10 110 Q 15 105 18 108 M 18 108 L 18 98 M 10 105 L 18 98" stroke-width="1"/>
+                    <circle cx="9" cy="111" r="2" fill="#3a342c"/>
+                  </svg>
+                </div>
+
+                <div class="music-top-script-note">
+                  <span class="script-quote">Music is my escape and my fuel.</span>
+                  <div class="script-underline-double">
+                    <svg width="105" height="12" viewBox="0 0 105 12" fill="none">
+                      <path d="M 2 4 Q 50 1 103 5 M 5 9 Q 55 6 98 10" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Main Section Titles -->
+              <div class="music-title-block">
+                <span class="paper-meta-label">MY MUSIC</span>
+                <h3 class="journal-sec-title music-main-heading">What I Listen To</h3>
+                <div class="music-subtitle-script">
+                  <span>soundtrack of my days</span>
+                  <svg width="140" height="10" viewBox="0 0 140 10" fill="none">
+                    <path d="M 2 5 Q 70 1 138 6" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Dual Parchment Cards Grid -->
+              <div class="music-dual-cards-grid">
+
+                <!-- Left Card: RECENTLY PLAYED -->
+                <div class="paper-music-card recently-played-card">
+                  <div class="music-card-header">
+                    <div class="card-header-title">
+                      <svg class="music-header-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                      </svg>
+                      <span>RECENTLY PLAYED</span>
+                    </div>
+                  </div>
+
+                  <div class="music-track-list" id="spotify-recently-played">
+                    <div class="track-row">
+                      <div class="track-left">
+                        <div class="track-cover-wrapper">
+                          <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="Another Love" class="track-cover">
+                          <button class="track-play-btn" aria-label="Play Another Love">▶</button>
+                        </div>
+                        <div class="track-meta">
+                          <h5 class="track-title">Another Love</h5>
+                          <span class="track-artist">Tom Odell</span>
+                        </div>
+                      </div>
+                      <span class="track-time-ago">8 min ago</span>
+                    </div>
+
+                    <div class="track-row">
+                      <div class="track-left">
+                        <div class="track-cover-wrapper">
+                          <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=120" alt="Ivy" class="track-cover">
+                          <button class="track-play-btn" aria-label="Play Ivy">▶</button>
+                        </div>
+                        <div class="track-meta">
+                          <h5 class="track-title">Ivy</h5>
+                          <span class="track-artist">Frank Ocean</span>
+                        </div>
+                      </div>
+                      <span class="track-time-ago">42 min ago</span>
+                    </div>
+
+                    <div class="track-row">
+                      <div class="track-left">
+                        <div class="track-cover-wrapper">
+                          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="The Night We Met" class="track-cover">
+                          <button class="track-play-btn" aria-label="Play The Night We Met">▶</button>
+                        </div>
+                        <div class="track-meta">
+                          <h5 class="track-title">The Night We Met</h5>
+                          <span class="track-artist">Lord Huron</span>
+                        </div>
+                      </div>
+                      <span class="track-time-ago">2 hr ago</span>
+                    </div>
+
+                    <div class="track-row">
+                      <div class="track-left">
+                        <div class="track-cover-wrapper">
+                          <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Do I Wanna Know?" class="track-cover">
+                          <button class="track-play-btn" aria-label="Play Do I Wanna Know">▶</button>
+                        </div>
+                        <div class="track-meta">
+                          <h5 class="track-title">Do I Wanna Know?</h5>
+                          <span class="track-artist">Arctic Monkeys</span>
+                        </div>
+                      </div>
+                      <span class="track-time-ago">3 hr ago</span>
+                    </div>
+
+                    <div class="track-row">
+                      <div class="track-left">
+                        <div class="track-cover-wrapper">
+                          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=120" alt="Choo Lo" class="track-cover">
+                          <button class="track-play-btn" aria-label="Play Choo Lo">▶</button>
+                        </div>
+                        <div class="track-meta">
+                          <h5 class="track-title">Choo Lo</h5>
+                          <span class="track-artist">The Local Train</span>
+                        </div>
+                      </div>
+                      <span class="track-time-ago">5 hr ago</span>
+                    </div>
+                  </div>
+
+                  <div class="music-card-footer">
+                    <a href="https://open.spotify.com" target="_blank" class="spotify-link">
+                      <svg class="spotify-icon-green" viewBox="0 0 24 24" fill="#1DB954" width="18" height="18"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.48-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.38-1.38 9.78-.72 13.5 1.56.36.24.54.84.241 1.261zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>
+                      <span>Open in Spotify</span>
+                      <span class="arrow-icon">→</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Right Card: TOP SONGS -->
+                <div class="paper-music-card top-songs-card">
+                  <div class="music-card-header">
+                    <div class="card-header-title">
+                      <svg class="music-header-icon" viewBox="0 0 24 24" fill="none" stroke="#4a433a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
+                      </svg>
+                      <span>TOP SONGS</span>
+                    </div>
+                    <div class="card-header-dropdown">
+                      <span>This Month</span>
+                      <span class="dropdown-chevron">∨</span>
+                    </div>
+                  </div>
+
+                  <div class="music-rank-list" id="spotify-top-songs">
+                    <div class="rank-row">
+                      <span class="rank-num">01</span>
+                      <div class="rank-track-info">
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Radiohead" class="rank-cover">
+                        <div class="rank-meta">
+                          <h5 class="rank-title">Everything In Its Right Place</h5>
+                          <span class="rank-artist">Radiohead</span>
+                        </div>
+                      </div>
+                      <span class="rank-duration">4:11</span>
+                      <button class="rank-heart-btn" aria-label="Like track">♡</button>
+                    </div>
+
+                    <div class="rank-row">
+                      <span class="rank-num">02</span>
+                      <div class="rank-track-info">
+                        <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=120" alt="One Direction" class="rank-cover">
+                        <div class="rank-meta">
+                          <h5 class="rank-title">Night Changes</h5>
+                          <span class="rank-artist">One Direction</span>
+                        </div>
+                      </div>
+                      <span class="rank-duration">3:46</span>
+                      <button class="rank-heart-btn" aria-label="Like track">♡</button>
+                    </div>
+
+                    <div class="rank-row">
+                      <span class="rank-num">03</span>
+                      <div class="rank-track-info">
+                        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="Pink Floyd" class="rank-cover">
+                        <div class="rank-meta">
+                          <h5 class="rank-title">Time</h5>
+                          <span class="rank-artist">Pink Floyd</span>
+                        </div>
+                      </div>
+                      <span class="rank-duration">6:53</span>
+                      <button class="rank-heart-btn" aria-label="Like track">♡</button>
+                    </div>
+
+                    <div class="rank-row">
+                      <span class="rank-num">04</span>
+                      <div class="rank-track-info">
+                        <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=120" alt="Sam Smith" class="rank-cover">
+                        <div class="rank-meta">
+                          <h5 class="rank-title">Stay With Me</h5>
+                          <span class="rank-artist">Sam Smith</span>
+                        </div>
+                      </div>
+                      <span class="rank-duration">2:52</span>
+                      <button class="rank-heart-btn" aria-label="Like track">♡</button>
+                    </div>
+
+                    <div class="rank-row">
+                      <span class="rank-num">05</span>
+                      <div class="rank-track-info">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="The Neighbourhood" class="rank-cover">
+                        <div class="rank-meta">
+                          <h5 class="rank-title">Sweater Weather</h5>
+                          <span class="rank-artist">The Neighbourhood</span>
+                        </div>
+                      </div>
+                      <span class="rank-duration">4:00</span>
+                      <button class="rank-heart-btn" aria-label="Like track">♡</button>
+                    </div>
+                  </div>
+
+                  <div class="music-card-footer">
+                    <a href="https://open.spotify.com" target="_blank" class="spotify-link simple-link">
+                      <span>View all on Spotify</span>
+                      <span class="arrow-icon">→</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Bottom Currently Listening Live Player Bar -->
+              <div class="paper-music-card currently-listening-bar" id="spotify-now-playing">
+                <div class="now-playing-left">
+                  <span class="currently-script">Currently listening →</span>
+                  <div class="now-playing-track">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Kid A" class="now-playing-cover">
+                    <div class="now-playing-meta">
+                      <h5 class="now-playing-title">Everything In Its Right Place</h5>
+                      <span class="now-playing-artist">Radiohead</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="now-playing-right">
+                  <!-- Animated Waveform Equalizer -->
+                  <div class="equalizer-waveform">
+                    <span class="bar bar-1"></span>
+                    <span class="bar bar-2"></span>
+                    <span class="bar bar-3"></span>
+                    <span class="bar bar-4"></span>
+                    <span class="bar bar-5"></span>
+                    <span class="bar bar-6"></span>
+                    <span class="bar bar-7"></span>
+                    <span class="bar bar-8"></span>
+                    <span class="bar bar-9"></span>
+                    <span class="bar bar-10"></span>
+                    <span class="bar bar-11"></span>
+                    <span class="bar bar-12"></span>
+                  </div>
+
+                  <div class="now-playing-controls">
+                    <button class="pause-btn" aria-label="Pause">⏸</button>
+                    <svg class="spotify-badge-green" viewBox="0 0 24 24" fill="#1DB954" width="26" height="26"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.48-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141 4.38-1.38 9.78-.72 13.5 1.56.36.24.54.84.241 1.261zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.18-1.38-.72-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.72 1.62.54.3.72 1.02.42 1.56-.3.42-1.02.6-1.56.3z"/></svg>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Projects Overlay -->
+  <div class="about-overlay" id="projects-overlay">
+    <!-- Corner ink panels -->
+    <div class="about-ink-corner corner-tl"></div>
+    <div class="about-ink-corner corner-tr"></div>
+    <div class="about-ink-corner corner-bl"></div>
+    <div class="about-ink-corner corner-br"></div>
+
+    <!-- HUD Layout Decorations -->
+    <div class="about-hud-corner corner-tl"></div>
+    <div class="about-hud-corner corner-tr"></div>
+    <div class="about-hud-corner corner-bl"></div>
+    <div class="about-hud-corner corner-br"></div>
+
+    <!-- Close button -->
+    <button class="about-close" id="projects-close" aria-label="Close Projects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Glass header background for desktop -->
+    <div class="about-header-bg" id="projects-header-bg"></div>
+
+    <!-- Scrollable content -->
+    <div class="about-scroll" id="projects-scroll">
+      <div class="overlay-container">
+
+        <div class="overlay-section-header">
+          <span class="overlay-section-label">// Featured Systems & Architecture</span>
+          <h2>Projects</h2>
+          <p class="overlay-subtitle">Production-grade software architectures, blockchain protocol infrastructure, and
+            AI platforms built for performance and scalability.</p>
+        </div>
+
+        <div class="projects-list">
+
+          <!-- Project 1: ARCHITECH -->
+          <div class="project-hud-card">
+            <div class="project-hud-header">
+              <div class="project-hud-meta">
+                <span class="project-badge">PRJ_01</span>
+                <span class="project-type-tag">Software Architecture & Knowledge Graphs</span>
+              </div>
+              <h3 class="project-title">ARCHITECH – Architectural Recovery & Semantic Synthesis</h3>
+            </div>
+
+            <p class="project-description">
+              Developed a full-stack software architecture analysis platform that extracts repository structure using
+              AST parsing and builds knowledge graphs for architectural insights.
+            </p>
+
+            <ul class="project-bullet-list">
+              <li>Implemented dependency analysis, coupling measurement, blast-radius estimation, and architectural
+                pattern detection using Neo4j and NetworkX.</li>
+              <li>Integrated LLM-powered explanations to generate human-readable summaries of codebases and
+                architectural decisions.</li>
+              <li>Extracted repository structure using AST parsing to synthesize interactive knowledge graphs.</li>
+            </ul>
+
+            <div class="project-tech-footer">
+              <span class="tech-label">Tech Stack</span>
+              <div class="tech-tags">
+                <span class="tech-tag accent">FastAPI</span>
+                <span class="tech-tag accent">React</span>
+                <span class="tech-tag">Neo4j</span>
+                <span class="tech-tag">NetworkX</span>
+                <span class="tech-tag">Tree-sitter</span>
+                <span class="tech-tag">Groq LLM</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Eventix -->
+          <div class="project-hud-card">
+            <div class="project-hud-header">
+              <div class="project-hud-meta">
+                <span class="project-badge">PRJ_02</span>
+                <span class="project-type-tag">Blockchain & Decentralized Protocol</span>
+              </div>
+              <h3 class="project-title">Eventix – Blockchain Event Ticketing Platform</h3>
+            </div>
+
+            <p class="project-description">
+              Developed a decentralized ticketing platform leveraging Solana NFTs, smart contracts, and IPFS for secure
+              event ticket ownership and verification.
+            </p>
+
+            <ul class="project-bullet-list">
+              <li>Implemented anti-scalping mechanisms through Rust smart contracts, enforcing resale limits and price
+                markup restrictions on-chain.</li>
+              <li>Designed NFT minting workflows, wallet integration, decentralized metadata storage, and QR-based
+                ticket validation.</li>
+              <li>Engineered secure token minting & validation workflows with Solana ecosystem tools.</li>
+            </ul>
+
+            <div class="project-tech-footer">
+              <span class="tech-label">Tech Stack</span>
+              <div class="tech-tags">
+                <span class="tech-tag accent">Solana</span>
+                <span class="tech-tag accent">Rust</span>
+                <span class="tech-tag">Anchor</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">IPFS</span>
+                <span class="tech-tag">Metaplex</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: AgriSaksham -->
+          <div class="project-hud-card">
+            <div class="project-hud-header">
+              <div class="project-hud-meta">
+                <span class="project-badge">PRJ_03</span>
+                <span class="project-type-tag">AI / Machine Learning & Voice</span>
+              </div>
+              <h3 class="project-title">AgriSaksham – AI-Powered Farming Assistant</h3>
+            </div>
+
+            <p class="project-description">
+              Developed an AI-driven agricultural platform providing crop disease detection, fertilizer recommendations,
+              and intelligent chatbot assistance.
+            </p>
+
+            <ul class="project-bullet-list">
+              <li>Integrated machine learning models for disease prediction and fertilizer recommendation using
+                TensorFlow and Scikit-Learn.</li>
+              <li>Implemented voice-enabled interactions using speech recognition and text-to-speech technologies for
+                improved accessibility.</li>
+              <li>Engineered an end-to-end intelligent agricultural assistant for real-time diagnosis.</li>
+            </ul>
+
+            <div class="project-tech-footer">
+              <span class="tech-label">Tech Stack</span>
+              <div class="tech-tags">
+                <span class="tech-tag accent">Python</span>
+                <span class="tech-tag accent">Flask</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">Scikit-Learn</span>
+                <span class="tech-tag">Vosk</span>
+                <span class="tech-tag">pyttsx3</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div style="height: 4rem;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Experience Overlay (Paper Parchment Vintage Timeline) -->
+  <div class="about-overlay parchment-experience-overlay" id="experience-overlay">
+    <!-- Close button -->
+    <button class="about-close paper-close" id="experience-close" aria-label="Close Experience">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Scrollable Parchment Container -->
+    <div class="parchment-scroll-container" id="experience-scroll">
+      <div class="parchment-content-wrapper">
+
+        <!-- Header (Matching Reference Image) -->
+        <div class="paper-header">
+          <div class="paper-section-num">03</div>
+          <div class="paper-num-line"></div>
+          <h2 class="paper-main-title">Experience</h2>
+          <div class="paper-subtitle-wrapper">
+            <span class="paper-subtitle-script">My journey so far...</span>
+            <svg class="paper-subtitle-underline" viewBox="0 0 160 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M 3 8 Q 40 2 80 7 T 157 5" stroke="#3a342c" stroke-width="1.8" stroke-linecap="round"
+                fill="none" />
+            </svg>
+          </div>
+          <p class="paper-description">
+            A timeline of my professional journey, where I've learned, built, and contributed.
+          </p>
+        </div>
+
+        <!-- Interactive Navigation Controls -->
+        <div class="paper-timeline-controls">
+          <button class="timeline-nav-btn timeline-prev" id="exp-prev-btn" aria-label="Previous Experience"
+            title="Scroll Left">‹</button>
+          <span class="timeline-scroll-hint">‹ Drag or scroll to explore timeline ›</span>
+          <button class="timeline-nav-btn timeline-next" id="exp-next-btn" aria-label="Next Experience"
+            title="Scroll Right">›</button>
+        </div>
+
+        <!-- Winding Timeline Viewport -->
+        <div class="paper-timeline-viewport" id="exp-timeline-viewport">
+          <div class="paper-timeline-track" id="exp-timeline-track">
+            <!-- Dynamic SVG Curve & Dashed Lines rendered by JS -->
+            <svg class="paper-timeline-svg" id="exp-timeline-svg"></svg>
+
+            <!-- Compact Cards Container -->
+            <div class="paper-timeline-cards" id="exp-timeline-cards">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Experience Full Detail Modal Popup -->
+    <div class="paper-modal-overlay" id="paper-exp-modal" aria-hidden="true">
+      <div class="paper-modal-backdrop" id="paper-modal-backdrop"></div>
+      <div class="paper-modal-card">
+        <button class="paper-modal-close" id="paper-modal-close" aria-label="Close details">✕</button>
+        <div class="paper-modal-header">
+          <span class="paper-modal-badge" id="modal-badge">EXP_01</span>
+          <span class="paper-modal-date" id="modal-date">July 2025 – December 2025</span>
+        </div>
+        <h3 class="paper-modal-title" id="modal-title">RAG-Based Semantic Search System</h3>
+        <div class="paper-modal-role" id="modal-role">AI Team Lead – Industry Sponsored</div>
+        <div class="paper-modal-company" id="modal-company">Passion Info Tech – Pune</div>
+        <div class="paper-modal-divider"></div>
+        <h4 class="paper-modal-section-heading">Key Achievements & Responsibilities</h4>
+        <ul class="paper-modal-bullets" id="modal-bullets"></ul>
+        <div class="paper-modal-tags-header">Technologies & Domain</div>
+        <div class="paper-modal-tags" id="modal-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cinematic Natural Cloud Transition Overlay -->
+  <div class="coc-cloud-overlay" id="coc-cloud-overlay" aria-hidden="true">
+    <svg class="coc-cloud-svg-canvas" viewBox="0 0 1400 900" preserveAspectRatio="none">
+      <defs>
+        <!-- Soft mist blur filters for realistic cloud edges -->
+        <filter id="cloud-blur-soft" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="9" />
+        </filter>
+        <filter id="cloud-blur-deep" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="18" />
+        </filter>
+      </defs>
+
+      <!-- Layer 1: Background Deep Mist -->
+      <g class="cloud-layer layer-back" filter="url(#cloud-blur-deep)">
+        <path class="cloud-path-left-back"
+          d="M -150 -50 L 850 -50 Q 1000 120 880 280 Q 1020 440 890 600 Q 980 760 820 950 L -150 950 Z" fill="#d3c5b3"
+          opacity="0.65" />
+        <path class="cloud-path-right-back"
+          d="M 1550 -50 L 550 -50 Q 400 120 520 280 Q 380 440 510 600 Q 420 760 580 950 L 1550 950 Z" fill="#d3c5b3"
+          opacity="0.65" />
+      </g>
+
+      <!-- Layer 2: Midground Organic Cloud Billows -->
+      <g class="cloud-layer layer-mid" filter="url(#cloud-blur-soft)">
+        <path class="cloud-path-left-mid"
+          d="M -150 -50 L 780 -50 C 900 60 820 180 920 300 C 800 420 940 540 820 680 C 900 800 780 900 740 950 L -150 950 Z"
+          fill="#ebe1cf" opacity="0.88" />
+        <path class="cloud-path-right-mid"
+          d="M 1550 -50 L 620 -50 C 500 60 580 180 480 300 C 600 420 460 540 580 680 C 500 800 620 900 660 950 L 1550 950 Z"
+          fill="#ebe1cf" opacity="0.88" />
+      </g>
+
+      <!-- Layer 3: Foreground Soft Fluffy Clouds -->
+      <g class="cloud-layer layer-fore" filter="url(#cloud-blur-soft)">
+        <path class="cloud-path-left-fore"
+          d="M -150 -50 L 720 -50 C 840 40 760 140 850 240 C 750 340 880 450 780 560 C 890 670 760 800 810 950 L -150 950 Z"
+          fill="#fcf9f2" />
+        <path class="cloud-path-right-fore"
+          d="M 1550 -50 L 680 -50 C 560 40 640 140 550 240 C 650 340 520 450 620 560 C 510 670 640 800 590 950 L 1550 950 Z"
+          fill="#fcf9f2" />
+      </g>
+    </svg>
+
+    <!-- Floating Puffy Cloud Fog Blobs -->
+    <div class="cloud-fog-container">
+      <div class="fog-blob blob-1"></div>
+      <div class="fog-blob blob-2"></div>
+      <div class="fog-blob blob-3"></div>
+      <div class="fog-blob blob-4"></div>
+      <div class="fog-blob blob-5"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
