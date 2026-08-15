@@ -1,11 +1,15 @@
-﻿/* ============================================
-   GLOBAL PAPER INK CURSOR
+/* ============================================
+   MICRO-INTERACTIONS — INK, PAPER & TECHNICAL INSTRUMENTATION
+   ============================================ */
+
+/* ============================================
+   1. GLOBAL PAPER INK CURSOR
    ============================================ */
 @media (pointer: fine) {
   body {
     cursor: none !important;
   }
-  a, button, input, textarea, select, [role="button"] {
+  a, button, input, textarea, select, [role="button"], .paper-card, .paper-project-card, .paper-skill-card {
     cursor: none !important;
   }
 }
@@ -14,8 +18,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #2a241e;
   border-radius: 50%;
   pointer-events: none;
@@ -37,7 +41,7 @@
   z-index: 99998;
   transform: translate(-50%, -50%) scale(0.6);
   opacity: 0;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,30 +57,46 @@
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.3);
   border-color: #1c1a17;
-  background: rgba(244, 238, 226, 0.65);
+  background: rgba(244, 238, 226, 0.7);
+}
+
+.ink-cursor-circle.spotify {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.25);
+  border-color: #1db954;
+  background: rgba(29, 185, 84, 0.08);
 }
 
 .ink-cursor-icon {
   font-family: var(--font-serif);
-  font-size: 0.75rem;
+  font-size: 0.8rem;
   font-weight: 700;
   color: #1c1a17;
   display: none;
+  line-height: 1;
 }
 
-.ink-cursor-circle.link .ink-cursor-icon {
+.ink-cursor-circle.link .ink-cursor-icon,
+.ink-cursor-circle.spotify .ink-cursor-icon {
   display: block;
 }
 
 /* ============================================
-   INK DRAW UNDERLINE EFFECT (Left -> Right)
+   2. INK DRAW UNDERLINE EFFECT (Left -> Right)
    ============================================ */
-.ink-draw-link {
+.ink-draw-link,
+.nav-links a,
+.paper-card-click-hint,
+.project-ext-link,
+.spotify-link {
   position: relative;
   text-decoration: none !important;
 }
 
-.ink-draw-link::after {
+.ink-draw-link::after,
+.nav-links a::after,
+.project-ext-link::after,
+.spotify-link::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -90,69 +110,140 @@
   opacity: 0.85;
 }
 
-.ink-draw-link:hover::after {
+.ink-draw-link:hover::after,
+.nav-links a:hover::after,
+.project-ext-link:hover::after,
+.spotify-link:hover::after {
   transform: scaleX(1);
 }
 
 /* ============================================
-   PAPER DISPLACEMENT (LIFTING A SHEET OF PAPER)
+   3. PAPER DISPLACEMENT (LIFTING A SHEET OF PAPER)
    ============================================ */
-.paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .paper-music-card, .hobby-col {
-  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+.paper-card,
+.paper-project-card,
+.paper-skill-card,
+.paper-lead-card,
+.paper-edu-card,
+.paper-music-card,
+.spec-item,
+.hobby-col {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s ease, border-color 0.28s ease !important;
 }
 
-.paper-card:hover, .paper-project-card:hover, .paper-skill-card:hover, .paper-lead-card:hover, .paper-edu-card:hover, .paper-music-card:hover, .hobby-col:hover {
-  transform: translateY(-4px) rotate(0.2deg) !important;
-  box-shadow: 0 16px 36px rgba(40, 32, 22, 0.12) !important;
+.paper-card:hover,
+.paper-project-card:hover,
+.paper-skill-card:hover,
+.paper-lead-card:hover,
+.paper-edu-card:hover,
+.paper-music-card:hover,
+.spec-item:hover,
+.hobby-col:hover {
+  transform: translateY(-3px) rotate(0.25deg) !important;
+  box-shadow: 0 14px 32px rgba(40, 32, 22, 0.11) !important;
   border-color: rgba(50, 42, 32, 0.35) !important;
 }
 
-.paper-card:nth-child(even):hover, .paper-project-card:nth-child(even):hover, .paper-skill-card:nth-child(even):hover {
-  transform: translateY(-4px) rotate(-0.2deg) !important;
+.paper-card:nth-child(even):hover,
+.paper-project-card:nth-child(even):hover,
+.paper-skill-card:nth-child(even):hover {
+  transform: translateY(-3px) rotate(-0.25deg) !important;
 }
 
 /* ============================================
-   TIMELINE INK RIPPLE & STAMP EFFECT
+   4. EXPERIENCE TIMELINE — INK RIPPLE & SCRATCHED ANNOTATION
    ============================================ */
-@keyframes inkStamp {
-  0% { transform: scale(0.6); opacity: 0; }
-  60% { transform: scale(1.12); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
+.scratched-annotation {
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
+  color: #8c2a22;
+  position: absolute;
+  top: -18px;
+  right: 12px;
+  opacity: 0;
+  transform: translateY(4px) rotate(-2deg);
+  transition: all 0.25s ease;
+  pointer-events: none;
+  white-space: nowrap;
 }
 
-.step-num.ink-stamp-active, .project-node-circle.ink-stamp-active {
-  animation: inkStamp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+.paper-card:hover .scratched-annotation {
+  opacity: 1;
+  transform: translateY(0) rotate(-2deg);
 }
 
-.journal-section.active-spine-sec .step-num {
-  background: #3a342c !important;
-  color: #f5f0e6 !important;
-  border-color: #3a342c !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.18);
-}
-
-.journal-section.active-spine-sec .spine-pointer-arrow svg line {
-  stroke-dasharray: none;
-  stroke: #1c1a17;
-}
-
-/* Node Stamp Hover Ripple */
-.project-node-circle, .step-num {
-  position: relative;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-.project-node-circle:hover, .step-num:hover {
-  background: #3a342c !important;
-  color: #f5f0e6 !important;
-}
-
-.project-node-circle:hover svg, .step-num:hover svg {
-  stroke: #f5f0e6 !important;
+@keyframes inkRippleSpread {
+  0% { r: 11px; opacity: 0.8; stroke-width: 2px; }
+  100% { r: 32px; opacity: 0; stroke-width: 0.5px; }
 }
 
 /* ============================================
-   PROJECT DIAGRAM MICRO-INTERACTIONS
+   5. SKILLS SECTION — CONSTELLATION GRAPH & TERMINAL
+   ============================================ */
+.skills-matrix-grid:hover .paper-skill-card:not(:hover) {
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+
+.paper-skill-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.paper-skill-card.terminal-mode {
+  background: #1c1a17 !important;
+  color: #ede5d5 !important;
+  border-color: #3d3730 !important;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25) !important;
+}
+
+.paper-skill-card.terminal-mode .skill-cat-name {
+  color: #f5f0e6 !important;
+}
+
+.paper-skill-card.terminal-mode .skill-code {
+  color: #c9c0b0 !important;
+}
+
+.paper-skill-card.terminal-mode .paper-tag {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ede5d5 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.terminal-readout-box {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.terminal-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminal-dots {
+  color: #a89f91;
+  letter-spacing: 0.1em;
+}
+
+.terminal-status-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: #c93b2b;
+  margin-top: 0.5rem;
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
+  padding-top: 0.4rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   6. PROJECTS — ARCHITECTURE DIAGRAM MICRO-INTERACTIONS
    ============================================ */
 /* ARCHITECH: Data Packet Moving Along Knowledge Graph */
 @keyframes packetMoveGraph {
@@ -191,6 +282,7 @@
   display: inline-block;
   margin-top: 0.4rem;
   text-align: center;
+  font-weight: 700;
 }
 
 .paper-project-card:hover .tx-verified-badge {
@@ -198,73 +290,57 @@
   transform: translateY(0);
 }
 
-/* AgriSaksham: AI Engine Pulse & Waveform Movement */
+/* AgriSaksham: AI Pipeline Audio Waveform Movement */
 .paper-project-card:hover .arch-node svg {
   stroke: #8b1022;
   transition: stroke 0.3s ease;
 }
 
 /* ============================================
-   SPOTIFY EQUALIZER PAUSED / PLAYING WAVEFORM
+   7. SPOTIFY — EQUALIZER & ALBUM ARTWORK HOVER
    ============================================ */
 .equalizer-waveform.paused .bar {
   animation: none !important;
   height: 2px !important;
-  opacity: 0.4;
+  opacity: 0.35;
+}
+
+.spotify-track-row {
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+.spotify-cover-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.spotify-cover-wrapper .play-overlay-icon {
+  position: absolute;
+  inset: 0;
+  background: rgba(28, 26, 23, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f5f0e6;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.spotify-track-row:hover .spotify-cover-wrapper .play-overlay-icon {
+  opacity: 1;
 }
 
 /* ============================================
-   SKILL CARD TECHNICAL TERMINAL READOUT VIEW
+   8. NAVIGATION — TABLE OF CONTENTS MARKS
    ============================================ */
-.paper-skill-card {
-  cursor: pointer;
-}
-
-.paper-skill-card.terminal-mode {
-  background: #1c1a17 !important;
-  color: #ede5d5 !important;
-  border-color: #3d3730 !important;
-}
-
-.paper-skill-card.terminal-mode .skill-cat-name {
-  color: #f5f0e6 !important;
-}
-
-.paper-skill-card.terminal-mode .skill-code {
-  color: #c9c0b0 !important;
-}
-
-.paper-skill-card.terminal-mode .paper-tag {
-  background: rgba(255, 255, 255, 0.08) !important;
-  color: #ede5d5 !important;
-  border-color: rgba(255, 255, 255, 0.15) !important;
-}
-
-.terminal-readout-box {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  line-height: 1.6;
-  margin-top: 0.6rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.terminal-line {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.terminal-dots {
-  color: #8c8273;
-}
-
-.terminal-status-tag {
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  color: #a89f91;
-  margin-top: 0.5rem;
-  border-top: 1px dashed rgba(255,255,255,0.15);
-  padding-top: 0.4rem;
+.nav-links li.active a::before {
+  content: '·';
+  position: absolute;
+  left: -10px;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #c93b2b;
 }

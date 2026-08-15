@@ -1,4 +1,4 @@
-﻿/* ---------- Loading Screen ---------- */
+/* ---------- Loading Screen ---------- */
 .loader {
   position: fixed;
   inset: 0;
@@ -83,6 +83,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
+  z-index: 10;
 }
 
 /* Subtle grid overlay */

@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    EXPERIENCE - Timeline Renderer, Cloud Transition, Modal
    ============================================ */
 
@@ -15,14 +15,15 @@ function initExperience() {
   const expPrevBtn = document.getElementById('exp-prev-btn');
   const expNextBtn = document.getElementById('exp-next-btn');
 
-  // Dynamic Experience Data Store â€” Keep only Nihar's actual resume experiences!
+  // Dynamic Experience Data Store — Nihar's actual resume experiences
   const experiencesData = [
     {
       startDate: "July 2025",
       endDate: "December 2025",
-      role: "AI Team Lead â€“ Industry Sponsored",
-      company: "Passion Info Tech â€“ Pune",
+      role: "AI Team Lead – Industry Sponsored",
+      company: "Passion Info Tech – Pune",
       title: "RAG-Based Semantic Search System",
+      annotation: "learned & delivered →",
       bullets: [
         "Led a 5-member team in building a RAG-based semantic search system for religious sculptures, enabling theme-based queries and knowledge discovery.",
         "Designed retrieval pipeline using embeddings and vector search to fetch relevant verses from the Bhagavad Gita, Quran, and Bible.",
@@ -34,8 +35,9 @@ function initExperience() {
       startDate: "January 2026",
       endDate: "May 2026",
       role: "AI Team Lead | Industry Sponsored",
-      company: "Atlas CorpCo â€“ Pune",
+      company: "Atlas CorpCo – Pune",
       title: "Full-Stack Alloy Identification Platform",
+      annotation: "shipped to production →",
       bullets: [
         "Led team in developing a full-stack alloy identification platform that analyzes laboratory reports and recommends matching alloy grades.",
         "Developed backend APIs and business logic to extract chemical composition data from PDF reports, enabling effective matching against alloy databases.",
@@ -47,8 +49,9 @@ function initExperience() {
       startDate: "January 2026",
       endDate: "May 2026",
       role: "AI Team Lead | Industry Sponsored",
-      company: "Atlas CorpCo â€“ Pune",
+      company: "Atlas CorpCo – Pune",
       title: "CAD Drawing AI-Powered Error Logging Platform",
+      annotation: "actively building →",
       bullets: [
         "Designed and implemented computer vision pipeline using OpenCV and Tesseract OCR for extracting annotations from technical drawings.",
         "Built backend workflow for automated error ingestion, classification, and severity-based prioritization dashboard.",
@@ -78,20 +81,16 @@ function initExperience() {
     expSvg.setAttribute('viewBox', `0 0 ${totalWidth} ${trackHeight}`);
 
     // Build Node Coordinates Array
-    // Node 0 = Start Node
     const nodes = [];
     nodes.push({ x: startX, y: centerY + 85, type: 'start' });
 
-    // Nodes 1 to N = Experience items
     for (let i = 0; i < itemCount; i++) {
       const x = startX + (i + 1) * spacingX;
-      // Alternate wave peak (Top) and valley (Bottom)
       const isTop = (i % 2 === 0);
       const y = isTop ? (centerY - amplitude) : (centerY + amplitude);
       nodes.push({ x, y, type: isTop ? 'top' : 'bottom', data: experiencesData[i], index: i });
     }
 
-    // Final Node = Future Arrow Node
     const endX = startX + (itemCount + 1) * spacingX;
     const endY = centerY - amplitude - 30;
     nodes.push({ x: endX, y: endY, type: 'end' });
@@ -103,7 +102,6 @@ function initExperience() {
       const p2 = nodes[i + 1];
       const dx = (p2.x - p1.x) * 0.5;
       
-      // Control points for smooth organic wave
       const cx1 = p1.x + dx;
       const cy1 = p1.y;
       const cx2 = p2.x - dx;
@@ -126,7 +124,7 @@ function initExperience() {
       const pathLength = pathEl.getTotalLength();
       pathEl.style.strokeDasharray = pathLength;
       pathEl.style.strokeDashoffset = pathLength;
-      pathEl.style.transition = 'stroke-dashoffset 1.4s cubic-bezier(0.22, 1, 0.36, 1)';
+      pathEl.style.transition = 'stroke-dashoffset 1.2s cubic-bezier(0.22, 1, 0.36, 1)';
       setTimeout(() => {
         pathEl.style.strokeDashoffset = '0';
       }, 50);
@@ -143,7 +141,7 @@ function initExperience() {
     expSvg.appendChild(arrowHead);
 
     // 2. Render Node Dots, Dashed Connector Lines, and Experience Cards
-    nodes.forEach((node) => {
+    nodes.forEach((node, nodeIdx) => {
       // Node Watercolor Ring Halo (SVG)
       const haloCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
       haloCircle.setAttribute('cx', node.x);
@@ -151,6 +149,7 @@ function initExperience() {
       haloCircle.setAttribute('r', '17');
       haloCircle.setAttribute('fill', 'rgba(44, 40, 37, 0.1)');
       haloCircle.style.cursor = node.data ? 'pointer' : 'default';
+      haloCircle.style.transition = 'all 0.25s ease';
       expSvg.appendChild(haloCircle);
 
       const haloCircleInner = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
@@ -159,6 +158,7 @@ function initExperience() {
       haloCircleInner.setAttribute('r', '11');
       haloCircleInner.setAttribute('fill', 'rgba(44, 40, 37, 0.15)');
       haloCircleInner.style.cursor = node.data ? 'pointer' : 'default';
+      haloCircleInner.style.transition = 'all 0.25s ease';
       expSvg.appendChild(haloCircleInner);
 
       // Node Inner Black Dot (SVG)
@@ -168,7 +168,27 @@ function initExperience() {
       dotCircle.setAttribute('r', '5.5');
       dotCircle.setAttribute('fill', '#1c1a17');
       dotCircle.style.cursor = node.data ? 'pointer' : 'default';
+      dotCircle.style.transition = 'all 0.25s ease';
       expSvg.appendChild(dotCircle);
+
+      // Ink Stamp Ripple on Node Hover
+      const onNodeHover = () => {
+        dotCircle.setAttribute('r', '7.5');
+        dotCircle.setAttribute('fill', '#0a0a0a');
+        haloCircleInner.setAttribute('r', '14');
+        haloCircleInner.setAttribute('fill', 'rgba(44, 40, 37, 0.25)');
+        haloCircle.setAttribute('r', '22');
+      };
+      const onNodeLeave = () => {
+        dotCircle.setAttribute('r', '5.5');
+        dotCircle.setAttribute('fill', '#1c1a17');
+        haloCircleInner.setAttribute('r', '11');
+        haloCircleInner.setAttribute('fill', 'rgba(44, 40, 37, 0.15)');
+        haloCircle.setAttribute('r', '17');
+      };
+
+      haloCircle.addEventListener('mouseenter', onNodeHover);
+      haloCircle.addEventListener('mouseleave', onNodeLeave);
 
       if (node.data) {
         const clickNode = () => openExpModal(node.data, node.index);
@@ -182,7 +202,6 @@ function initExperience() {
         const item = node.data;
         const isTop = node.type === 'top';
         
-        // Compact Card vertical positioning (uncluttered, leaves curve 100% visible)
         const cardTopY = isTop ? (node.y - 120) : (node.y + 40);
         const dashedLineY2 = isTop ? (node.y - 35) : (node.y + 35);
 
@@ -202,12 +221,22 @@ function initExperience() {
         cardEl.className = `paper-card ${isTop ? 'top' : 'bottom'}`;
         cardEl.style.left = `${node.x - 120}px`;
         cardEl.style.top = `${cardTopY}px`;
+        cardEl.style.opacity = '0';
+        cardEl.style.transform = 'translateY(12px)';
+        cardEl.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+
+        // Staggered Reveal: Path (0s) -> Node (0.4s) -> Card (0.6s + idx * 0.25s)
+        setTimeout(() => {
+          cardEl.style.opacity = '1';
+          cardEl.style.transform = 'translateY(0)';
+        }, 450 + nodeIdx * 200);
 
         cardEl.innerHTML = `
-          <span class="paper-card-date">${item.startDate} â€“ ${item.endDate}</span>
+          <div class="scratched-annotation">${item.annotation || 'building →'}</div>
+          <span class="paper-card-date">${item.startDate} – ${item.endDate}</span>
           <h3 class="paper-card-title">${item.title}</h3>
           <div class="paper-card-company">${item.company}</div>
-          <div class="paper-card-click-hint">View details â†—</div>
+          <div class="paper-card-click-hint">View details ↗</div>
         `;
 
         // Click compact card to open full details modal
@@ -262,7 +291,7 @@ function initExperience() {
     if (!modal) return;
 
     document.getElementById('modal-badge').textContent = `EXP_0${index + 1}`;
-    document.getElementById('modal-date').textContent = `${item.startDate} â€“ ${item.endDate}`;
+    document.getElementById('modal-date').textContent = `${item.startDate} – ${item.endDate}`;
     document.getElementById('modal-title').textContent = item.title;
     document.getElementById('modal-role').textContent = item.role;
     document.getElementById('modal-company').textContent = item.company;
@@ -317,7 +346,7 @@ function initExperience() {
     }, 3500);
   }
 
-  // Interactivity â€” Navigation & Drag Scrolling
+  // Interactivity — Navigation & Drag Scrolling
   if (experienceBtn && experienceOverlay) {
     experienceBtn.addEventListener('click', (e) => {
       e.preventDefault();

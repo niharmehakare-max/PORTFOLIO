@@ -25,9 +25,9 @@ function initMicroInteractions() {
     }, { passive: true });
 
     function renderCursor() {
-      // Smooth linear interpolation (lerp) for circle lag
-      circleX += (paperMouseX - circleX) * 0.2;
-      circleY += (paperMouseY - circleY) * 0.2;
+      // Smooth imperfect linear interpolation (lerp)
+      circleX += (paperMouseX - circleX) * 0.18;
+      circleY += (paperMouseY - circleY) * 0.18;
 
       inkCircle.style.left = `${circleX}px`;
       inkCircle.style.top = `${circleY}px`;
@@ -38,23 +38,28 @@ function initMicroInteractions() {
 
     // Attach Hover Triggers dynamically
     document.addEventListener('mouseover', (e) => {
-      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link');
+      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link, .spotify-track-row');
       if (target) {
-        if (target.classList.contains('project-ext-link') || target.classList.contains('spotify-link')) {
+        if (target.classList.contains('project-ext-link') || target.tagName === 'A' && target.getAttribute('target') === '_blank') {
           inkCircle.classList.add('link');
+          inkCircle.classList.remove('spotify', 'active');
           if (inkIcon) inkIcon.textContent = '↗';
+        } else if (target.closest('.spotify-parchment-card') || target.closest('.paper-spotify-section') || target.classList.contains('spotify-track-row') || target.classList.contains('spotify-link')) {
+          inkCircle.classList.add('spotify');
+          inkCircle.classList.remove('link', 'active');
+          if (inkIcon) inkIcon.textContent = '♪';
         } else {
           inkCircle.classList.add('active');
-          inkCircle.classList.remove('link');
+          inkCircle.classList.remove('link', 'spotify');
           if (inkIcon) inkIcon.textContent = '';
         }
       }
     });
 
     document.addEventListener('mouseout', (e) => {
-      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link');
+      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link, .spotify-track-row');
       if (target) {
-        inkCircle.classList.remove('active', 'link');
+        inkCircle.classList.remove('active', 'link', 'spotify');
         if (inkIcon) inkIcon.textContent = '';
       }
     });
