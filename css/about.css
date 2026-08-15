@@ -1,0 +1,492 @@
+﻿/* ============================================
+   PAPER PARCHMENT ABOUT OVERLAY (VINTAGE JOURNAL)
+   ============================================ */
+
+.parchment-about-overlay {
+  background: #f5f0e6 !important;
+  background-image: radial-gradient(ellipse at center, #fcf9f2 0%, #ebe2d0 100%) !important;
+  color: #1c1a17 !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+}
+
+.paper-journal-layout {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem 2rem;
+  position: relative;
+}
+
+.paper-header-pen-sketch {
+  position: absolute;
+  top: 3rem;
+  right: 2rem;
+  width: 90px;
+  height: 90px;
+  opacity: 0.85;
+}
+
+.journal-body-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 1.5rem;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.journal-timeline-spine {
+  position: relative;
+  width: 80px;
+}
+
+.spine-svg {
+  width: 80px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.journal-sections-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+}
+
+.journal-section {
+  position: relative;
+}
+
+.journal-step-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  position: relative;
+}
+
+.spine-pointer-arrow {
+  position: absolute;
+  left: -52px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.spine-pointer-arrow svg {
+  width: 45px;
+  height: 16px;
+}
+
+.paper-svg-icon {
+  width: 22px;
+  height: 22px;
+  stroke: #4a433a;
+  display: block;
+}
+
+.pill-svg-icon {
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 4px;
+}
+
+.paper-skill-svg {
+  width: 22px;
+  height: 22px;
+  stroke: #4a433a;
+  display: block;
+}
+
+.paper-hobby-svg {
+  width: 32px;
+  height: 32px;
+  stroke: #4a433a;
+  display: block;
+  margin: 0 auto;
+}
+
+.step-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ede4d3;
+  border: 1.5px solid #3a342c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: #1c1a17;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.step-script {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  color: #4a433a;
+}
+
+.mountain-sketch {
+  width: 65px;
+  height: 32px;
+  margin-left: 0.5rem;
+}
+
+.paper-meta-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #7a7266;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.journal-sec-title {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+/* Profile Section */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2.5rem;
+  margin-top: 0.8rem;
+}
+
+.profile-name {
+  font-family: var(--font-serif);
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 0.8rem;
+}
+
+.profile-bio {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #3b352e;
+  margin-bottom: 1.5rem;
+}
+
+.profile-scroll-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-handwriting);
+  font-size: 1.35rem;
+  color: #5c5448;
+}
+
+.profile-right-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.spec-item {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.spec-icon {
+  font-size: 1.2rem;
+}
+
+.spec-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7a7266;
+}
+
+.spec-val {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1c1a17;
+}
+
+/* Education Card */
+.paper-edu-card {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  border-radius: 12px;
+  padding: 1.8rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.edu-building-sketch {
+  width: 90px;
+  height: 70px;
+  flex-shrink: 0;
+}
+
+.edu-institution {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 0.3rem;
+}
+
+.edu-degree-text {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: #4a433a;
+  margin-bottom: 0.8rem;
+}
+
+.edu-pills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.paper-pill {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  background: rgba(60, 50, 40, 0.06);
+  border: 1px solid rgba(60, 50, 40, 0.15);
+  padding: 0.25rem 0.7rem;
+  border-radius: 6px;
+  color: #3b352e;
+}
+
+.paper-pill.accent-pill {
+  background: rgba(200, 16, 46, 0.08);
+  border-color: rgba(200, 16, 46, 0.25);
+  color: #8b1022;
+  font-weight: 600;
+}
+
+/* Skills 3x3 Grid */
+.paper-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+.paper-skill-card {
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  border-radius: 10px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.paper-skill-card:hover {
+  transform: translateY(-3px);
+  border-color: #2c2825;
+}
+
+.paper-skill-card.full-row {
+  grid-column: span 3;
+}
+
+.skill-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.skill-icon {
+  font-size: 1.3rem;
+}
+
+.skill-code {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  color: #7a7266;
+}
+
+.skill-cat-name {
+  font-family: var(--font-serif);
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 0.7rem;
+}
+
+.skill-tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.45rem;
+}
+
+/* Leadership Cards */
+.paper-leadership-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.paper-lead-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  border-radius: 12px;
+  padding: 1.6rem 2rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+}
+
+.lead-code {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: #7a7266;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.lead-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 0.2rem;
+}
+
+.lead-sub {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  color: #61584c;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.lead-desc {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  color: #3b352e;
+  line-height: 1.5;
+  max-width: 650px;
+}
+
+.lead-sketch-img {
+  width: 100px;
+  height: 65px;
+  flex-shrink: 0;
+}
+
+/* Hobbies 4 Columns */
+.paper-hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.hobby-col {
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  border-radius: 10px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+}
+
+.hobby-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.hobby-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1c1a17;
+  margin-bottom: 0.4rem;
+}
+
+.hobby-desc {
+  font-family: var(--font-serif);
+  font-size: 0.92rem;
+  color: #4a433a;
+  line-height: 1.45;
+}
+
+/* Currently Playing Games Row */
+.paper-games-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+}
+
+.paper-game-card {
+  background: #f4eee2;
+  border: 1px solid rgba(60, 50, 40, 0.16);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+}
+
+.game-poster-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+}
+
+.game-info {
+  padding: 0.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.game-title {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1c1a17;
+}
+
+.game-tag {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  color: #6e6659;
+}
+
+.game-status {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  color: #7a7266;
+  font-style: italic;
+  margin-top: 0.3rem;
+}
+
+.game-status.active {
+  color: #8b1022;
+  font-weight: 600;
+}

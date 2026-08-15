@@ -1,0 +1,270 @@
+﻿/* ============================================
+   GLOBAL PAPER INK CURSOR
+   ============================================ */
+@media (pointer: fine) {
+  body {
+    cursor: none !important;
+  }
+  a, button, input, textarea, select, [role="button"] {
+    cursor: none !important;
+  }
+}
+
+.ink-cursor-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 7px;
+  height: 7px;
+  background: #2a241e;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
+  box-shadow: 0 0 2px rgba(40, 35, 25, 0.4);
+}
+
+.ink-cursor-circle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1.2px solid rgba(50, 42, 32, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ink-cursor-circle.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.15);
+  border-color: #2a241e;
+}
+
+.ink-cursor-circle.link {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.3);
+  border-color: #1c1a17;
+  background: rgba(244, 238, 226, 0.65);
+}
+
+.ink-cursor-icon {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #1c1a17;
+  display: none;
+}
+
+.ink-cursor-circle.link .ink-cursor-icon {
+  display: block;
+}
+
+/* ============================================
+   INK DRAW UNDERLINE EFFECT (Left -> Right)
+   ============================================ */
+.ink-draw-link {
+  position: relative;
+  text-decoration: none !important;
+}
+
+.ink-draw-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0.85;
+}
+
+.ink-draw-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* ============================================
+   PAPER DISPLACEMENT (LIFTING A SHEET OF PAPER)
+   ============================================ */
+.paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .paper-music-card, .hobby-col {
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease !important;
+}
+
+.paper-card:hover, .paper-project-card:hover, .paper-skill-card:hover, .paper-lead-card:hover, .paper-edu-card:hover, .paper-music-card:hover, .hobby-col:hover {
+  transform: translateY(-4px) rotate(0.2deg) !important;
+  box-shadow: 0 16px 36px rgba(40, 32, 22, 0.12) !important;
+  border-color: rgba(50, 42, 32, 0.35) !important;
+}
+
+.paper-card:nth-child(even):hover, .paper-project-card:nth-child(even):hover, .paper-skill-card:nth-child(even):hover {
+  transform: translateY(-4px) rotate(-0.2deg) !important;
+}
+
+/* ============================================
+   TIMELINE INK RIPPLE & STAMP EFFECT
+   ============================================ */
+@keyframes inkStamp {
+  0% { transform: scale(0.6); opacity: 0; }
+  60% { transform: scale(1.12); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.step-num.ink-stamp-active, .project-node-circle.ink-stamp-active {
+  animation: inkStamp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.journal-section.active-spine-sec .step-num {
+  background: #3a342c !important;
+  color: #f5f0e6 !important;
+  border-color: #3a342c !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.18);
+}
+
+.journal-section.active-spine-sec .spine-pointer-arrow svg line {
+  stroke-dasharray: none;
+  stroke: #1c1a17;
+}
+
+/* Node Stamp Hover Ripple */
+.project-node-circle, .step-num {
+  position: relative;
+  transition: background 0.25s ease, color 0.25s ease;
+}
+
+.project-node-circle:hover, .step-num:hover {
+  background: #3a342c !important;
+  color: #f5f0e6 !important;
+}
+
+.project-node-circle:hover svg, .step-num:hover svg {
+  stroke: #f5f0e6 !important;
+}
+
+/* ============================================
+   PROJECT DIAGRAM MICRO-INTERACTIONS
+   ============================================ */
+/* ARCHITECH: Data Packet Moving Along Knowledge Graph */
+@keyframes packetMoveGraph {
+  0% { cx: 40; cy: 30; }
+  25% { cx: 90; cy: 20; }
+  50% { cx: 140; cy: 40; }
+  75% { cx: 200; cy: 30; }
+  100% { cx: 240; cy: 50; }
+}
+
+.graph-packet-dot {
+  fill: #8b1022;
+  r: 4;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.paper-project-card:hover .graph-packet-dot {
+  opacity: 1;
+  animation: packetMoveGraph 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Eventix: TX Verified Monospace Pulse Badge */
+.tx-verified-badge {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #1b7a43;
+  background: rgba(27, 122, 67, 0.08);
+  border: 1px solid rgba(27, 122, 67, 0.25);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 0.4rem;
+  text-align: center;
+}
+
+.paper-project-card:hover .tx-verified-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* AgriSaksham: AI Engine Pulse & Waveform Movement */
+.paper-project-card:hover .arch-node svg {
+  stroke: #8b1022;
+  transition: stroke 0.3s ease;
+}
+
+/* ============================================
+   SPOTIFY EQUALIZER PAUSED / PLAYING WAVEFORM
+   ============================================ */
+.equalizer-waveform.paused .bar {
+  animation: none !important;
+  height: 2px !important;
+  opacity: 0.4;
+}
+
+/* ============================================
+   SKILL CARD TECHNICAL TERMINAL READOUT VIEW
+   ============================================ */
+.paper-skill-card {
+  cursor: pointer;
+}
+
+.paper-skill-card.terminal-mode {
+  background: #1c1a17 !important;
+  color: #ede5d5 !important;
+  border-color: #3d3730 !important;
+}
+
+.paper-skill-card.terminal-mode .skill-cat-name {
+  color: #f5f0e6 !important;
+}
+
+.paper-skill-card.terminal-mode .skill-code {
+  color: #c9c0b0 !important;
+}
+
+.paper-skill-card.terminal-mode .paper-tag {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ede5d5 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+.terminal-readout-box {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.terminal-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terminal-dots {
+  color: #8c8273;
+}
+
+.terminal-status-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #a89f91;
+  margin-top: 0.5rem;
+  border-top: 1px dashed rgba(255,255,255,0.15);
+  padding-top: 0.4rem;
+}
