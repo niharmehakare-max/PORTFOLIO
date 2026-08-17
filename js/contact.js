@@ -4,19 +4,20 @@
 
 function initContact() {
   const contactBtn = document.getElementById('nav-contact-btn');
+  const mobNavContact = document.getElementById('mob-nav-contact-btn');
   const contactPopup = document.getElementById('contact-popup');
   const socialIcons = document.querySelectorAll('.contact-icon-wrapper');
-  const popupRadius = window.innerWidth < 480 ? 75 : 90;
 
   function toggleContactPopup() {
     if (!contactPopup) return;
     const isActive = contactPopup.classList.contains('active');
 
     if (!isActive) {
+      const isMobile = window.innerWidth <= 768;
       let centerX = window.innerWidth / 2;
       let centerY = window.innerHeight / 2;
 
-      if (contactBtn && contactBtn.offsetParent !== null) {
+      if (!isMobile && contactBtn && contactBtn.offsetParent !== null) {
         const btnRect = contactBtn.getBoundingClientRect();
         if (btnRect.width > 0 && btnRect.height > 0) {
           centerX = btnRect.left + btnRect.width / 2;
@@ -29,6 +30,8 @@ function initContact() {
       contactPopup.classList.add('active');
 
       const count = socialIcons.length;
+      const popupRadius = window.innerWidth < 480 ? 80 : 95;
+
       socialIcons.forEach((icon, idx) => {
         const angleDeg = (360 / count) * idx - 90;
         const rad = angleDeg * (Math.PI / 180);
@@ -62,9 +65,23 @@ function initContact() {
     });
   }
 
-  // Close on click outside
+  if (mobNavContact) {
+    mobNavContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (typeof window.closeMobileNav === 'function') {
+        window.closeMobileNav();
+      }
+      setTimeout(() => {
+        toggleContactPopup();
+      }, 150);
+    });
+  }
+
+  // Close on click outside (safeguard trigger buttons)
   document.addEventListener('click', (e) => {
-    if (contactPopup && contactPopup.classList.contains('active') && !contactPopup.contains(e.target) && e.target !== contactBtn) {
+    if (e.target.closest('#nav-contact-btn, #mob-nav-contact-btn, .contact-popup')) return;
+    if (contactPopup && contactPopup.classList.contains('active')) {
       closeContactPopup();
     }
   });

@@ -611,52 +611,7 @@ function initHero() {
     });
   }
 
-  if (mobNavContact) {
-    mobNavContact.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeMobileNav();
-      const contactBtn = document.getElementById('nav-contact-btn');
-      if (contactBtn) contactBtn.click();
-    });
-  }
-
-  // Hook mobile hero section quick launcher cards
-  const launcherAbout = document.getElementById('launcher-about');
-  const launcherProjects = document.getElementById('launcher-projects');
-  const launcherExperience = document.getElementById('launcher-experience');
-  const launcherContact = document.getElementById('launcher-contact');
-
-  if (launcherAbout) {
-    launcherAbout.addEventListener('click', (e) => {
-      e.preventDefault();
-      const aboutBtn = document.getElementById('nav-about-btn');
-      if (aboutBtn) aboutBtn.click();
-    });
-  }
-
-  if (launcherProjects) {
-    launcherProjects.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projBtn = document.getElementById('nav-projects-btn');
-      if (projBtn) projBtn.click();
-    });
-  }
-
-  if (launcherExperience) {
-    launcherExperience.addEventListener('click', (e) => {
-      e.preventDefault();
-      const expBtn = document.getElementById('nav-experience-btn');
-      if (expBtn) expBtn.click();
-    });
-  }
-
-  if (launcherContact) {
-    launcherContact.addEventListener('click', (e) => {
-      e.preventDefault();
-      const contactBtn = document.getElementById('nav-contact-btn');
-      if (contactBtn) contactBtn.click();
-    });
-  }
+  window.closeMobileNav = closeMobileNav;
 
   // ---------- Mouse Follower ----------
   const follower = document.querySelector('.cursor-follower');
