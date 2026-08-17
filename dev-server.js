@@ -26,9 +26,11 @@ const mimeTypes = {
 };
 
 const server = http.createServer(async (req, res) => {
-  const url = req.url.split('?')[0];
+  const parsedUrl = new URL(req.url, `http://${req.headers.host || 'localhost:3000'}`);
+  const pathname = parsedUrl.pathname;
+  req.query = Object.fromEntries(parsedUrl.searchParams);
 
-  if (url === '/api/spotify') {
+  if (pathname === '/api/spotify') {
     const mockRes = {
       setHeader: (name, value) => res.setHeader(name, value),
       status: (code) => ({
@@ -41,7 +43,7 @@ const server = http.createServer(async (req, res) => {
     return spotifyHandler(req, mockRes);
   }
 
-  let filePath = path.join(__dirname, url === '/' ? 'index.html' : url);
+  let filePath = path.join(__dirname, pathname === '/' ? 'index.html' : pathname);
   const ext = path.extname(filePath).toLowerCase();
 
   fs.readFile(filePath, (err, data) => {

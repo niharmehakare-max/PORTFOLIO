@@ -42,11 +42,14 @@ module.exports = async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to retrieve access token from Spotify' });
     }
 
+    const range = (req.query && ['short_term', 'medium_term', 'long_term'].includes(req.query.range)) ? req.query.range : 'short_term';
+    const topTracksUrl = `https://api.spotify.com/v1/me/top/tracks?limit=5&time_range=${range}`;
+
     const headers = { Authorization: `Bearer ${access_token}` };
     const [nowPlayingRes, recentlyPlayedRes, topTracksRes] = await Promise.all([
       fetch(NOW_PLAYING_ENDPOINT, { headers }).catch(() => null),
       fetch(RECENTLY_PLAYED_ENDPOINT, { headers }).catch(() => null),
-      fetch(TOP_TRACKS_ENDPOINT, { headers }).catch(() => null),
+      fetch(topTracksUrl, { headers }).catch(() => null),
     ]);
 
     let currentlyPlaying = { isPlaying: false };
@@ -59,7 +62,7 @@ module.exports = async function handler(req, res) {
           artist: nowPlayingData.item.artists.map(a => a.name).join(', '),
           album: nowPlayingData.item.album.name,
           cover: nowPlayingData.item.album.images[0] ? nowPlayingData.item.album.images[0].url : '',
-          url: nowPlayingData.item.external_urls ? nowPlayingData.item.external_urls.spotify : 'https://open.spotify.com',
+          url: nowPlayingData.item.external_urls ? nowPlayingData.item.external_urls.spotify : 'https://open.spotify.com/user/31g4h27krgsjgtuplfle5beft3mu',
           progressMs: nowPlayingData.progress_ms,
           durationMs: nowPlayingData.item.duration_ms,
         };
@@ -78,7 +81,7 @@ module.exports = async function handler(req, res) {
             title: item.track.name,
             artist: item.track.artists.map(a => a.name).join(', '),
             cover: item.track.album.images[0] ? item.track.album.images[0].url : '',
-            url: item.track.external_urls ? item.track.external_urls.spotify : 'https://open.spotify.com',
+            url: item.track.external_urls ? item.track.external_urls.spotify : 'https://open.spotify.com/user/31g4h27krgsjgtuplfle5beft3mu',
             timeAgo: timeAgo,
           };
         });
@@ -98,7 +101,7 @@ module.exports = async function handler(req, res) {
             artist: track.artists.map(a => a.name).join(', '),
             duration: `${min}:${sec}`,
             cover: track.album.images[0] ? track.album.images[0].url : '',
-            url: track.external_urls ? track.external_urls.spotify : 'https://open.spotify.com',
+            url: track.external_urls ? track.external_urls.spotify : 'https://open.spotify.com/user/31g4h27krgsjgtuplfle5beft3mu',
           };
         });
       }
