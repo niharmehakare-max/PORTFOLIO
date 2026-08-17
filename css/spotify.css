@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    SPOTIFY VINTAGE PARCHMENT MUSIC SECTION (SEC 07)
    ============================================ */
 
@@ -447,18 +447,92 @@
   transform: scale(1.08);
 }
 
-/* Mobile Tweaks */
-@media (max-width: 850px) {
+/* Mobile & Tablet Responsive Enhancements */
+@media (max-width: 1024px) {
   .music-dual-cards-grid {
     grid-template-columns: 1fr;
-  }
-  .currently-listening-bar {
-    flex-direction: column;
     gap: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .music-title-block {
+    margin-top: 0.3rem;
+    margin-bottom: 1.4rem;
+    position: relative;
+  }
+
+  .music-headphones-illustration {
+    display: block;
+    position: absolute;
+    top: -0.8rem;
+    left: -0.2rem;
+    width: 36px;
+    height: 44px;
+    opacity: 0.75;
+  }
+
+  .music-top-script-note {
+    display: block;
+    position: static;
+    margin-bottom: 0.3rem;
+    font-size: 1.05rem;
+  }
+
+  .music-main-heading {
+    font-size: 1.65rem;
+    line-height: 1.2;
+    margin: 0.2rem 0;
+  }
+
+  .music-subtitle-script {
+    font-size: 1.1rem;
+  }
+
+  .paper-music-card {
+    background: rgba(238, 230, 215, 0.45);
+    border: 1px solid rgba(70, 58, 45, 0.15);
+    border-radius: 8px;
+    padding: 1rem 0.9rem;
+    box-shadow: none;
+  }
+
+  .track-left {
+    gap: 0.6rem;
+  }
+
+  .track-title {
+    font-size: 0.84rem;
+    line-height: 1.25;
+  }
+
+  .track-artist {
+    font-size: 0.72rem;
+  }
+
+  .track-cover-wrapper,
+  .rank-cover {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+  }
+
+  .currently-listening-bar {
+    background: rgba(238, 230, 215, 0.55);
+    border: 1px solid rgba(70, 58, 45, 0.15);
+    border-radius: 8px;
+    padding: 0.9rem;
+    flex-direction: column;
+    gap: 0.8rem;
     align-items: flex-start;
   }
+
   .now-playing-right {
     width: 100%;
     justify-content: space-between;
+  }
+
+  .now-playing-title {
+    font-size: 0.95rem;
   }
 }

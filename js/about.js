@@ -9,10 +9,12 @@ function initAbout() {
   const aboutScroll = document.getElementById('about-scroll');
   const projectsOverlay = document.getElementById('projects-overlay');
   const experienceOverlay = document.getElementById('experience-overlay');
+  const contactOverlay = document.getElementById('contact-overlay');
 
   function openAbout() {
     if (projectsOverlay) projectsOverlay.classList.remove('active');
     if (experienceOverlay) experienceOverlay.classList.remove('active');
+    if (contactOverlay) contactOverlay.classList.remove('active');
 
     if (aboutOverlay) {
       aboutOverlay.classList.add('active');

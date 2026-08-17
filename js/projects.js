@@ -10,6 +10,7 @@ function initProjects() {
   const projectsHeaderBg = document.getElementById('projects-header-bg');
   const aboutOverlay = document.getElementById('about-overlay');
   const experienceOverlay = document.getElementById('experience-overlay');
+  const contactOverlay = document.getElementById('contact-overlay');
 
   if (projectsBtn && projectsOverlay) {
     projectsBtn.addEventListener('click', (e) => {
@@ -17,6 +18,7 @@ function initProjects() {
       e.stopPropagation();
       if (aboutOverlay) aboutOverlay.classList.remove('active');
       if (experienceOverlay) experienceOverlay.classList.remove('active');
+      if (contactOverlay) contactOverlay.classList.remove('active');
       projectsOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (projectsScroll) projectsScroll.scrollTop = 0;

@@ -355,6 +355,8 @@ function initExperience() {
       triggerCloudTransition(() => {
         if (aboutOverlay) aboutOverlay.classList.remove('active');
         if (projectsOverlay) projectsOverlay.classList.remove('active');
+        const contactOverlay = document.getElementById('contact-overlay');
+        if (contactOverlay) contactOverlay.classList.remove('active');
         experienceOverlay.classList.add('active');
         document.body.style.overflow = 'hidden';
         renderPaperTimeline();
@@ -414,17 +416,45 @@ function initExperience() {
 
       // Mouse wheel horizontal scrolling
       expViewport.addEventListener('wheel', (e) => {
-        if (e.deltaY !== 0) {
+        if (e.deltaY !== 0 && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
           e.preventDefault();
           expViewport.scrollLeft += e.deltaY;
         }
       }, { passive: false });
+
+      // Touch drag gestures for mobile / tablet
+      let touchStartX = 0;
+      let touchScrollLeft = 0;
+      let isTouching = false;
+
+      expViewport.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          isTouching = true;
+          touchStartX = e.touches[0].pageX - expViewport.offsetLeft;
+          touchScrollLeft = expViewport.scrollLeft;
+        }
+      }, { passive: true });
+
+      expViewport.addEventListener('touchmove', (e) => {
+        if (!isTouching || e.touches.length !== 1) return;
+        const x = e.touches[0].pageX - expViewport.offsetLeft;
+        const walk = (x - touchStartX) * 1.2;
+        expViewport.scrollLeft = touchScrollLeft - walk;
+      }, { passive: true });
+
+      expViewport.addEventListener('touchend', () => {
+        isTouching = false;
+      }, { passive: true });
     }
 
+    let resizeTimeout;
     window.addEventListener('resize', () => {
-      if (experienceOverlay.classList.contains('active')) {
-        renderPaperTimeline();
-      }
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (experienceOverlay.classList.contains('active')) {
+          renderPaperTimeline();
+        }
+      }, 100);
     });
   }
 

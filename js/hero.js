@@ -537,37 +537,164 @@ function initHero() {
     }, delay);
   }
 
+  // ---------- Mobile Navigation Drawer Controller ----------
+  const navMobileToggle = document.getElementById('nav-mobile-toggle');
+  const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+  const mobileNavBackdrop = document.getElementById('mobile-nav-backdrop');
+  const mobNavAbout = document.getElementById('mob-nav-about-btn');
+  const mobNavProjects = document.getElementById('mob-nav-projects-btn');
+  const mobNavExperience = document.getElementById('mob-nav-experience-btn');
+  const mobNavContact = document.getElementById('mob-nav-contact-btn');
+
+  function openMobileNav() {
+    if (navMobileToggle && mobileNavDrawer) {
+      navMobileToggle.classList.add('active');
+      navMobileToggle.setAttribute('aria-expanded', 'true');
+      mobileNavDrawer.classList.add('active');
+      mobileNavDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMobileNav() {
+    if (navMobileToggle && mobileNavDrawer) {
+      navMobileToggle.classList.remove('active');
+      navMobileToggle.setAttribute('aria-expanded', 'false');
+      mobileNavDrawer.classList.remove('active');
+      mobileNavDrawer.setAttribute('aria-hidden', 'true');
+      if (!document.querySelector('.about-overlay.active, .parchment-projects-overlay.active, .parchment-experience-overlay.active')) {
+        document.body.style.overflow = '';
+      }
+    }
+  }
+
+  if (navMobileToggle) {
+    navMobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (mobileNavDrawer.classList.contains('active')) {
+        closeMobileNav();
+      } else {
+        openMobileNav();
+      }
+    });
+  }
+
+  if (mobileNavBackdrop) {
+    mobileNavBackdrop.addEventListener('click', closeMobileNav);
+  }
+
+  // Hook mobile drawer buttons to trigger their respective overlays
+  if (mobNavAbout) {
+    mobNavAbout.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      const aboutBtn = document.getElementById('nav-about-btn');
+      if (aboutBtn) aboutBtn.click();
+    });
+  }
+
+  if (mobNavProjects) {
+    mobNavProjects.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      const projBtn = document.getElementById('nav-projects-btn');
+      if (projBtn) projBtn.click();
+    });
+  }
+
+  if (mobNavExperience) {
+    mobNavExperience.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      const expBtn = document.getElementById('nav-experience-btn');
+      if (expBtn) expBtn.click();
+    });
+  }
+
+  if (mobNavContact) {
+    mobNavContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      const contactBtn = document.getElementById('nav-contact-btn');
+      if (contactBtn) contactBtn.click();
+    });
+  }
+
+  // Hook mobile hero section quick launcher cards
+  const launcherAbout = document.getElementById('launcher-about');
+  const launcherProjects = document.getElementById('launcher-projects');
+  const launcherExperience = document.getElementById('launcher-experience');
+  const launcherContact = document.getElementById('launcher-contact');
+
+  if (launcherAbout) {
+    launcherAbout.addEventListener('click', (e) => {
+      e.preventDefault();
+      const aboutBtn = document.getElementById('nav-about-btn');
+      if (aboutBtn) aboutBtn.click();
+    });
+  }
+
+  if (launcherProjects) {
+    launcherProjects.addEventListener('click', (e) => {
+      e.preventDefault();
+      const projBtn = document.getElementById('nav-projects-btn');
+      if (projBtn) projBtn.click();
+    });
+  }
+
+  if (launcherExperience) {
+    launcherExperience.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expBtn = document.getElementById('nav-experience-btn');
+      if (expBtn) expBtn.click();
+    });
+  }
+
+  if (launcherContact) {
+    launcherContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      const contactBtn = document.getElementById('nav-contact-btn');
+      if (contactBtn) contactBtn.click();
+    });
+  }
+
   // ---------- Mouse Follower ----------
   const follower = document.querySelector('.cursor-follower');
   let mouseX = 0, mouseY = 0;
   let followerX = 0, followerY = 0;
 
-  document.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
+  if (window.matchMedia('(pointer: fine)').matches) {
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-  function updateFollower() {
-    followerX += (mouseX - followerX) * 0.08;
-    followerY += (mouseY - followerY) * 0.08;
-    follower.style.left = followerX + 'px';
-    follower.style.top = followerY + 'px';
-    requestAnimationFrame(updateFollower);
+    function updateFollower() {
+      if (follower) {
+        followerX += (mouseX - followerX) * 0.08;
+        followerY += (mouseY - followerY) * 0.08;
+        follower.style.left = followerX + 'px';
+        follower.style.top = followerY + 'px';
+      }
+      requestAnimationFrame(updateFollower);
+    }
+    updateFollower();
+
+    document.querySelectorAll('a, button, .stat-item, .role-tag').forEach(el => {
+      el.addEventListener('mouseenter', () => follower && follower.classList.add('hovering'));
+      el.addEventListener('mouseleave', () => follower && follower.classList.remove('hovering'));
+    });
   }
-  updateFollower();
-
-  document.querySelectorAll('a, button, .stat-item, .role-tag').forEach(el => {
-    el.addEventListener('mouseenter', () => follower.classList.add('hovering'));
-    el.addEventListener('mouseleave', () => follower.classList.remove('hovering'));
-  });
 
   // ---------- Subtle Parallax on Mouse Move ----------
   document.addEventListener('mousemove', (e) => {
+    if (!window.matchMedia('(pointer: fine)').matches || window.innerWidth <= 1024) return;
+
     const cx = (e.clientX / window.innerWidth - 0.5) * 2;
     const cy = (e.clientY / window.innerHeight - 0.5) * 2;
 
     const charImg = document.querySelector('.character-img');
-    if (charImg && charImg.style.opacity === '0.55') {
+    if (charImg && charImg.style.opacity === '0.55' && window.innerWidth > 1024) {
       charImg.style.transform = `translate(calc(-50% + ${cx * 8}px), calc(-50% + ${cy * 5}px)) scale(1)`;
     }
 
@@ -612,13 +739,15 @@ function initHero() {
 
   // ---------- Subtle Title Hover Distortion ----------
   const heroTitle = document.querySelector('.hero-title');
-  heroTitle.addEventListener('mouseenter', () => {
-    heroTitle.style.transition = 'letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
-    heroTitle.style.letterSpacing = '-0.02em';
-  });
-  heroTitle.addEventListener('mouseleave', () => {
-    heroTitle.style.letterSpacing = '-0.04em';
-  });
+  if (heroTitle) {
+    heroTitle.addEventListener('mouseenter', () => {
+      heroTitle.style.transition = 'letter-spacing 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+      heroTitle.style.letterSpacing = '-0.02em';
+    });
+    heroTitle.addEventListener('mouseleave', () => {
+      heroTitle.style.letterSpacing = '-0.04em';
+    });
+  }
 
   // ---------- Stat hover micro-interactions ----------
   document.querySelectorAll('.stat-item').forEach(item => {

@@ -1,7 +1,3 @@
-/* ============================================
-   MICRO-INTERACTIONS - Ink Cursor, Terminal Toggle, Equalizer
-   ============================================ */
-
 function initMicroInteractions() {
   // ============================================
   // 1. GLOBAL PAPER INK CURSOR
@@ -10,56 +6,56 @@ function initMicroInteractions() {
   const inkCircle = document.getElementById('ink-cursor-circle');
   const inkIcon = document.getElementById('ink-cursor-icon');
 
-  let paperMouseX = window.innerWidth / 2;
-  let paperMouseY = window.innerHeight / 2;
-  let circleX = paperMouseX;
-  let circleY = paperMouseY;
-
   if (inkDot && inkCircle) {
-    window.addEventListener('mousemove', (e) => {
-      paperMouseX = e.clientX;
-      paperMouseY = e.clientY;
+    let mouseX = -100, mouseY = -100;
+    let circleX = -100, circleY = -100;
+    let isMoving = false;
 
-      inkDot.style.left = `${paperMouseX}px`;
-      inkDot.style.top = `${paperMouseY}px`;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      if (!isMoving) {
+        isMoving = true;
+        circleX = mouseX;
+        circleY = mouseY;
+      }
+
+      inkDot.style.left = `${mouseX}px`;
+      inkDot.style.top = `${mouseY}px`;
     }, { passive: true });
 
-    function renderCursor() {
-      // Smooth imperfect linear interpolation (lerp)
-      circleX += (paperMouseX - circleX) * 0.18;
-      circleY += (paperMouseY - circleY) * 0.18;
-
-      inkCircle.style.left = `${circleX}px`;
-      inkCircle.style.top = `${circleY}px`;
-
-      requestAnimationFrame(renderCursor);
+    function renderPaperCursor() {
+      if (isMoving) {
+        circleX += (mouseX - circleX) * 0.22;
+        circleY += (mouseY - circleY) * 0.22;
+        inkCircle.style.left = `${circleX}px`;
+        inkCircle.style.top = `${circleY}px`;
+      }
+      requestAnimationFrame(renderPaperCursor);
     }
-    renderCursor();
+    renderPaperCursor();
 
-    // Attach Hover Triggers dynamically
     document.addEventListener('mouseover', (e) => {
-      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link, .spotify-track-row');
+      const target = e.target.closest('a, button, [role="button"], .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .paper-music-card, .launcher-card, .spotify-link, .project-ext-link, .spotify-track-row, .skill-tab-btn, .taped-game-card, .offscreen-card, .menu-btn, .paper-close, .role-tag');
       if (target) {
-        if (target.classList.contains('project-ext-link') || target.tagName === 'A' && target.getAttribute('target') === '_blank') {
-          inkCircle.classList.add('link');
-          inkCircle.classList.remove('spotify', 'active');
+        if (target.classList.contains('project-ext-link') || (target.tagName === 'A' && target.getAttribute('target') === '_blank')) {
+          inkCircle.className = 'ink-cursor-circle link';
           if (inkIcon) inkIcon.textContent = '↗';
         } else if (target.closest('.spotify-parchment-card') || target.closest('.paper-spotify-section') || target.classList.contains('spotify-track-row') || target.classList.contains('spotify-link')) {
-          inkCircle.classList.add('spotify');
-          inkCircle.classList.remove('link', 'active');
+          inkCircle.className = 'ink-cursor-circle spotify';
           if (inkIcon) inkIcon.textContent = '♪';
         } else {
-          inkCircle.classList.add('active');
-          inkCircle.classList.remove('link', 'spotify');
+          inkCircle.className = 'ink-cursor-circle active';
           if (inkIcon) inkIcon.textContent = '';
         }
       }
     });
 
     document.addEventListener('mouseout', (e) => {
-      const target = e.target.closest('a, button, .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .hobby-col, .spotify-link, .project-ext-link, .spotify-track-row');
+      const target = e.target.closest('a, button, [role="button"], .paper-card, .paper-project-card, .paper-skill-card, .paper-lead-card, .paper-edu-card, .paper-music-card, .launcher-card, .spotify-link, .project-ext-link, .spotify-track-row, .skill-tab-btn, .taped-game-card, .offscreen-card, .menu-btn, .paper-close, .role-tag');
       if (target) {
-        inkCircle.classList.remove('active', 'link', 'spotify');
+        inkCircle.className = 'ink-cursor-circle';
         if (inkIcon) inkIcon.textContent = '';
       }
     });

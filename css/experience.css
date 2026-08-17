@@ -1,4 +1,4 @@
-﻿/* ============================================
+/* ============================================
    HUD OVERLAYS & RESUME SECTIONS
    ============================================ */
 .overlay-container {
@@ -600,9 +600,13 @@
 .parchment-scroll-container {
   width: 100%;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 3.5rem 0 4rem;
+  height: 100dvh;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  padding: calc(3.5rem + var(--sat)) 0 calc(4rem + var(--sab));
+  position: relative;
 }
 
 .parchment-content-wrapper {
@@ -611,6 +615,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: min-content;
 }
 
 /* ---------- Header Styling ---------- */
@@ -1183,15 +1188,129 @@
   transform: scale(1.15) rotate(0deg);
 }
 
-/* Responsive tweaking */
-@media (max-width: 768px) {
+/* ---------- Comprehensive Responsive Styles (Desktop, Tablet, Mobile) ---------- */
+
+.parchment-experience-overlay .paper-close {
+  position: fixed;
+  top: calc(1.5rem + var(--sat));
+  right: calc(1.5rem + var(--sar));
+  z-index: 2100;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 1024px) {
+  .parchment-scroll-container {
+    padding: calc(4.5rem + var(--sat)) 0 calc(4rem + var(--sab));
+  }
+
   .paper-main-title {
-    font-size: 2.8rem;
+    font-size: clamp(2.4rem, 6vw, 3.4rem);
   }
+
   .paper-subtitle-script {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 4vw, 2rem);
   }
+
+  .paper-modal-card {
+    width: min(90vw, 560px);
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .paper-header {
+    padding: 0 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .paper-description {
+    font-size: 0.95rem;
+  }
+
+  .paper-timeline-controls {
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .timeline-scroll-hint {
+    font-size: 0.78rem;
+  }
+
+  .paper-timeline-viewport {
+    min-height: 750px;
+    padding: 0.5rem 0 1.5rem;
+    touch-action: pan-x;
+  }
+
+  .paper-timeline-track {
+    min-height: 750px;
+    height: 750px;
+  }
+
   .paper-card {
-    width: 210px;
+    width: 220px;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .paper-card-title {
+    font-size: 1.05rem;
+  }
+
+  .paper-card-company {
+    font-size: 0.82rem;
+  }
+
+  .paper-modal-card {
+    width: min(94vw, 500px);
+    padding: 1.4rem;
+    border-radius: 12px;
+    max-height: 85vh;
+    max-height: 85dvh;
+  }
+
+  .paper-modal-title {
+    font-size: 1.4rem;
+  }
+
+  .paper-modal-role {
+    font-size: 0.95rem;
+  }
+
+  .paper-modal-company {
+    font-size: 0.98rem;
+  }
+
+  .paper-modal-bullets li {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 480px) {
+  .paper-card {
+    width: 195px;
+  }
+
+  .paper-modal-card {
+    padding: 1.2rem 1rem;
+  }
+
+  .paper-modal-header {
+    margin-bottom: 0.4rem;
+  }
+
+  .paper-modal-title {
+    font-size: 1.25rem;
+  }
+
+  .paper-tag {
+    font-size: 0.68rem;
+    padding: 0.2rem 0.5rem;
   }
 }
