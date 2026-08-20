@@ -602,13 +602,13 @@ body {
   transform: translateX(-50%);
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(6rem, 14vw, 14rem);
+  font-size: clamp(4rem, 10.5vw, 10rem);
   letter-spacing: -0.04em;
   color: transparent;
   -webkit-text-stroke: 1px var(--gray-200);
   text-stroke: 1px var(--gray-200);
   white-space: nowrap;
-  z-index: 0;
+  z-index: 3;
   user-select: none;
   pointer-events: none;
   opacity: 0;

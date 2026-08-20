@@ -4,7 +4,7 @@ const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token';
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing';
-const RECENTLY_PLAYED_ENDPOINT = 'https://api.spotify.com/v1/me/player/recently-played?limit=5';
+const RECENTLY_PLAYED_ENDPOINT = 'https://api.spotify.com/v1/me/player/recently-played?limit=15';
 const TOP_TRACKS_ENDPOINT = 'https://api.spotify.com/v1/me/top/tracks?limit=5';
 
 async function getAccessToken() {
@@ -73,11 +73,36 @@ module.exports = async function handler(req, res) {
     if (recentlyPlayedRes && recentlyPlayedRes.status === 200) {
       const recentData = await recentlyPlayedRes.json();
       if (recentData && recentData.items) {
-        recentlyPlayed = recentData.items.map(item => {
+        const seen = new Set();
+        const distinctItems = [];
+
+        for (const item of recentData.items) {
+          if (!item || !item.track) continue;
+          const key = item.track.id || item.track.name;
+          if (!seen.has(key)) {
+            seen.add(key);
+            distinctItems.push(item);
+          }
+          if (distinctItems.length === 5) break;
+        }
+
+        recentlyPlayed = distinctItems.map(item => {
           const playedAt = new Date(item.played_at);
-          const diffMin = Math.max(1, Math.round((Date.now() - playedAt.getTime()) / 60000));
-          const timeAgo = diffMin < 60 ? `${diffMin} min ago` : `${Math.floor(diffMin / 60)} hr ago`;
+          const diffMs = Date.now() - playedAt.getTime();
+          const diffMin = Math.max(1, Math.round(diffMs / 60000));
+          let timeAgo = '';
+          if (diffMin < 60) {
+            timeAgo = `${diffMin} min ago`;
+          } else if (diffMin < 1440) {
+            const hrs = Math.floor(diffMin / 60);
+            timeAgo = `${hrs} hr${hrs > 1 ? 's' : ''} ago`;
+          } else {
+            const days = Math.floor(diffMin / 1440);
+            timeAgo = days === 1 ? 'Yesterday' : `${days}d ago`;
+          }
+
           return {
+            id: item.track.id,
             title: item.track.name,
             artist: item.track.artists.map(a => a.name).join(', '),
             cover: item.track.album.images[0] ? item.track.album.images[0].url : '',

@@ -38,7 +38,7 @@ function initSpotify() {
 
   async function loadSpotifyLive(range = currentRange) {
     try {
-      const res = await fetch(`/api/spotify?range=${range}`);
+      const res = await fetch(`/api/spotify?range=${range}&_t=${Date.now()}`, { cache: 'no-store' });
       if (!res.ok) return;
       const data = await res.json();
       if (!data || !data.configured) return;

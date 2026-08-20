@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <style>
+    text {
+      font-family: 'Outfit', 'Cormorant Garamond', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-weight: 800;
+      font-size: 42px;
+      letter-spacing: 0.5px;
+      fill: #141312;
+    }
+    @media (prefers-color-scheme: dark) {
+      text {
+        fill: #fdfaf3;
+      }
+    }
+  </style>
+  <text x="50%" y="55%" dominant-baseline="central" text-anchor="middle">NM</text>
+</svg>
