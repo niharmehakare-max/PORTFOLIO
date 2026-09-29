@@ -39,6 +39,14 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
   --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --power-1-ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --power-2-ease-out: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --power-4-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --expo-ease-out: cubic-bezier(0.19, 1, 0.22, 1);
+  --spring-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  --scroll-velocity-skew: 0deg;
+  --scroll-progress: 0%;
 
   --sat: env(safe-area-inset-top, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
@@ -88,4 +96,44 @@ body {
     height: 100vh;
     height: 100dvh;
   }
+}
+
+/* ============================================
+   GLOBAL SCROLL PROGRESS THREAD (Vermilion Silk Bookmark / 朱色の栞紐)
+   ============================================ */
+.global-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2.5px;
+  background: linear-gradient(90deg, #8c2a22 0%, #b82e24 40%, #c8102e 80%, #3a342c 100%);
+  z-index: 99999;
+  pointer-events: none;
+  transition: width 0.08s ease-out;
+  opacity: 0.92;
+}
+
+/* Dynamic Skew Physics Class applied to scrollable content */
+.scroll-skew-target {
+  transform: skewY(var(--scroll-velocity-skew, 0deg));
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* ============================================
+   ORGANIC WASHI PAPER FIBER GRAIN (Niccolò Miranda / Danilo De Marco)
+   ============================================ */
+.washi-grain-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99990;
+  opacity: 0.038;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
 }

@@ -611,6 +611,15 @@ function initHero() {
     });
   }
 
+  if (mobNavContact) {
+    mobNavContact.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      const contactBtn = document.getElementById('nav-contact-btn');
+      if (contactBtn) contactBtn.click();
+    });
+  }
+
   window.closeMobileNav = closeMobileNav;
 
   // ---------- Mouse Follower ----------

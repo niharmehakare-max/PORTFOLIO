@@ -65,9 +65,12 @@
 /* Dual Parchment Cards Grid */
 .music-dual-cards-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.8rem;
-  margin-bottom: 1.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: clamp(1rem, 2.2vw, 1.8rem);
+  margin-bottom: clamp(1.2rem, 2.5vw, 1.8rem);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .paper-music-card {

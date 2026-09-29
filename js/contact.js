@@ -1,105 +1,92 @@
 /* ============================================
-   CONTACT - Parchment Overlay & Radial Burst Hub
+   CONTACT - Chapter 04 Parchment Overlay & Radial Hub
    ============================================ */
 
 function initContact() {
   const contactBtn = document.getElementById('nav-contact-btn');
   const mobNavContact = document.getElementById('mob-nav-contact-btn');
-  const contactPopup = document.getElementById('contact-popup');
-  const socialIcons = document.querySelectorAll('.contact-icon-wrapper');
+  const contactOverlay = document.getElementById('contact-overlay');
+  const contactClose = document.getElementById('contact-close');
+  const contactScroll = document.getElementById('contact-scroll');
+  const aboutOverlay = document.getElementById('about-overlay');
+  const projectsOverlay = document.getElementById('projects-overlay');
+  const experienceOverlay = document.getElementById('experience-overlay');
+  const journeyToHero = document.getElementById('journey-to-hero');
 
-  function toggleContactPopup() {
-    if (!contactPopup) return;
-    const isActive = contactPopup.classList.contains('active');
+  function openContact() {
+    if (!contactOverlay) return;
+    if (aboutOverlay) aboutOverlay.classList.remove('active');
+    if (projectsOverlay) projectsOverlay.classList.remove('active');
+    if (experienceOverlay) experienceOverlay.classList.remove('active');
+    contactOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (contactScroll) contactScroll.scrollTop = 0;
 
-    if (!isActive) {
-      const isMobile = window.innerWidth <= 768;
-      let centerX = window.innerWidth / 2;
-      let centerY = window.innerHeight / 2;
-
-      if (!isMobile && contactBtn && contactBtn.offsetParent !== null) {
-        const btnRect = contactBtn.getBoundingClientRect();
-        if (btnRect.width > 0 && btnRect.height > 0) {
-          centerX = btnRect.left + btnRect.width / 2;
-          centerY = btnRect.bottom + 50;
-        }
-      }
-
-      contactPopup.style.left = `${centerX}px`;
-      contactPopup.style.top = `${centerY}px`;
-      contactPopup.classList.add('active');
-
-      const count = socialIcons.length;
-      const popupRadius = window.innerWidth < 480 ? 80 : 95;
-
-      socialIcons.forEach((icon, idx) => {
-        const angleDeg = (360 / count) * idx - 90;
-        const rad = angleDeg * (Math.PI / 180);
-        const tx = Math.cos(rad) * popupRadius;
-        const ty = Math.sin(rad) * popupRadius;
-
-        icon.style.transitionDelay = `${idx * 0.04}s`;
-        icon.style.transform = `translate(${tx}px, ${ty}px) scale(1)`;
-        icon.style.opacity = '1';
-      });
-    } else {
-      closeContactPopup();
+    // Trigger title scramble effect if available
+    const mainTitle = contactOverlay.querySelector('.contact-main-title');
+    if (mainTitle && window.scrambleElement) {
+      window.scrambleElement(mainTitle, mainTitle.dataset.scramble || mainTitle.textContent.trim(), 700);
     }
   }
 
-  function closeContactPopup() {
-    if (!contactPopup) return;
-    contactPopup.classList.remove('active');
-    socialIcons.forEach((icon) => {
-      icon.style.transitionDelay = '0s';
-      icon.style.transform = 'translate(0, 0) scale(0)';
-      icon.style.opacity = '0';
-    });
+  function closeContact() {
+    if (!contactOverlay) return;
+    contactOverlay.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
-  if (contactBtn) {
+  window.openContact = openContact;
+  window.closeContact = closeContact;
+  window.toggleContactPopup = openContact; // Alias for backward compatibility
+
+  if (contactBtn && contactOverlay) {
     contactBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      toggleContactPopup();
+      openContact();
     });
   }
 
-  if (mobNavContact) {
+  if (mobNavContact && contactOverlay) {
     mobNavContact.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       if (typeof window.closeMobileNav === 'function') {
         window.closeMobileNav();
       }
-      setTimeout(() => {
-        toggleContactPopup();
-      }, 150);
+      openContact();
     });
   }
 
-  // Close on click outside (safeguard trigger buttons)
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('#nav-contact-btn, #mob-nav-contact-btn, .contact-popup')) return;
-    if (contactPopup && contactPopup.classList.contains('active')) {
-      closeContactPopup();
-    }
-  });
+  if (contactClose) {
+    contactClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeContact();
+    });
+  }
 
-  // Close on ESC
+  if (journeyToHero) {
+    journeyToHero.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeContact();
+    });
+  }
+
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && contactPopup && contactPopup.classList.contains('active')) {
-      closeContactPopup();
+    if (e.key === 'Escape' && contactOverlay && contactOverlay.classList.contains('active')) {
+      closeContact();
     }
   });
 
-  // Close on scroll
-  window.addEventListener('scroll', () => {
-    if (contactPopup && contactPopup.classList.contains('active')) {
-      closeContactPopup();
-    }
-  }, { passive: true });
-
-  window.openContact = toggleContactPopup;
-  window.toggleContactPopup = toggleContactPopup;
+  // Micro-interaction hover magnetic wobble on radial nodes
+  const radialBadges = contactOverlay ? contactOverlay.querySelectorAll('.radial-badge') : [];
+  radialBadges.forEach(badge => {
+    badge.addEventListener('mouseenter', () => {
+      badge.style.transform = 'scale(1.12)';
+      badge.style.transition = 'transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+    });
+    badge.addEventListener('mouseleave', () => {
+      badge.style.transform = '';
+    });
+  });
 }

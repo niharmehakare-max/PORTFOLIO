@@ -37,12 +37,29 @@
     <div class="slice"></div>
   </div>
 
+  <!-- Organic Washi Paper Fiber Grain Texture (Niccolò Miranda / Danilo De Marco) -->
+  <div class="washi-grain-overlay" aria-hidden="true"></div>
+
+  <!-- Global Scroll Progress Line (Miranda / Ollivere style) -->
+  <div class="global-scroll-progress" id="global-scroll-progress"></div>
+
   <!-- Custom Cursor -->
   <div class="cursor-follower"></div>
 
   <!-- Navigation -->
   <nav class="nav" id="main-nav">
     <a href="#" class="nav-logo">NIHAR<span class="dot"></span></a>
+    
+    <!-- Parchment Registry & Telemetry Bar (Vintage Journal / 2xA style) -->
+    <div class="nav-telemetry" id="nav-telemetry">
+      <span class="telemetry-item time-clock" id="nav-clock" title="Live time in Pune, India"><span class="telemetry-kanji">印</span> PUNE 15:45 IST</span>
+      <span class="telemetry-separator">/</span>
+      <span class="telemetry-item scroll-speed" id="nav-velocity"><span class="telemetry-kanji">速</span> 0 px/s</span>
+      <span class="telemetry-separator">/</span>
+      <span class="telemetry-item status-pill"><span class="status-ping"></span>ACTIVE</span>
+      <kbd class="nav-kbd-hint" id="nav-cmd-trigger" title="Open Scholar's Dispatch (or press /)">巻 /</kbd>
+    </div>
+
     <ul class="nav-links" id="nav-links">
       <li><a href="#" id="nav-about-btn">About</a></li>
       <li><a href="#" id="nav-projects-btn">Projects</a></li>
@@ -119,7 +136,7 @@
       </div>
 
       <div class="hero-title-wrapper">
-        <h1 class="hero-title" data-text="Nihar">
+        <h1 class="hero-title text-scramble" data-scramble="Nihar" data-text="Nihar">
           <span class="line"><span class="line-inner">Nihar</span></span>
         </h1>
         <div class="jp-accent">知</div>
@@ -191,6 +208,7 @@
         <div class="char-data-item">
           <div class="char-data-label">Rank</div>
           <div class="char-data-value">SEM IV // 9.13 ████████░░</div>
+        </div>
       </div>
     </div>
 
@@ -224,6 +242,13 @@
       </div>
       <span class="sound-label">SFX</span>
     </button>
+    <!-- Continuous Calligraphic Ink Ribbon Marquee (Ollivere & Danilo De Marco style) -->
+    <div class="calligraphy-ribbon-strip" id="calligraphy-ribbon">
+      <div class="ribbon-track">
+        <span class="ribbon-text">創造と技術 ★ AI/ML ENGINEERING ★ RAG SEMANTIC SEARCH ★ DISTRIBUTED SYSTEMS ★ VIT PUNE ★ LLM ARCHITECTURES ★ COMPUTER VISION ★ 2026 ★&nbsp;&nbsp;</span>
+        <span class="ribbon-text">創造と技術 ★ AI/ML ENGINEERING ★ RAG SEMANTIC SEARCH ★ DISTRIBUTED SYSTEMS ★ VIT PUNE ★ LLM ARCHITECTURES ★ COMPUTER VISION ★ 2026 ★&nbsp;&nbsp;</span>
+      </div>
+    </div>
 
   </section>
 
@@ -302,14 +327,22 @@
         
         <!-- Header (Matching Reference Image) -->
         <div class="paper-header">
+          <div class="kanji-watermark-bg" aria-hidden="true">我</div>
           <div class="paper-section-num">02</div>
           <div class="paper-num-line"></div>
-          <h2 class="paper-main-title">About Me</h2>
+          <h2 class="paper-main-title text-scramble" data-scramble="About Me">About Me</h2>
           <div class="paper-subtitle-wrapper">
             <span class="paper-subtitle-script">Get to know who I am</span>
             <svg class="paper-subtitle-underline" viewBox="0 0 160 12" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M 3 8 Q 40 2 80 7 T 157 5" stroke="#3a342c" stroke-width="1.8" stroke-linecap="round" fill="none"/>
             </svg>
+          </div>
+          <p class="paper-hero-statement">Pune-based Computer Engineer &amp; Systems Builder specializing in Autonomous AI Pipelines, High-Throughput Backends, and Kinetic Human-Machine Interfaces.</p>
+          <div class="paper-badge-tags">
+            <span class="paper-badge-tag"><span class="hanko-dot">印</span> VIT Pune</span>
+            <span class="paper-badge-tag">Passion Info Tech Mentee</span>
+            <span class="paper-badge-tag">Smart India Hackathon Finalist</span>
+            <span class="paper-badge-tag">15+ Repositories</span>
           </div>
           <!-- Vintage Pen Sketch Illustration top right -->
           <div class="paper-header-pen-sketch">
@@ -355,13 +388,23 @@
 
               <div class="profile-grid">
                 <div class="profile-left">
-                  <span class="paper-meta-label">PROFILE SUMMARY</span>
+                  <span class="paper-meta-label">PROFILE SUMMARY // 概要</span>
                   <h3 class="profile-name">Nihar Mehakare</h3>
-                  <p class="profile-bio">
-                    Computer Engineering student with experience developing AI-powered and full-stack applications for industry-sponsored projects. Led teams in building scalable backend systems, OCR-based automation platforms, and intelligent search solutions using Java, Spring Boot, Python, Flask, React, and SQL. Strong problem-solving skills with a solid foundation in Data Structures, Algorithms, DBMS, and software development.
+                  <p class="profile-bio has-hanko-dropcap">
+                    <span class="hanko-dropcap" aria-hidden="true">N</span>ihar is a Computer Engineering student specializing in Artificial Intelligence and Machine Learning at Vishwakarma Institute of Technology (VIT Pune). Operating with the discipline of an artisan grinding raw sumi ink against suzuri stone, he architects software from mathematical first principles. He has spearheaded engineering teams in constructing production-grade backend architectures, OCR-powered enterprise automation pipelines, and intelligent semantic discovery systems using Java, Spring Boot, Python, Flask, React, and SQL.
                   </p>
+
+                  <!-- Danilo De Marco & Miranda inspired Artisan Manifesto Callout -->
+                  <div class="artisan-manifesto-card">
+                    <div class="manifesto-seal-mark">印</div>
+                    <div class="manifesto-eyebrow">ENGINEERING MANIFESTO // 技術理念</div>
+                    <blockquote class="manifesto-quote">
+                      “Code without mathematical rigor is ephemeral noise. Interfaces devoid of kinetic rhythm are lifeless. Like an artisan shaping raw matter into enduring form, I engineer software for <span class="peek-trigger" data-peek="math">algorithmic determinism<span class="peek-popover">Discrete invariants &amp; sub-millisecond asymptotic bounds</span></span>, <span class="peek-trigger" data-peek="backend">fault-tolerant scalability<span class="peek-popover">Decoupled microservices &amp; resilient message queues</span></span>, and <span class="peek-trigger" data-peek="ai">autonomous intelligence<span class="peek-popover">Vector retrieval &amp; contextual reasoning engines</span></span>.”
+                    </blockquote>
+                  </div>
+
                   <div class="profile-scroll-note">
-                    <span class="scroll-script">Scroll to explore</span>
+                    <span class="scroll-script">Scroll through the ledger</span>
                     <span class="scroll-arrow">↓</span>
                   </div>
                 </div>
@@ -391,7 +434,7 @@
                     </div>
                     <div class="spec-text">
                       <span class="spec-label">Education</span>
-                      <span class="spec-val">VIT Pune — B.Tech CSE (AI & ML)</span>
+                      <span class="spec-val">VIT Pune — B.Tech CSE (AI &amp; ML)</span>
                     </div>
                   </div>
                   <div class="spec-item">
@@ -409,8 +452,157 @@
                     </div>
                     <div class="spec-text">
                       <span class="spec-label">Status</span>
-                      <span class="spec-val">Open to Engineering & AI Roles</span>
+                      <span class="spec-val">Open to Engineering &amp; AI Roles</span>
                     </div>
+                  </div>
+                  <div class="specs-authenticity-stamp">
+                    <span class="hanko-mini">検印</span>
+                    <span class="specs-auth-text">Official Engineering Dossier // 2026</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Miranda-inspired Milestones & Numeric Ledger Grid -->
+              <div class="milestones-ledger-grid">
+                <div class="milestone-card">
+                  <div class="milestone-dash-frame"></div>
+                  <div class="milestone-num-wrap">
+                    <span class="milestone-num">9.13</span>
+                    <span class="milestone-tag">CGPA</span>
+                  </div>
+                  <h5 class="milestone-title">Academic Merit</h5>
+                  <p class="milestone-caption">VIT Pune // Top Percentile B.Tech CSE (AI &amp; ML)</p>
+                </div>
+                <div class="milestone-card">
+                  <div class="milestone-dash-frame"></div>
+                  <div class="milestone-num-wrap">
+                    <span class="milestone-num">03+</span>
+                    <span class="milestone-tag">DEPLOY</span>
+                  </div>
+                  <h5 class="milestone-title">Industry Solutions</h5>
+                  <p class="milestone-caption">Production OCR automation &amp; enterprise AI systems</p>
+                </div>
+                <div class="milestone-card">
+                  <div class="milestone-dash-frame"></div>
+                  <div class="milestone-num-wrap">
+                    <span class="milestone-num">15+</span>
+                    <span class="milestone-tag">REPOS</span>
+                  </div>
+                  <h5 class="milestone-title">Code Repositories</h5>
+                  <p class="milestone-caption">Autonomous agents, Spring Boot backends, Solana Web3</p>
+                </div>
+                <div class="milestone-card">
+                  <div class="milestone-dash-frame"></div>
+                  <div class="milestone-num-wrap">
+                    <span class="milestone-num">100%</span>
+                    <span class="milestone-tag">SAFETY</span>
+                  </div>
+                  <h5 class="milestone-title">Deterministic Code</h5>
+                  <p class="milestone-caption">Strict type contracts, zero crash rates &amp; kinetic polish</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION: Engineering Methodology (How I Build) -->
+            <div class="journal-section" id="journal-sec-methodology">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num step-kanji-num">法</span>
+                <span class="step-script">Engineering Craft</span>
+                <div class="mountain-sketch">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                    <line x1="10" y1="20" x2="70" y2="20" stroke-dasharray="3,3"/>
+                    <rect x="25" y="10" width="30" height="20" rx="3"/>
+                  </svg>
+                </div>
+              </div>
+
+              <span class="paper-meta-label">DISCIPLINE &amp; METHODOLOGY // 開発作法</span>
+              <h3 class="journal-sec-title">How I Engineer Intelligent Systems</h3>
+              <p class="methodology-intro-desc">Rooted in Japanese craftsmanship and mathematical first principles, every software artifact undergoes four deterministic phases from initial formulation to production deployment.</p>
+
+              <div class="methodology-grid">
+                <!-- Step 1 -->
+                <div class="method-card">
+                  <div class="method-card-header">
+                    <span class="method-step-idx">PHASE 01</span>
+                    <span class="method-kanji-tag">原点</span>
+                  </div>
+                  <h4 class="method-title">First Principles &amp; Invariants</h4>
+                  <p class="method-desc">Deconstructing problem spaces down to atomic invariants. Formulating state machines, data schemas, and mathematical constraints before committing functional code.</p>
+                  <div class="method-sketch-preview">
+                    <svg viewBox="0 0 160 50" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <circle cx="28" cy="25" r="16" stroke-dasharray="3,2"/>
+                      <circle cx="28" cy="25" r="4" fill="#8c2a22"/>
+                      <line x1="44" y1="25" x2="80" y2="25"/>
+                      <polygon points="80,25 73,21 73,29" fill="#4a433a"/>
+                      <rect x="85" y="13" width="24" height="24" rx="3"/>
+                      <line x1="109" y1="25" x2="135" y2="25" stroke-dasharray="3,2"/>
+                      <circle cx="145" cy="25" r="7"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="method-card">
+                  <div class="method-card-header">
+                    <span class="method-step-idx">PHASE 02</span>
+                    <span class="method-kanji-tag">試作</span>
+                  </div>
+                  <h4 class="method-title">Empirical Algorithmic Spikes</h4>
+                  <p class="method-desc">Deploying lean, hypothesis-driven prototypes to benchmark token consumption, memory foot-printing, OCR accuracy, and edge-case behavior against chaotic real-world inputs.</p>
+                  <div class="method-sketch-preview">
+                    <svg viewBox="0 0 160 50" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <path d="M 10 40 L 40 18 L 70 32 L 105 12 L 140 22 L 155 8"/>
+                      <circle cx="40" cy="18" r="3" fill="#8c2a22"/>
+                      <circle cx="105" cy="12" r="3" fill="#8c2a22"/>
+                      <line x1="10" y1="45" x2="155" y2="45" stroke-dasharray="2,2"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="method-card">
+                  <div class="method-card-header">
+                    <span class="method-step-idx">PHASE 03</span>
+                    <span class="method-kanji-tag">構造</span>
+                  </div>
+                  <h4 class="method-title">Decoupled Systems Architecture</h4>
+                  <p class="method-desc">Engineering resilient, type-safe services in Spring Boot, Python, and React. Enforcing idempotent APIs, layered caching, and comprehensive error containment boundaries.</p>
+                  <div class="method-sketch-preview">
+                    <svg viewBox="0 0 160 50" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <rect x="15" y="10" width="35" height="30" rx="3"/>
+                      <rect x="62" y="10" width="35" height="30" rx="3"/>
+                      <rect x="110" y="10" width="35" height="30" rx="3"/>
+                      <line x1="50" y1="25" x2="62" y2="25"/>
+                      <line x1="97" y1="25" x2="110" y2="25"/>
+                      <line x1="22" y1="20" x2="43" y2="20" stroke="#8c2a22"/>
+                      <line x1="69" y1="20" x2="90" y2="20" stroke="#8c2a22"/>
+                      <line x1="117" y1="20" x2="138" y2="20" stroke="#8c2a22"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="method-card">
+                  <div class="method-card-header">
+                    <span class="method-step-idx">PHASE 04</span>
+                    <span class="method-kanji-tag">洗練</span>
+                  </div>
+                  <h4 class="method-title">Telemetry, Profiling &amp; Kinetic Polish</h4>
+                  <p class="method-desc">Auditing query execution plans, tuning GC overhead, and sculpting tactile micro-interactions. A system is only finished when it runs silently and feels intuitive.</p>
+                  <div class="method-sketch-preview">
+                    <svg viewBox="0 0 160 50" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                      <circle cx="80" cy="25" r="20"/>
+                      <path d="M 80 5 L 80 15 M 80 35 L 80 45 M 60 25 L 70 25 M 90 25 L 100 25"/>
+                      <line x1="80" y1="25" x2="92" y2="17" stroke="#8c2a22" stroke-width="1.6"/>
+                      <circle cx="80" cy="25" r="2.5" fill="#8c2a22"/>
+                    </svg>
                   </div>
                 </div>
               </div>
@@ -642,6 +834,60 @@
                       <ellipse cx="60" cy="50" rx="35" ry="12"/>
                       <circle cx="30" cy="25" r="8"/> <circle cx="60" cy="22" r="8"/> <circle cx="90" cy="25" r="8"/>
                     </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION: Peer & Industry Endorsement Ledger -->
+            <div class="journal-section" id="journal-sec-endorsements">
+              <div class="journal-step-badge">
+                <div class="spine-pointer-arrow" title="Spine Pointer">
+                  <svg width="45" height="16" viewBox="0 0 45 16" fill="none" stroke="#3a342c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="0" y1="8" x2="35" y2="8" stroke-dasharray="3,3"/>
+                    <path d="M 28 3 L 36 8 L 28 13"/>
+                  </svg>
+                </div>
+                <span class="step-num step-kanji-num">証</span>
+                <span class="step-script">Endorsements</span>
+                <div class="mountain-sketch">
+                  <svg viewBox="0 0 80 40" fill="none" stroke="#4a433a" stroke-width="1.2" stroke-linecap="round">
+                    <circle cx="40" cy="20" r="14" stroke-dasharray="2,2"/>
+                    <path d="M 33 20 L 38 25 L 48 15" stroke="#8c2a22" stroke-width="1.8"/>
+                  </svg>
+                </div>
+              </div>
+
+              <span class="paper-meta-label">PEER &amp; INDUSTRY LEDGER // 推薦証言</span>
+              <h3 class="journal-sec-title">Collaborator &amp; Mentor Words</h3>
+              <p class="endorsements-intro-desc">Verifiable feedback from industrial project supervisors, engineering faculty, and hackathon teammates.</p>
+
+              <div class="endorsements-grid">
+                <div class="endorsement-card">
+                  <div class="endorsement-dash-border"></div>
+                  <div class="quote-glyph-top">“</div>
+                  <p class="endorsement-quote-text">Nihar brought exceptional systems discipline and algorithmic rigor to our OCR automation pipeline. When converting chaotic engineering drawings into structured data, he delivered production-grade reliability well ahead of schedule with unwavering precision.</p>
+                  <div class="endorsement-author-row">
+                    <div class="author-avatar-stamp">技</div>
+                    <div class="author-info">
+                      <h5 class="author-name">Passion Info Tech</h5>
+                      <span class="author-role">Industry Project Mentorship // Systems Engineering</span>
+                    </div>
+                    <span class="endorsement-verified-hanko" title="Verified Industrial Delivery">済</span>
+                  </div>
+                </div>
+
+                <div class="endorsement-card">
+                  <div class="endorsement-dash-border"></div>
+                  <div class="quote-glyph-top">“</div>
+                  <p class="endorsement-quote-text">Rarely do you encounter an engineer who balances deep backend architectures with such an exquisite feel for kinetic typography and micro-interactions. Whether debugging distributed Spring services or leading hackathon sprints, his execution is relentless.</p>
+                  <div class="endorsement-author-row">
+                    <div class="author-avatar-stamp">共</div>
+                    <div class="author-info">
+                      <h5 class="author-name">VIT Pune Engineering Cohort</h5>
+                      <span class="author-role">Smart India Hackathon Finalist Team &amp; Research Collaborators</span>
+                    </div>
+                    <span class="endorsement-verified-hanko" title="Verified Peer Commendation">認</span>
                   </div>
                 </div>
               </div>
@@ -1218,11 +1464,40 @@
 
             </div>
 
+        <!-- Miranda-inspired Marquee Call To Action Ribbon -->
+        <div class="about-marquee-footer">
+          <div class="about-marquee-track">
+            <span class="marquee-item">LET'S BUILD SOMETHING EXTRAORDINARY · 一期一会</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">OPEN FOR FULL-STACK &amp; AI ENGINEERING ROLES</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">DETERMINISTIC SYSTEMS · SUMI-E CRAFTSMANSHIP</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">LET'S BUILD SOMETHING EXTRAORDINARY · 一期一会</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">OPEN FOR FULL-STACK &amp; AI ENGINEERING ROLES</span>
+            <span class="marquee-sep">✦</span>
+            <span class="marquee-item">DETERMINISTIC SYSTEMS · SUMI-E CRAFTSMANSHIP</span>
+          </div>
+        </div>
+
+        <!-- Section-to-Section Seamless Journey Bridge (Ollivere / Miranda / Parchment Journal) -->
+        <div class="journey-next-card" id="journey-to-projects" data-target="projects" role="button" tabindex="0">
+          <div class="journey-card-inner">
+            <div class="journey-card-meta">
+              <div class="journey-ch-badge"><span class="hanko-seal-mini">巻二</span> CHAPTER 02 // 制作録</div>
+              <span class="journey-arrow">Turn to Projects <span>↗</span></span>
+            </div>
+            <h3 class="journey-title text-scramble" data-scramble="Explore Selected Projects">Explore Selected Projects</h3>
+            <p class="journey-desc">RepoAnalyzer • EventiX Blockchain Ticketing • AgriSaksham AI</p>
+            <div class="journey-cursive-note">※ Turn the manuscript to Chapter 02 — Software Engineering & AI Architectures</div>
           </div>
         </div>
 
       </div>
     </div>
+  </div>
+  </div>
   </div>
 
   <!-- Projects Overlay (Paper Parchment Vintage Layout) -->
@@ -1270,7 +1545,7 @@
           <div class="paper-section-num">04</div>
           <div class="paper-num-line"></div>
           <span class="paper-meta-label">FEATURED SYSTEMS & ARCHITECTURE</span>
-          <h2 class="paper-main-title">Projects</h2>
+          <h2 class="paper-main-title text-scramble" data-scramble="Projects">Projects</h2>
           <div class="paper-subtitle-wrapper">
             <span class="paper-subtitle-script">built to solve real problems.</span>
             <svg class="paper-subtitle-underline" viewBox="0 0 180 12" fill="none">
@@ -1676,6 +1951,19 @@
           </div>
         </div>
 
+        <!-- Section-to-Section Seamless Journey Bridge (Ollivere / Miranda / Parchment Journal) -->
+        <div class="journey-next-card" id="journey-to-experience" data-target="experience" role="button" tabindex="0">
+          <div class="journey-card-inner">
+            <div class="journey-card-meta">
+              <div class="journey-ch-badge"><span class="hanko-seal-mini">巻三</span> CHAPTER 03 // 経歴録</div>
+              <span class="journey-arrow">Turn to Experience <span>↗</span></span>
+            </div>
+            <h3 class="journey-title text-scramble" data-scramble="Explore Experience & Leadership">Explore Experience & Leadership</h3>
+            <p class="journey-desc">AI Team Lead • Passion Info Tech • Department Representative • Hackathons</p>
+            <div class="journey-cursive-note">※ Continue onward to Chapter 03 — Industry Tenures & Academic Leadership</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1699,7 +1987,7 @@
         <div class="paper-header">
           <div class="paper-section-num">03</div>
           <div class="paper-num-line"></div>
-          <h2 class="paper-main-title">Experience</h2>
+          <h2 class="paper-main-title text-scramble" data-scramble="Experience">Experience</h2>
           <div class="paper-subtitle-wrapper">
             <span class="paper-subtitle-script">My journey so far...</span>
             <svg class="paper-subtitle-underline" viewBox="0 0 160 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1734,6 +2022,19 @@
           </div>
         </div>
 
+        <!-- Section-to-Section Seamless Journey Bridge (Ollivere / Miranda / Parchment Journal) -->
+        <div class="journey-next-card" id="journey-to-contact" data-target="contact" role="button" tabindex="0">
+          <div class="journey-card-inner">
+            <div class="journey-card-meta">
+              <div class="journey-ch-badge"><span class="hanko-seal-mini">巻四</span> CHAPTER 04 // 連絡録</div>
+              <span class="journey-arrow">Turn to Contact <span>↗</span></span>
+            </div>
+            <h3 class="journey-title text-scramble" data-scramble="Get In Touch with Nihar">Get In Touch with Nihar</h3>
+            <p class="journey-desc">Engineering Collaborations • AI Systems • Direct Inquiries</p>
+            <div class="journey-cursive-note">※ Dispatch a letter or inquiry — Pune, India [18.5204° N, 73.8567° E]</div>
+          </div>
+        </div>
+
       </div>
     </div>
 
@@ -1756,6 +2057,8 @@
         <div class="paper-modal-tags" id="modal-tags"></div>
       </div>
     </div>
+  </div>
+
   <!-- Contact Overlay (Paper Parchment Vintage Radial Hub) -->
   <div class="about-overlay parchment-contact-overlay" id="contact-overlay">
     <!-- Close button -->
@@ -1784,7 +2087,7 @@
           <!-- Left Column -->
           <div class="contact-left-col">
             <span class="contact-red-tag">CONTACT // CONNECT</span>
-            <h2 class="contact-main-title">Get In<br>Touch<span class="title-period">.</span></h2>
+            <h2 class="contact-main-title text-scramble" data-scramble="Get In Touch.">Get In<br>Touch<span class="title-period">.</span></h2>
             <p class="contact-desc-text">
               Looking for an AI/ML Engineer, Full-Stack Developer, or collaborative technical lead? Feel free to reach out across any platform.
             </p>
@@ -1894,6 +2197,19 @@
           </div>
         </div>
 
+        <!-- Section-to-Section Seamless Journey Bridge (Ollivere / Miranda / Parchment Journal) -->
+        <div class="journey-next-card" id="journey-to-hero" data-target="hero" role="button" tabindex="0">
+          <div class="journey-card-inner">
+            <div class="journey-card-meta">
+              <div class="journey-ch-badge"><span class="hanko-seal-mini">目録</span> ARCHIVE INDEX // 完結</div>
+              <span class="journey-arrow">Return to Hero Overview <span>↑</span></span>
+            </div>
+            <h3 class="journey-title text-scramble" data-scramble="Return to Initial Overview">Return to Initial Overview</h3>
+            <p class="journey-desc">Explore again • Review engineering stats • Scholar's Dispatch HUD</p>
+            <div class="journey-cursive-note">※ Close manuscript fold and return to the primary character plate</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -1949,6 +2265,64 @@
       <div class="fog-blob blob-3"></div>
       <div class="fog-blob blob-4"></div>
       <div class="fog-blob blob-5"></div>
+    </div>
+  </div>
+
+  <!-- Rotating Vermilion Seal Stamp (朱印鑑 - Niccolò Miranda / Vintage Journal) -->
+  <div class="rotating-scroll-badge" id="rotating-scroll-badge" role="button" tabindex="0" title="Scholar's Dispatch (or press /)">
+    <svg class="stamp-svg" viewBox="0 0 140 140">
+      <defs>
+        <path id="stamp-text-circle" d="M 70, 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
+      </defs>
+      <circle cx="70" cy="70" r="66" class="stamp-outer-ring" fill="none" stroke="#8c2a22" stroke-width="1.6" stroke-dasharray="5, 3" />
+      <circle cx="70" cy="70" r="62" class="stamp-outer-subring" fill="none" stroke="#8c2a22" stroke-width="0.8" />
+      <text class="stamp-text">
+        <textPath href="#stamp-text-circle" startOffset="0%">
+          ★ NIHAR MEHAKARE ★ 創造と技術 ★ VIT PUNE ★ 2026 ★
+        </textPath>
+      </text>
+      <circle cx="70" cy="70" r="32" class="stamp-inner-circle" />
+      <text x="70" y="76" class="stamp-center-glyph">知</text>
+    </svg>
+  </div>
+
+  <!-- Scholar's Dispatch & Manuscript Index HUD (Bleibtgleich style / Vintage Journal Theme) -->
+  <div class="quick-cmd-hud" id="quick-cmd-hud" aria-hidden="true">
+    <div class="cmd-hud-backdrop" id="cmd-hud-backdrop"></div>
+    <div class="cmd-hud-window paper-parchment-window">
+      <!-- Vintage Deckle Corner Marks -->
+      <div class="parchment-corner top-left"></div>
+      <div class="parchment-corner top-right"></div>
+      <div class="parchment-corner bottom-left"></div>
+      <div class="parchment-corner bottom-right"></div>
+
+      <div class="cmd-hud-header">
+        <div class="cmd-hud-title-group">
+          <span class="cmd-hud-seal">印</span>
+          <span class="cmd-hud-title">SCHOLAR'S DISPATCH // 筆記録</span>
+        </div>
+        <span class="cmd-hud-esc">ESC to close [閉]</span>
+      </div>
+      <div class="cmd-hud-input-row">
+        <span class="cmd-prompt-glyph">✒</span>
+        <input type="text" id="cmd-input" class="cmd-input" placeholder="Type a chapter (/about, /projects) or write a note..." autocomplete="off" spellcheck="false">
+      </div>
+      <div class="cmd-hud-suggestions">
+        <button class="cmd-chip" data-cmd="/about"><span class="chip-num">01</span> About // 略歴</button>
+        <button class="cmd-chip" data-cmd="/projects"><span class="chip-num">02</span> Projects // 制作</button>
+        <button class="cmd-chip" data-cmd="/experience"><span class="chip-num">03</span> Experience // 経歴</button>
+        <button class="cmd-chip" data-cmd="/contact"><span class="chip-num">04</span> Contact // 連絡</button>
+        <button class="cmd-chip" data-cmd="/sound">♫ SFX Toggle</button>
+        <button class="cmd-chip" data-cmd="/matrix">墨 Kanji Shimmer</button>
+      </div>
+      <div class="cmd-hud-output" id="cmd-output">Journal index ready. Press "/" anywhere to summon dispatch.</div>
+      <div class="cmd-hud-shortcuts-bar">
+        <span class="cmd-shortcut-tag"><kbd>1-4</kbd> 章 Chapters</span>
+        <span class="cmd-shortcut-tag"><kbd>S</kbd> 墨音 Sound</span>
+        <span class="cmd-shortcut-tag"><kbd>M</kbd> 墨印 Shimmer</span>
+        <span class="cmd-shortcut-tag"><kbd>/</kbd> 筆 Dispatch</span>
+        <span class="cmd-shortcut-tag"><kbd>Esc</kbd> 閉じる Return</span>
+      </div>
     </div>
   </div>
 

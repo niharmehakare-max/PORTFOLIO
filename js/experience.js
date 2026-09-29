@@ -347,35 +347,62 @@ function initExperience() {
   }
 
   // Interactivity — Navigation & Drag Scrolling
+  function openExperience() {
+    if (aboutOverlay) aboutOverlay.classList.remove('active');
+    if (projectsOverlay) projectsOverlay.classList.remove('active');
+    const contactOverlay = document.getElementById('contact-overlay');
+    if (contactOverlay) contactOverlay.classList.remove('active');
+    experienceOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    renderPaperTimeline();
+    if (expViewport) expViewport.scrollLeft = 0;
+  }
+
+  function closeExperience() {
+    experienceOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  window.openExperience = openExperience;
+  window.closeExperience = closeExperience;
+
   if (experienceBtn && experienceOverlay) {
     experienceBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-
-      triggerCloudTransition(() => {
-        if (aboutOverlay) aboutOverlay.classList.remove('active');
-        if (projectsOverlay) projectsOverlay.classList.remove('active');
-        const contactOverlay = document.getElementById('contact-overlay');
-        if (contactOverlay) contactOverlay.classList.remove('active');
-        experienceOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-        renderPaperTimeline();
-        if (expViewport) expViewport.scrollLeft = 0;
-      });
+      openExperience();
     });
 
     if (experienceClose) {
-      experienceClose.addEventListener('click', () => {
-        triggerCloudTransition(() => {
-          experienceOverlay.classList.remove('active');
-          document.body.style.overflow = '';
-        });
+      experienceClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeExperience();
+      });
+    }
+
+    // Journey Next Button: Projects -> Experience
+    const journeyToExperience = document.getElementById('journey-to-experience');
+    if (journeyToExperience) {
+      journeyToExperience.addEventListener('click', (e) => {
+        e.preventDefault();
+        openExperience();
+      });
+    }
+
+    // Journey Next Button: Experience -> Contact
+    const journeyToContact = document.getElementById('journey-to-contact');
+    if (journeyToContact) {
+      journeyToContact.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeExperience();
+        const contactBtn = document.getElementById('nav-contact-btn');
+        if (contactBtn) contactBtn.click();
       });
     }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && experienceOverlay.classList.contains('active')) {
-        experienceClose.click();
+        closeExperience();
       }
     });
 

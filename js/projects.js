@@ -4,6 +4,7 @@
 
 function initProjects() {
   const projectsBtn = document.getElementById('nav-projects-btn');
+  const mobNavProjects = document.getElementById('mob-nav-projects-btn');
   const projectsOverlay = document.getElementById('projects-overlay');
   const projectsClose = document.getElementById('projects-close');
   const projectsScroll = document.getElementById('projects-scroll');
@@ -12,29 +13,76 @@ function initProjects() {
   const experienceOverlay = document.getElementById('experience-overlay');
   const contactOverlay = document.getElementById('contact-overlay');
 
+  function openProjects() {
+    if (!projectsOverlay) return;
+    if (aboutOverlay) aboutOverlay.classList.remove('active');
+    if (experienceOverlay) experienceOverlay.classList.remove('active');
+    if (contactOverlay) contactOverlay.classList.remove('active');
+    projectsOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    if (projectsScroll) projectsScroll.scrollTop = 0;
+  }
+
+  function closeProjects() {
+    if (!projectsOverlay) return;
+    projectsOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    if (projectsHeaderBg) projectsHeaderBg.classList.remove('visible');
+  }
+
+  window.openProjects = openProjects;
+  window.closeProjects = closeProjects;
+
   if (projectsBtn && projectsOverlay) {
     projectsBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
-      if (aboutOverlay) aboutOverlay.classList.remove('active');
-      if (experienceOverlay) experienceOverlay.classList.remove('active');
-      if (contactOverlay) contactOverlay.classList.remove('active');
-      projectsOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      if (projectsScroll) projectsScroll.scrollTop = 0;
+      openProjects();
     });
 
+    if (mobNavProjects) {
+      mobNavProjects.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.closeMobileNav === 'function') window.closeMobileNav();
+        openProjects();
+      });
+    }
+
     if (projectsClose) {
-      projectsClose.addEventListener('click', () => {
-        projectsOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-        if (projectsHeaderBg) projectsHeaderBg.classList.remove('visible');
+      projectsClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjects();
+      });
+    }
+
+    // Journey Next Button: About -> Projects
+    const journeyToProjects = document.getElementById('journey-to-projects');
+    if (journeyToProjects) {
+      journeyToProjects.addEventListener('click', (e) => {
+        e.preventDefault();
+        openProjects();
+      });
+    }
+
+    // Journey Next Button: Projects -> Experience
+    const journeyToExperience = document.getElementById('journey-to-experience');
+    if (journeyToExperience) {
+      journeyToExperience.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjects();
+        if (typeof window.openExperience === 'function') {
+          window.openExperience();
+        } else {
+          const expBtn = document.getElementById('nav-experience-btn');
+          if (expBtn) expBtn.click();
+        }
       });
     }
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && projectsOverlay.classList.contains('active')) {
-        if (projectsClose) projectsClose.click();
+        closeProjects();
       }
     });
 

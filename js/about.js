@@ -20,7 +20,22 @@ function initAbout() {
       aboutOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
       if (aboutScroll) aboutScroll.scrollTop = 0;
+      if (window.playShishiOdoshi) window.playShishiOdoshi();
+      animateMilestones();
     }
+  }
+
+  function animateMilestones() {
+    const milestoneCards = document.querySelectorAll('.milestone-card');
+    milestoneCards.forEach((card, idx) => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(16px)';
+      card.style.transition = 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+      setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }, 400 + idx * 120);
+    });
   }
 
   function closeAbout() {
@@ -322,9 +337,10 @@ function initAbout() {
   // Initial render (Category 01: Languages)
   renderCategory('01');
 
-  // Tab button click events
+  // Tab button click events with audio feedback
   skillTabBtns.forEach(btn => {
     btn.addEventListener('click', () => {
+      if (window.playPortfolioClick) window.playPortfolioClick(580);
       skillTabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const cat = btn.getAttribute('data-cat');
@@ -332,5 +348,44 @@ function initAbout() {
     });
   });
 
+  // Interactive cards audio and 3D tilts in About Section
+  const interactiveAboutCards = document.querySelectorAll('.milestone-card, .method-card, .endorsement-card');
+  interactiveAboutCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (window.playPortfolioHover) window.playPortfolioHover();
+    });
+    card.addEventListener('click', () => {
+      if (window.playPortfolioClick) window.playPortfolioClick(640);
+    });
+  });
+
+  // Mobile tap handling for peek triggers (Danilo De Marco inline reveals)
+  const peekTriggers = document.querySelectorAll('.peek-trigger');
+  peekTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const popover = trigger.querySelector('.peek-popover');
+      if (!popover) return;
+      const isVisible = popover.style.opacity === '1';
+      document.querySelectorAll('.peek-popover').forEach(p => {
+        p.style.opacity = '0';
+        p.style.visibility = 'hidden';
+      });
+      if (!isVisible) {
+        popover.style.opacity = '1';
+        popover.style.visibility = 'visible';
+        if (window.playPortfolioClick) window.playPortfolioClick(720);
+      }
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.peek-popover').forEach(p => {
+      p.style.opacity = '';
+      p.style.visibility = '';
+    });
+  });
+
   window.openAboutWithPageFlip = openAbout;
 }
+

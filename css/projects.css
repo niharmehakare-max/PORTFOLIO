@@ -8,6 +8,21 @@
   color: #1c1a17 !important;
   padding: 0 !important;
   overflow: hidden !important;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(100%);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.35, 1), opacity 0.4s ease, visibility 0.4s ease !important;
+}
+
+.parchment-projects-overlay.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
 }
 
 .paper-projects-layout {
