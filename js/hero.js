@@ -201,7 +201,7 @@ function initHero() {
     const charImg = document.getElementById('character-img');
     if (!charImg) return;
     const bounds = charImg.getBoundingClientRect();
-    
+
     // Only spawn when mouse is over or near the character image cutout
     if (e.clientX < bounds.left - 40 || e.clientX > bounds.right + 40) return;
     if (e.clientY < bounds.top - 40 || e.clientY > bounds.bottom + 40) return;
@@ -290,12 +290,14 @@ function initHero() {
       cta.style.transform = 'translateY(0)';
     }, 900);
 
-    // Character image
+    // Character Dossier Card
     setTimeout(() => {
-      const img = document.querySelector('.character-img');
-      img.style.transition = 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)';
-      img.style.opacity = '0.55';
-      img.style.transform = 'translate(-50%, -50%) scale(1)';
+      const card = document.getElementById('character-card');
+      if (card) {
+        card.style.transition = 'opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+      }
     }, 600);
 
     // HUD corners
@@ -316,7 +318,7 @@ function initHero() {
           item.style.opacity = '1';
           item.style.transform = 'translateY(0)';
           const numEl = item.querySelector('.stat-number');
-          const target = parseInt(numEl.dataset.target);
+          const target = parseFloat(numEl.dataset.target);
           animateNumber(numEl, target);
         }, i * 150);
       });
@@ -365,8 +367,10 @@ function initHero() {
     // BG text
     setTimeout(() => {
       const bg = document.querySelector('.bg-text');
-      bg.style.transition = 'opacity 1.5s ease';
-      bg.style.opacity = '1';
+      if (bg) {
+        bg.style.transition = 'opacity 1.5s ease';
+        bg.style.opacity = '0.04';
+      }
     }, 1200);
 
     // Character data overlay
@@ -445,20 +449,19 @@ function initHero() {
 
   // ---------- Number Animation ----------
   function animateNumber(el, target) {
-    let current = 0;
-    const duration = 1500;
+    const isFloat = String(target).includes('.');
+    const duration = 1400;
     const start = performance.now();
+    const plusSpan = el.querySelector('.plus');
+    const prefix = plusSpan ? plusSpan.outerHTML : '';
 
     function update(now) {
       const elapsed = now - start;
       const progress = Math.min(elapsed / duration, 1);
       const eased = 1 - Math.pow(1 - progress, 4);
-      current = Math.floor(eased * target);
+      const val = isFloat ? (eased * target).toFixed(2) : Math.floor(eased * target);
 
-      const textNode = el.childNodes[el.childNodes.length - 1];
-      if (textNode.nodeType === 3) {
-        textNode.textContent = current;
-      }
+      el.innerHTML = `${prefix}${val}`;
 
       if (progress < 1) {
         requestAnimationFrame(update);
@@ -620,6 +623,17 @@ function initHero() {
     });
   }
 
+  const mobNav3d = document.getElementById('mob-nav-3d-btn');
+  if (mobNav3d) {
+    mobNav3d.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeMobileNav();
+      if (window.spatialWorld) {
+        window.spatialWorld.toggleFull3DMode();
+      }
+    });
+  }
+
   window.closeMobileNav = closeMobileNav;
 
   // ---------- Mouse Follower ----------
@@ -657,9 +671,9 @@ function initHero() {
     const cx = (e.clientX / window.innerWidth - 0.5) * 2;
     const cy = (e.clientY / window.innerHeight - 0.5) * 2;
 
-    const charImg = document.querySelector('.character-img');
-    if (charImg && charImg.style.opacity === '0.55' && window.innerWidth > 1024) {
-      charImg.style.transform = `translate(calc(-50% + ${cx * 8}px), calc(-50% + ${cy * 5}px)) scale(1)`;
+    const charCard = document.getElementById('character-card');
+    if (charCard && window.innerWidth > 1024) {
+      charCard.style.transform = `perspective(1000px) rotateY(${cx * 3}deg) rotateX(${-cy * 3}deg) translate(${cx * 6}px, ${cy * 4}px)`;
     }
 
     const jpAccent = document.querySelector('.jp-accent');

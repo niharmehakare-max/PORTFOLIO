@@ -1,4 +1,16 @@
+/* ============================================
+   SPOTIFY SOUND PAVILION OVERLAY MODULE (js/spotify.js)
+   Standalone Parchment Overlay for Chapter 07
+   Live Spotify Integration with Visibility Polling
+   ============================================ */
+
 function initSpotify() {
+  const spotifyOverlay = document.getElementById('spotify-overlay');
+  const spotifyCloseBtn = document.getElementById('spotify-close');
+  const spotifyReturn3dBtn = document.getElementById('spotify-return-3d');
+  const navSpotifyBtn = document.getElementById('nav-spotify-btn');
+  const journeyToContactBtn = document.getElementById('journey-to-contact-from-spotify');
+
   const recentlyPlayedList = document.getElementById('spotify-recently-played');
   const topSongsList = document.getElementById('spotify-top-songs');
   const nowPlayingBar = document.getElementById('spotify-now-playing');
@@ -8,6 +20,7 @@ function initSpotify() {
   const rangeOptions = document.querySelectorAll('.dropdown-option-item');
 
   let currentRange = 'short_term';
+  let pollInterval = null;
 
   function renderTopTracks(tracks) {
     if (!topSongsList || !tracks || tracks.length === 0) return;
@@ -63,7 +76,6 @@ function initSpotify() {
           if (equalizer) equalizer.style.opacity = '1';
           if (pauseBtn) pauseBtn.textContent = '⏸';
         } else if (data.recentlyPlayed && data.recentlyPlayed.length > 0) {
-          // Fallback to most recent track when not actively playing
           const lastTrack = data.recentlyPlayed[0];
           if (titleEl) titleEl.textContent = lastTrack.title;
           if (artistEl) artistEl.textContent = lastTrack.artist;
@@ -101,11 +113,101 @@ function initSpotify() {
         renderTopTracks(data.topTracks);
       }
     } catch (err) {
-      console.log('Spotify live integration sync:', err);
+      console.log('Spotify live sync:', err);
     }
   }
 
-  // Range Dropdown Event Listeners
+  function openSpotify() {
+    // Close other overlays
+    const allOverlays = [
+      document.getElementById('about-overlay'),
+      document.getElementById('projects-overlay'),
+      document.getElementById('experience-overlay'),
+      document.getElementById('contact-overlay'),
+      document.getElementById('gaming-overlay')
+    ];
+    allOverlays.forEach(ol => {
+      if (ol && ol.classList.contains('active')) {
+        ol.classList.remove('active');
+      }
+    });
+
+    if (spotifyOverlay) {
+      spotifyOverlay.classList.add('active');
+      spotifyOverlay.scrollTop = 0;
+      const scrollCont = document.getElementById('spotify-scroll');
+      if (scrollCont) scrollCont.scrollTop = 0;
+    }
+
+    // Audio chime
+    if (window.audioEngine && typeof window.audioEngine.playFurinChime === 'function') {
+      window.audioEngine.playFurinChime();
+    } else if (typeof window.playFurinChime === 'function') {
+      window.playFurinChime();
+    }
+
+    // Load data immediately on opening
+    loadSpotifyLive(currentRange);
+
+    // Start polling while open
+    if (!pollInterval) {
+      pollInterval = setInterval(() => {
+        if (spotifyOverlay && spotifyOverlay.classList.contains('active')) {
+          loadSpotifyLive(currentRange);
+        }
+      }, 20000);
+    }
+  }
+
+  function closeSpotify() {
+    if (spotifyOverlay) {
+      spotifyOverlay.classList.remove('active');
+    }
+    if (pollInterval) {
+      clearInterval(pollInterval);
+      pollInterval = null;
+    }
+  }
+
+  // Navigation button
+  if (navSpotifyBtn) {
+    navSpotifyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openSpotify();
+    });
+  }
+
+  if (spotifyCloseBtn) {
+    spotifyCloseBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSpotify();
+    });
+  }
+
+  if (spotifyReturn3dBtn) {
+    spotifyReturn3dBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSpotify();
+      if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+        window.spatialWorld.navigateToZone('hero');
+      }
+    });
+  }
+
+  // Journey to Contact
+  if (journeyToContactBtn) {
+    journeyToContactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeSpotify();
+      setTimeout(() => {
+        if (typeof window.openContact === 'function') {
+          window.openContact();
+        }
+      }, 200);
+    });
+  }
+
+  // Range dropdown
   if (rangeBtn && rangeDropdown) {
     rangeBtn.addEventListener('click', (e) => {
       e.preventDefault();
@@ -137,11 +239,17 @@ function initSpotify() {
     });
   }
 
-  // Initial load
-  loadSpotifyLive('short_term');
+  // ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && spotifyOverlay && spotifyOverlay.classList.contains('active')) {
+      closeSpotify();
+    }
+  });
 
-  // Auto-refresh every 20 seconds for live currently playing sync
-  setInterval(() => {
-    loadSpotifyLive(currentRange);
-  }, 20000);
+  // Global exports
+  window.openSpotifyOverlay = openSpotify;
+  window.closeSpotifyOverlay = closeSpotify;
+  window.openSpotifySection = openSpotify;
 }
+
+window.initSpotify = initSpotify;

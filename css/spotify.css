@@ -2,6 +2,38 @@
    SPOTIFY VINTAGE PARCHMENT MUSIC SECTION (SEC 07)
    ============================================ */
 
+.parchment-spotify-overlay {
+  background: #f5f0e6 !important;
+  background-image: radial-gradient(ellipse at center, #fcf9f2 0%, #ebe3d2 100%) !important;
+  color: #1c1a17 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(100%);
+  box-shadow: -15px 0 50px rgba(35, 30, 24, 0.25);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease, visibility 0.55s ease !important;
+}
+
+.parchment-spotify-overlay.active {
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(0) !important;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.05s ease, visibility 0s !important;
+}
+
+.paper-spotify-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5.5rem 2rem 6rem 2rem;
+  position: relative;
+}
+
 .music-header-decorations {
   position: relative;
   width: 100%;

@@ -11,16 +11,40 @@ function initAbout() {
   const experienceOverlay = document.getElementById('experience-overlay');
   const contactOverlay = document.getElementById('contact-overlay');
 
-  function openAbout() {
+  const aboutReturn3D = document.getElementById('about-return-3d');
+
+  function openAbout(targetSubSection) {
     if (projectsOverlay) projectsOverlay.classList.remove('active');
     if (experienceOverlay) experienceOverlay.classList.remove('active');
     if (contactOverlay) contactOverlay.classList.remove('active');
+    const gamingOverlay = document.getElementById('gaming-overlay');
+    const spotifyOverlay = document.getElementById('spotify-overlay');
+    if (gamingOverlay) gamingOverlay.classList.remove('active');
+    if (spotifyOverlay) spotifyOverlay.classList.remove('active');
 
     if (aboutOverlay) {
       aboutOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
-      if (aboutScroll) aboutScroll.scrollTop = 0;
+
+      if (aboutScroll) {
+        if (targetSubSection) {
+          setTimeout(() => {
+            const targetEl = document.getElementById(targetSubSection) || document.querySelector(targetSubSection);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+              aboutScroll.scrollTop = 0;
+            }
+          }, 100);
+        } else {
+          aboutScroll.scrollTop = 0;
+        }
+      }
+
       if (window.playShishiOdoshi) window.playShishiOdoshi();
+      if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+        window.spatialWorld.navigateToZone('about');
+      }
       animateMilestones();
     }
   }
@@ -43,7 +67,76 @@ function initAbout() {
       aboutOverlay.classList.remove('active');
     }
     document.body.style.overflow = '';
+    // Return seamlessly to the 3D Atelier desk zone where user was exploring!
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('about');
+      if (window.spatialWorld.audioEngine) {
+        window.spatialWorld.audioEngine.playTempleGong(130);
+      }
+    }
   }
+
+  function openGamingSection() {
+    const sec = document.getElementById('journal-sec-6');
+    const wasClosed = !aboutOverlay || !aboutOverlay.classList.contains('active');
+    if (wasClosed) {
+      openAbout();
+    }
+    setTimeout(() => {
+      const target = document.getElementById('journal-sec-6');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.add('highlight-pulse');
+        setTimeout(() => target.classList.remove('highlight-pulse'), 2500);
+      }
+    }, wasClosed ? 350 : 60);
+  }
+
+  function openSpotifySection() {
+    const sec = document.getElementById('journal-sec-7');
+    const wasClosed = !aboutOverlay || !aboutOverlay.classList.contains('active');
+    if (wasClosed) {
+      openAbout();
+    }
+    setTimeout(() => {
+      const target = document.getElementById('journal-sec-7');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.classList.add('highlight-pulse');
+        setTimeout(() => target.classList.remove('highlight-pulse'), 2500);
+      }
+    }, wasClosed ? 350 : 60);
+  }
+
+  window.openAbout = openAbout;
+  window.closeAbout = closeAbout;
+  window.openGamingSection = openGamingSection;
+  window.openSpotifySection = openSpotifySection;
+
+  // Wire Direct Gaming & Spotify Navigation Buttons
+  ['nav-gaming-btn', 'hero-gaming-dock-btn', 'mob-nav-gaming-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.closeMobileNav === 'function') window.closeMobileNav();
+        openGamingSection();
+      });
+    }
+  });
+
+  ['nav-spotify-btn', 'hero-spotify-dock-btn', 'mob-nav-spotify-btn'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (typeof window.closeMobileNav === 'function') window.closeMobileNav();
+        openSpotifySection();
+      });
+    }
+  });
 
   if (aboutBtn && aboutOverlay) {
     aboutBtn.addEventListener('click', (e) => {
@@ -54,6 +147,14 @@ function initAbout() {
 
     if (aboutClose) {
       aboutClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        closeAbout();
+      });
+    }
+
+    if (aboutReturn3D) {
+      aboutReturn3D.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         closeAbout();
@@ -386,6 +487,8 @@ function initAbout() {
     });
   });
 
+  window.openAbout = openAbout;
+  window.closeAbout = closeAbout;
   window.openAboutWithPageFlip = openAbout;
 }
 

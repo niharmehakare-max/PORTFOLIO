@@ -1,0 +1,1209 @@
+/* ==========================================================================
+   TRUE 3D SPATIAL WORLD STYLESHEET (Three.js WebGL Engine)
+   Aesthetic: Japanese Sumi-e Ink, Echizen Washi Paper, Vermilion Lacquer
+   ========================================================================== */
+
+/* 1. WebGL Container & Canvas */
+.webgl-container {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+  background: transparent;
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s;
+}
+
+#webgl-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  cursor: default;
+}
+
+body.mode-3d-fullscreen #webgl-canvas {
+  cursor: grab;
+}
+
+body.mode-3d-fullscreen #webgl-canvas:active {
+  cursor: grabbing;
+}
+
+/* 2. Spatial 3D HUD Overlay */
+.webgl-hud-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(5rem + var(--sat, 0px)) 2.5rem calc(1.5rem + var(--sab, 0px)) 2.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+body.mode-3d-fullscreen .webgl-hud-overlay {
+  opacity: 1;
+  visibility: visible;
+  padding-top: calc(1.5rem + var(--sat, 0px));
+}
+
+/* Top / Zone Indicator Pill */
+.webgl-hud-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.webgl-zone-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 1rem;
+  background: rgba(247, 245, 240, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--gray-800, #2a2a2a);
+  pointer-events: auto;
+  transition: all 0.4s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.webgl-zone-pill:hover {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(200, 16, 46, 0.3);
+  box-shadow: 0 6px 22px rgba(200, 16, 46, 0.12);
+}
+
+.webgl-zone-pill .pill-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent, #c8102e);
+  box-shadow: 0 0 8px rgba(200, 16, 46, 0.6);
+  animation: pulseDot 2.2s infinite ease-in-out;
+}
+
+@keyframes pulseDot {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.3); opacity: 0.5; }
+}
+
+.webgl-zone-pill .zone-label {
+  font-size: 0.65rem;
+  color: var(--gray-500, #808080);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.webgl-zone-pill .zone-name {
+  font-weight: 700;
+  color: var(--black, #0a0a0a);
+}
+
+/* Bottom Controls & Navigation Bar */
+.webgl-hud-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 1.5rem;
+}
+
+/* Controls Hint */
+.webgl-controls-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  background: rgba(247, 245, 240, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  color: var(--gray-700, #404040);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.webgl-controls-hint .hint-key {
+  display: inline-block;
+  padding: 0.12rem 0.45rem;
+  background: var(--black, #0a0a0a);
+  color: var(--white, #ffffff);
+  border-radius: 4px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.webgl-controls-hint .hint-desc {
+  letter-spacing: 0.04em;
+}
+
+/* 3D Room Quick Teleport Rail (Inside HUD) */
+.webgl-room-rail {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  pointer-events: auto;
+  background: rgba(247, 245, 240, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 0.3rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.webgl-rail-btn {
+  background: transparent;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--gray-600, #606060);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.webgl-rail-btn:hover {
+  background: rgba(26, 26, 26, 0.08);
+  color: var(--black, #0a0a0a);
+}
+
+.webgl-rail-btn.active {
+  background: var(--black, #0a0a0a);
+  color: var(--white, #ffffff);
+}
+
+.webgl-rail-btn[data-rail-zone="spotify"].active {
+  background: #1db954;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(29, 185, 84, 0.45);
+}
+
+.webgl-rail-btn[data-rail-zone="gaming"].active {
+  background: #ff007f;
+  color: #ffffff;
+  box-shadow: 0 0 14px rgba(255, 0, 127, 0.45);
+}
+
+.webgl-rail-btn .rail-kanji {
+  font-family: var(--font-jp, serif);
+  font-size: 0.75rem;
+}
+
+/* Reset Perspective Button */
+.webgl-reset-cam,
+.webgl-tour-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  background: rgba(247, 245, 240, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gray-800, #2a2a2a);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.webgl-reset-cam:hover,
+.webgl-tour-btn:hover {
+  background: var(--black, #0a0a0a);
+  color: var(--white, #ffffff);
+  border-color: var(--black, #0a0a0a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.webgl-tour-btn.active {
+  background: #961a14;
+  color: #ffffff;
+  border-color: #961a14;
+  box-shadow: 0 0 14px rgba(150, 26, 20, 0.45);
+}
+
+.webgl-reset-cam .reset-icon {
+  font-size: 0.75rem;
+  transition: transform 0.4s ease;
+}
+
+.webgl-reset-cam:hover .reset-icon {
+  transform: rotate(180deg);
+}
+
+/* Spatial Navigation Shortcuts Pills */
+.webgl-spatial-shortcuts {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  pointer-events: auto;
+}
+
+.spatial-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.65rem;
+  background: rgba(247, 245, 240, 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--gray-700, #404040);
+}
+
+.spatial-badge kbd {
+  background: var(--black, #0a0a0a);
+  color: var(--white, #ffffff);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  font-size: 0.58rem;
+  font-weight: 700;
+}
+
+.webgl-exit-3d-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  background: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(200, 16, 46, 0.38);
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--accent, #c8102e);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(200, 16, 46, 0.12);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.webgl-exit-3d-btn:hover {
+  background: var(--accent, #c8102e);
+  color: #ffffff;
+  border-color: var(--accent, #c8102e);
+  box-shadow: 0 4px 18px rgba(200, 16, 46, 0.35);
+  transform: translateY(-1px);
+}
+
+.webgl-exit-3d-btn .exit-btn-icon {
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.webgl-exit-3d-btn .exit-btn-kbd {
+  display: inline-block;
+  padding: 0.08rem 0.35rem;
+  background: rgba(200, 16, 46, 0.12);
+  border: 1px solid rgba(200, 16, 46, 0.25);
+  border-radius: 3px;
+  font-size: 0.58rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  color: inherit;
+  transition: all 0.25s ease;
+}
+
+.webgl-exit-3d-btn:hover .exit-btn-kbd {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+}
+
+/* 3. Hero 3D Enter CTA Button */
+.hero-3d-enter-wrapper {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  z-index: 15;
+}
+
+.hero-3d-enter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1.4rem;
+  background: linear-gradient(135deg, #1f1b18 0%, #0a0a0a 100%);
+  color: #f7f5f0;
+  border: 1px solid rgba(200, 16, 46, 0.4);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(200, 16, 46, 0.15);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+
+.hero-3d-enter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.7s ease;
+}
+
+.hero-3d-enter-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.hero-3d-enter-btn:hover {
+  background: linear-gradient(135deg, #c8102e 0%, #900c20 100%);
+  border-color: #f7f5f0;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(200, 16, 46, 0.35);
+  color: #ffffff;
+}
+
+.hero-3d-enter-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(200, 16, 46, 0.25);
+}
+
+.hero-3d-enter-btn .enter-btn-kanji {
+  font-family: var(--font-jp, serif);
+  font-size: 0.85rem;
+  padding: 0.2rem 0.45rem;
+  background: rgba(200, 16, 46, 0.25);
+  color: #ff9999;
+  border-radius: 2px;
+  border: 1px solid rgba(200, 16, 46, 0.4);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+}
+
+.hero-3d-enter-btn:hover .enter-btn-kanji {
+  background: #ffffff;
+  color: #c8102e;
+  border-color: #ffffff;
+}
+
+.hero-3d-enter-btn .enter-btn-label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-3d-enter-btn .enter-btn-arrow {
+  font-size: 0.95rem;
+  transition: transform 0.3s ease;
+}
+
+.hero-3d-enter-btn:hover .enter-btn-arrow {
+  transform: translateX(4px);
+}
+
+.hero-3d-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  color: var(--gray-500, #808080);
+}
+
+.hero-cta-button-row {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.hero-contact-quick-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.72rem 1.25rem;
+  background: rgba(247, 245, 240, 0.94);
+  color: #1a1a1a;
+  border: 1px solid rgba(26, 26, 26, 0.18);
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-contact-quick-btn:hover {
+  background: #ffffff;
+  border-color: var(--accent, #c8102e);
+  color: var(--accent, #c8102e);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(200, 16, 46, 0.14);
+}
+
+.hero-contact-quick-btn .contact-btn-kanji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  background: rgba(200, 16, 46, 0.08);
+  color: var(--accent, #c8102e);
+  border-radius: 3px;
+  font-family: var(--font-jp, serif);
+  font-size: 0.72rem;
+}
+
+.hero-3d-hint .kbd-pill {
+  padding: 0.1rem 0.35rem;
+  background: rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  color: var(--gray-700, #404040);
+  font-weight: 700;
+  font-size: 0.6rem;
+}
+
+/* 4. Nav 3D Mode Toggle Button */
+.nav-3d-btn {
+  background: rgba(247, 245, 240, 0.8);
+  border: 1px solid rgba(200, 16, 46, 0.3);
+  color: var(--accent, #c8102e);
+  font-weight: 700;
+}
+
+.nav-3d-btn:hover {
+  background: var(--accent, #c8102e);
+  color: #ffffff;
+  border-color: var(--accent, #c8102e);
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.25);
+}
+
+.nav-3d-btn.active {
+  background: var(--accent, #c8102e);
+  color: #ffffff;
+  border-color: var(--accent, #c8102e);
+  box-shadow: 0 0 16px rgba(200, 16, 46, 0.4);
+}
+
+/* 5. Fullscreen Cinematic 3D Mode */
+body.mode-3d-fullscreen {
+  overflow: hidden !important;
+}
+
+body.mode-3d-fullscreen .hero {
+  pointer-events: none;
+}
+
+body.mode-3d-fullscreen .hero-left,
+body.mode-3d-fullscreen .hero-right,
+body.mode-3d-fullscreen .center-divider,
+body.mode-3d-fullscreen .cross-deco {
+  opacity: 0 !important;
+  transform: scale(0.96);
+  pointer-events: none !important;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-left,
+.hero-right,
+.center-divider,
+.cross-deco {
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body.mode-3d-fullscreen .webgl-container {
+  z-index: 500;
+  pointer-events: auto;
+}
+
+/* Doors Opened State */
+body.doors-opened .hero-3d-enter-btn {
+  background: rgba(200, 16, 46, 0.15);
+  border-color: var(--accent, #c8102e);
+  color: var(--accent, #c8102e);
+}
+
+body.doors-opened .hero-3d-enter-btn .enter-btn-kanji {
+  background: var(--accent, #c8102e);
+  color: #ffffff;
+}
+
+body.doors-opened .hero-3d-enter-btn .enter-btn-label {
+  content: 'DOORS OPEN // EXPLORING';
+}
+
+/* 6. Responsive Tuning */
+@media (max-width: 900px) {
+  .webgl-hud-overlay {
+    padding: calc(4.2rem + var(--sat, 0px)) 1.2rem calc(1rem + var(--sab, 0px)) 1.2rem;
+  }
+
+  body.mode-3d-fullscreen .webgl-hud-overlay {
+    padding-top: calc(1rem + var(--sat, 0px));
+  }
+  
+  .webgl-room-rail {
+    display: none; /* Hide rail on smaller screens to avoid crowding */
+  }
+
+  .webgl-controls-hint {
+    font-size: 0.6rem;
+    padding: 0.3rem 0.65rem;
+  }
+
+  .hero-3d-enter-btn .enter-btn-label {
+    font-size: 0.7rem;
+  }
+
+  .webgl-spatial-shortcuts {
+    display: none;
+  }
+}
+
+/* 7. 3D Interactive Hover Reticle & Tooltip */
+.webgl-interaction-reticle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 35;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
+}
+
+body.mode-3d-fullscreen .webgl-interaction-reticle.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.reticle-ring {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--accent, #c8102e);
+  border-radius: 50%;
+  box-shadow: 0 0 14px rgba(200, 16, 46, 0.4);
+  animation: reticlePulse 1.8s infinite ease-in-out;
+  position: relative;
+}
+
+.reticle-ring::before {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  width: 4px;
+  height: 4px;
+  transform: translate(-50%, -50%);
+  background: var(--accent, #c8102e);
+  border-radius: 50%;
+}
+
+@keyframes reticlePulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.22); opacity: 0.5; }
+}
+
+.reticle-label {
+  padding: 0.3rem 0.75rem;
+  background: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(200, 16, 46, 0.35);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--black, #0a0a0a);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+/* 8. Top Right HUD Strip with Compass & Shortcuts */
+.webgl-hud-top-right {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  pointer-events: auto;
+}
+
+/* 9. Spatial Compass Rose (方位磁石) */
+.webgl-compass {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(247, 245, 240, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 999px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  user-select: none;
+}
+
+.compass-dial {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(26, 26, 26, 0.2);
+  position: relative;
+  background: radial-gradient(circle, #fffdfa 0%, #f0eae1 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compass-cardinal {
+  position: absolute;
+  font-family: var(--font-jp, serif);
+  font-size: 0.45rem;
+  font-weight: 700;
+  color: var(--gray-600, #666666);
+  line-height: 1;
+}
+
+.compass-cardinal.n { top: 1px; color: var(--accent, #c8102e); }
+.compass-cardinal.e { right: 2px; }
+.compass-cardinal.s { bottom: 1px; }
+.compass-cardinal.w { left: 2px; }
+
+.compass-needle {
+  width: 2px;
+  height: 18px;
+  position: absolute;
+  top: 5px;
+  left: 13px;
+  background: linear-gradient(to bottom, #c8102e 50%, #1a1a1a 50%);
+  border-radius: 1px;
+  transform-origin: center center;
+  transition: transform 0.1s linear;
+}
+
+.compass-readout {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.compass-deg {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--black, #0a0a0a);
+  letter-spacing: 0.06em;
+}
+
+.compass-sub {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.5rem;
+  color: var(--gray-500, #808080);
+  letter-spacing: 0.1em;
+}
+
+/* 10. HUD Action Buttons (Time-of-Day, Sound, Tour) */
+.webgl-hud-btn {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.85rem;
+  background: rgba(247, 245, 240, 0.9);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  border-radius: 999px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gray-800, #2a2a2a);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s var(--ease-out-expo, cubic-bezier(0.16, 1, 0.3, 1));
+}
+
+.webgl-hud-btn:hover {
+  background: var(--black, #0a0a0a);
+  color: var(--white, #ffffff);
+  border-color: var(--black, #0a0a0a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+
+.webgl-hud-btn.active {
+  background: #961a14;
+  color: #ffffff;
+  border-color: #961a14;
+  box-shadow: 0 0 14px rgba(150, 26, 20, 0.45);
+}
+
+/* 11. Diegetic In-Scene Inspection Modal */
+.webgl-diegetic-modal {
+  position: fixed;
+  top: 5.5rem;
+  right: 2.5rem;
+  width: 360px;
+  max-width: calc(100vw - 3rem);
+  z-index: 45;
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(30px) scale(0.96);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.webgl-diegetic-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0) scale(1);
+}
+
+.diegetic-modal-panel {
+  background: rgba(248, 244, 236, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(26, 26, 26, 0.15);
+  border-radius: 6px;
+  padding: 1.6rem 1.4rem;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.14), 0 4px 12px rgba(200, 16, 46, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.diegetic-modal-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #c8102e, #e67e22, #c8102e);
+}
+
+.diegetic-close-btn {
+  position: absolute;
+  top: 0.9rem;
+  right: 1.0rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--gray-600, #666666);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+.diegetic-close-btn:hover {
+  color: var(--accent, #c8102e);
+  transform: scale(1.15);
+}
+
+.diegetic-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.diegetic-seal {
+  width: 24px;
+  height: 24px;
+  border: 1.5px solid #c8102e;
+  color: #c8102e;
+  font-family: var(--font-jp, serif);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+
+.diegetic-code {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--accent, #c8102e);
+}
+
+.diegetic-title {
+  font-family: var(--font-serif, serif);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--black, #0a0a0a);
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.diegetic-desc {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--gray-700, #404040);
+  margin-bottom: 1.2rem;
+}
+
+.diegetic-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(26, 26, 26, 0.04);
+  border-radius: 4px;
+  border: 1px dashed rgba(26, 26, 26, 0.15);
+  margin-bottom: 1.25rem;
+}
+
+.d-metric {
+  display: flex;
+  flex-direction: column;
+}
+
+.d-val {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--black, #0a0a0a);
+}
+
+.d-lbl {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.55rem;
+  color: var(--gray-600, #707070);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.diegetic-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diegetic-action-btn {
+  width: 100%;
+  padding: 0.65rem 1.0rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.diegetic-action-btn.primary {
+  background: #1c1916;
+  color: #ffffff;
+  border: 1px solid #1c1916;
+}
+
+.diegetic-action-btn.primary:hover {
+  background: var(--accent, #c8102e);
+  border-color: var(--accent, #c8102e);
+  transform: translateY(-1px);
+}
+
+.diegetic-action-btn.secondary {
+  background: transparent;
+  color: var(--black, #0a0a0a);
+  border: 1px solid rgba(26, 26, 26, 0.2);
+}
+
+.diegetic-action-btn.secondary:hover {
+  background: rgba(26, 26, 26, 0.06);
+  border-color: var(--black, #0a0a0a);
+}
+
+/* 12. Architectural Washi Minimap Modal (境内絵図) */
+.webgl-minimap-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.94);
+  z-index: 50;
+  pointer-events: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.webgl-minimap-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.minimap-panel {
+  background: rgba(248, 244, 236, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(26, 26, 26, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(200, 16, 46, 0.1);
+  position: relative;
+  width: 380px;
+  max-width: calc(100vw - 2.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.minimap-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #961a14, #d4af37, #961a14);
+  border-radius: 8px 8px 0 0;
+}
+
+.minimap-close-btn {
+  position: absolute;
+  top: 0.85rem;
+  right: 1.0rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--gray-600, #666666);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+  line-height: 1;
+}
+
+.minimap-close-btn:hover {
+  color: var(--accent, #c8102e);
+  transform: scale(1.15);
+}
+
+.minimap-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  margin-bottom: 1.0rem;
+}
+
+.minimap-seal {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #961a14;
+  color: #961a14;
+  font-family: var(--font-jp, serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.minimap-title {
+  font-family: var(--font-serif, serif);
+  font-size: 0.92rem;
+  font-weight: 900;
+  color: var(--black, #0a0a0a);
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.minimap-subtitle {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.6rem;
+  color: var(--gray-600, #666666);
+  letter-spacing: 0.08em;
+  margin: 0.15rem 0 0 0;
+}
+
+.minimap-canvas-container {
+  width: 320px;
+  height: 320px;
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background: #ede3d1;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 1.0rem;
+}
+
+#minimap-radar-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.minimap-legend {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(26, 26, 26, 0.04);
+  border: 1px solid rgba(26, 26, 26, 0.1);
+  border-radius: 4px;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--gray-800, #2a2a2a);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.legend-item:hover {
+  background: var(--black, #0a0a0a);
+  color: #ffffff;
+  border-color: var(--black, #0a0a0a);
+  transform: translateY(-1px);
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .webgl-compass {
+    display: none;
+  }
+}
+
+/* ==========================================================================
+   RETURN TO 3D SANCTUARY FLOATING BRIDGING BUTTON
+   Allows instant, direct return from any overlay to the exact 3D spatial zone
+   ========================================================================== */
+.return-to-3d-btn {
+  position: fixed;
+  top: 1.6rem;
+  left: 2.2rem;
+  z-index: 105;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.55rem 1.25rem;
+  background: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1.5px solid rgba(26, 26, 26, 0.18);
+  border-radius: 999px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: #1a1a1a;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+.return-to-3d-btn:hover {
+  background: #1a1a1a;
+  color: #f7f5f0;
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18), 0 0 14px rgba(200, 16, 46, 0.25);
+}
+
+.return-to-3d-btn:active {
+  transform: translateY(0);
+}
+
+.return-to-3d-btn .btn-shrine-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+  color: #c8102e;
+  transition: transform 0.3s ease;
+}
+
+.return-to-3d-btn:hover .btn-shrine-icon {
+  transform: scale(1.22) rotate(-6deg);
+}
+
+.return-to-3d-btn .btn-zone-tag {
+  font-size: 0.62rem;
+  padding: 0.18rem 0.48rem;
+  border-radius: 4px;
+  background: rgba(200, 16, 46, 0.1);
+  color: #c8102e;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.return-to-3d-btn:hover .btn-zone-tag {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .return-to-3d-btn {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.65rem;
+  }
+  .return-to-3d-btn .btn-text {
+    display: none;
+  }
+}
+

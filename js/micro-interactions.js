@@ -62,7 +62,7 @@ function initMicroInteractions() {
       gain.connect(audioCtx.destination);
       osc.start();
       osc.stop(audioCtx.currentTime + 0.035);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Fountain pen nib / typewriter carriage tick
@@ -81,7 +81,7 @@ function initMicroInteractions() {
       gain.connect(audioCtx.destination);
       osc.start();
       osc.stop(audioCtx.currentTime + 0.018);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Shishi-Odoshi (Bamboo Water Drop / Ceramic Ring) for section opening transitions
@@ -114,7 +114,7 @@ function initMicroInteractions() {
       gain2.connect(audioCtx.destination);
       osc2.start();
       osc2.stop(now + 0.08);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   // Sound toggle button wiring
@@ -244,7 +244,7 @@ function initMicroInteractions() {
       const tiltY = x * 9;
 
       card.style.transform = `perspective(1000px) rotateX(${tiltX.toFixed(2)}deg) rotateY(${tiltY.toFixed(2)}deg) translateZ(4px)`;
-      
+
       const glareX = ((x + 0.5) * 100).toFixed(1);
       const glareY = ((y + 0.5) * 100).toFixed(1);
       card.style.setProperty('--glare-x', `${glareX}%`);
@@ -548,6 +548,18 @@ function initMicroInteractions() {
       closeCommandHud();
       const btn = document.getElementById('nav-experience-btn');
       if (btn) btn.click();
+    } else if (raw === '/gaming' || raw === '/games' || raw === '/play' || raw === '/遊' || raw === 'gaming') {
+      closeCommandHud();
+      if (typeof window.openGamingSection === 'function') window.openGamingSection();
+    } else if (raw === '/spotify' || raw === '/music' || raw === '/soundtrack' || raw === 'spotify') {
+      closeCommandHud();
+      if (typeof window.openSpotifySection === 'function') window.openSpotifySection();
+    } else if (raw === '/instagram' || raw === '/ig') {
+      closeCommandHud();
+      window.open('https://instagram.com/nhr_092', '_blank');
+    } else if (raw === '/telegram' || raw === '/tg') {
+      closeCommandHud();
+      window.open('https://t.me/nhr_091', '_blank');
     } else if (raw === '/contact' || raw === '/連絡' || raw === 'contact') {
       closeCommandHud();
       const btn = document.getElementById('nav-contact-btn');
@@ -563,7 +575,7 @@ function initMicroInteractions() {
       });
       setTimeout(closeCommandHud, 400);
     } else if (raw.startsWith('/')) {
-      showHudOutput(`Unknown chapter "${raw}". Chapters available: /about, /projects, /experience, /contact, /sound, /matrix`);
+      showHudOutput(`Unknown chapter "${raw}". Chapters available: /about, /projects, /experience, /gaming, /spotify, /contact, /instagram, /telegram, /sound, /matrix`);
     } else if (raw.length > 0) {
       showHudOutput(`書簡記録: "${cmd}" — Dispatch inscribed in journal archives. Direct correspondence: niharmehakare@gmail.com`);
       if (cmdInput) cmdInput.value = '';
@@ -607,6 +619,18 @@ function initMicroInteractions() {
 
   // Full Keyboard Shortcuts Deck (Bleibtgleich style)
   window.addEventListener('keydown', (e) => {
+    // When in 3D exploration mode, NEVER intercept movement keys (WASD, arrows) or letters
+    if (document.body.classList.contains('mode-3d-fullscreen')) {
+      if (e.key === 'Escape') {
+        const activeCloseBtn = document.querySelector('.about-overlay.active .about-close, .projects-overlay.active .projects-close, .experience-overlay.active .experience-close, .contact-overlay.active .contact-close, #diegetic-close-btn, #minimap-close-btn');
+        if (activeCloseBtn) {
+          playClickSound(420);
+          activeCloseBtn.click();
+        }
+      }
+      return;
+    }
+
     if (['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
       if (e.key === 'Escape' && cmdHud && cmdHud.classList.contains('active')) {
         closeCommandHud();
@@ -616,44 +640,34 @@ function initMicroInteractions() {
 
     const key = e.key.toLowerCase();
 
-    if (e.key === '/' || key === 'k') {
+    if (e.key === '/' || (e.ctrlKey && key === 'k')) {
       e.preventDefault();
       openCommandHud();
-    } else if (key === '1' || key === 'a') {
+    } else if (key === '1') {
       e.preventDefault();
       playShishiOdoshiSound();
       const btn = document.getElementById('nav-about-btn');
       if (btn) btn.click();
-    } else if (key === '2' || key === 'p') {
+    } else if (key === '2') {
       e.preventDefault();
       playShishiOdoshiSound();
       const btn = document.getElementById('nav-projects-btn');
       if (btn) btn.click();
-    } else if (key === '3' || key === 'e') {
+    } else if (key === '3') {
       e.preventDefault();
       playShishiOdoshiSound();
       const btn = document.getElementById('nav-experience-btn');
       if (btn) btn.click();
-    } else if (key === '4' || key === 'c') {
+    } else if (key === '4') {
       e.preventDefault();
       playShishiOdoshiSound();
       const btn = document.getElementById('nav-contact-btn');
       if (btn) btn.click();
-    } else if (key === 's') {
-      e.preventDefault();
-      const sToggle = document.getElementById('sound-toggle');
-      if (sToggle) sToggle.click();
-    } else if (key === 'm') {
-      e.preventDefault();
-      playClickSound(480);
-      document.querySelectorAll('.text-scramble, [data-scramble]').forEach(el => {
-        scrambleElement(el, el.dataset.scramble || el.textContent.trim(), 1000);
-      });
     } else if (e.key === 'Escape') {
       if (cmdHud && cmdHud.classList.contains('active')) {
         closeCommandHud();
       } else {
-        const activeCloseBtn = document.querySelector('.about-overlay.active .about-close');
+        const activeCloseBtn = document.querySelector('.about-overlay.active .about-close, .projects-overlay.active .projects-close, .experience-overlay.active .experience-close, .contact-overlay.active .contact-close');
         if (activeCloseBtn) {
           playClickSound(420);
           activeCloseBtn.click();
@@ -669,10 +683,11 @@ function initMicroInteractions() {
   const scrollIndicator = document.querySelector('.scroll-indicator');
 
   if (heroSection) {
-    // Wheel down on Hero transitions to About
+    // Wheel down on Hero transitions to About (strictly in 2D mode only)
     heroSection.addEventListener('wheel', (e) => {
-      if (e.deltaY > 35) {
-        const noActiveOverlay = !document.querySelector('.about-overlay.active');
+      if (document.body.classList.contains('mode-3d-fullscreen')) return;
+      if (e.deltaY > 60) {
+        const noActiveOverlay = !document.querySelector('.about-overlay.active, .projects-overlay.active, .experience-overlay.active, .contact-overlay.active');
         if (noActiveOverlay) {
           playShishiOdoshiSound();
           const aboutBtn = document.getElementById('nav-about-btn');
@@ -747,11 +762,11 @@ function initMicroInteractions() {
   if (aboutScrollContainer && journalSections.length > 0) {
     aboutScrollContainer.addEventListener('scroll', () => {
       const containerTop = aboutScrollContainer.getBoundingClientRect().top;
-      
+
       journalSections.forEach((section) => {
         const secRect = section.getBoundingClientRect();
         const secRelativeTop = secRect.top - containerTop;
-        
+
         if (secRelativeTop >= -100 && secRelativeTop <= 350) {
           section.classList.add('active-spine-sec');
         } else {

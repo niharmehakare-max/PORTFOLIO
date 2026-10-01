@@ -299,3 +299,76 @@ To elevate Nihar's portfolio to the absolute pinnacle of this inspiration study,
      - `Esc` ➔ Close all open modal folds and return to hero
 5. **Acoustic Shishi-Odoshi (Bamboo Water Drop) & Ink Resonator:**
    - Further tuned audio synthesis to incorporate resonant wooden abacus clacks, soft paper slide friction, and delicate ink dip harmonics.
+
+---
+
+## Forensic Study 8: Amey Pattar's Art & Design Portfolio (`art-design-portfolio.vercel.app`)
+*Spatial Architectural World, Hand-Drawn Pencil Sketch Environments, Blueprint Map & Gamified Achievements*
+
+### 1. Asset Typology & Asset Utilization
+- **Hand-Drawn Monochrome Architectural Rooms:** Amey Pattar replaces conventional flat webpages with a hand-drawn 3D pencil-sketched architectural universe. Every environment (the Entrance Door, the Corridor, the Gallery Room, the Artist Atelier, the Studio Lab, and the Ocean Dock) is rendered with hatching lines, paper creases, and pencil cross-shading.
+- **Torn Blueprint Paper & Wooden Pushpins:** Modals and navigation elements do not use generic CSS boxes. They are rendered as deckle-torn blueprint paper folios secured by realistic wooden pushpins (`.pushpin`) with drop shadows and pin holes.
+- **Hanging Clothesline Project Displays:** In the Gallery Room, project sheets are physically clipped to a suspended horizontal clothesline using wooden laundry pegs, creating a charming, handmade atelier atmosphere.
+- **Retro CRT Monitors & Studio Workstation:** In the Studio Room, projects and technical tools are housed inside 3D retro cathode-ray tube (CRT) computer monitors with curved glass reflections, scanlines, and glowing green/amber phosphor screens.
+- **Gamified Exploration Stamps & Trophies:** Features a persistent trophy icon (`🏆`) in the navigation bar opening a sliding drawer of 6 milestones with vermilion verification stamps.
+
+### 2. Animation Physics, Math & Mechanics
+- **Pendulum Clothesline Sway Physics:** Hanging paper sheets sway gently under simulated airflow using a damped harmonic oscillator model:
+  $$\theta(t) = \theta_0 e^{-\gamma t} \cos(\omega t + \phi)$$
+  Each hanging blueprint sheet has a slight baseline tilt ($\pm 1.5^\circ$) and alternates sway phases ($\Delta t = 1.5\text{s}$). Hovering triggers an active breeze impulse that tilts the sheet by $-3^\circ$ and lifts it vertically by $-8\text{px}$ with enhanced paper drop shadows.
+- **3D Cylindrical Carousel Geometry:** The retro CRT terminal workstation arranges $N=4$ monitors around a central vertical cylinder axis in 3D perspective space:
+  $$\text{Angle Step } \Delta \theta = \frac{360^\circ}{N} = 90^\circ$$
+  $$\text{Radial Translation } Z = \frac{W / 2}{\tan(\Delta \theta / 2)} = \frac{380 / 2}{\tan(45^\circ)} \approx 280\text{px}$$
+  Each panel $i \in \{0, 1, 2, 3\}$ is spatially projected via:
+  $$\text{transform}: \text{rotateY}(i \times 90^\circ) \text{ translateZ}(280\text{px})$$
+  Horizontal drag delta $\Delta x$ maps continuously to rotation:
+  $$\theta_{\text{current}} = \theta_{\text{start}} + (\Delta x \times k_{\text{sensitivity}})$$
+  On pointer release, the carousel snaps to the nearest $90^\circ$ quadrant with cubic bezier deceleration (`cubic-bezier(0.2, 0.9, 0.3, 1)`).
+- **Spatial Blueprint Map Teleportation:** The Blueprint Map modal renders an architectural 2D floorplan of all chapters connected by vermilion dashed transit vectors. Clicking any node immediately triggers a coordinate teleportation that closes the blueprint fold and opens the corresponding chapter overlay.
+- **Milestone State Machine & Toast Notification Engine:** Unlocks are governed by event listeners across key user interactions (opening chapters, scrolling the timeline, rotating 3D terminals, copying contact info), persisting state to `localStorage` and rendering animated slide-in toasts from the viewport corner.
+
+### 3. Relative Context & Storytelling Purpose
+- **Why It Exists:** Typical digital portfolios are passive catalogs where visitors scroll vertically until bored. Amey Pattar's design turns the visit into an exploratory role-playing journey through a physical studio. Visitors are incentivized to touch, peek, rotate, and discover hidden corners.
+- **Psychological Effect:** Transforms a standard hiring review into an unforgettable, delightful experience where the candidate is perceived as an imaginative world-builder and master craftsman.
+
+### 4. Translation into Nihar's Japanese Sumi-e & Echizen Washi Paper Portfolio
+- **Thematic Harmonization:** Amey's monochrome pencil aesthetic was translated into authentic **Japanese Sumi-e Ink, Echizen Washi Paper, and Vermilion Hanko Stamps (朱肉印鑑)**:
+  1. **Interactive Torn-Paper Manuscript Map (`#manuscript-map-modal` / `≡ MAP`):**
+     - Accessible from the primary telemetry nav bar (`#nav-map-btn`) and mobile drawer.
+     - Renders an architectural floorplan of Nihar's digital atelier with wooden pushpins at the four corners.
+     - Features 6 spatial destination cards: **Hero Overview (門)**, **About Atelier (略)**, **Gallery Projects (廊)**, **Studio Lab (工)**, **Experience Chronicle (歴)**, and **Communications Dock (港)**.
+     - Displays a glowing vermilion `● YOU ARE HERE` badge on the active room. Clicking any room instantly teleports there.
+  2. **Atelier Hanging Clothesline Showcase (`#projects-clothesline`):**
+     - Positioned immediately below the Projects header.
+     - Features a suspended washi rope with 4 hand-clipped project blueprints (`ARCHITECH`, `EVENTIX`, `AGRISAKSHAM`, `AGENT CORE`) hanging from wooden laundry pegs.
+     - Features gentle breeze sway physics and paper flutter acoustics on hover. Clicking any blueprint scrolls directly to that project's technical architecture card.
+  3. **3D Cylindrical Retro Terminal Carousel (`#studio-lab-section`):**
+     - Positioned in Chapter 02 (Projects).
+     - Features a rotating 3D cylindrical workstation holding 4 retro CRT computer monitors with green phosphor scanlines, blinking status LEDs, and interactive "RUN DIAGNOSTICS ⚡" buttons.
+     - Surrounded by floating code glyphs (`{ }`, `< / >`, `;`, `=>`, `async`, `const`) drifting in the studio atmosphere.
+     - Fully interactive via drag or `‹ PREV` / `NEXT ›` wooden buttons.
+  4. **Gamified Exploration Achievements System (`#achievements-drawer` / `🏆 0/6`):**
+     - Live telemetry trophy counter in the navbar (`#achievements-count`).
+     - Tracks 6 curated milestones:
+       - `Explorer // 開巻`: Turn to any manuscript chapter.
+       - `Wanderer // 歴訪`: Scroll through the timeline or dossier spine.
+       - `Art Critic // 目利き`: Inspect project architecture cards or clothesline sheets.
+       - `Studio Director // 工房主`: Rotate the 3D terminal carousel.
+       - `Scholar // 記録者`: Consult the Manuscript Blueprint Map or Dispatch HUD.
+       - `Sociable // 通信`: Discover correspondence nodes in Contact Hub.
+     - Sliding washi paper drawer with an exploration progress bar, locked hints, and vermilion `済 UNLOCKED` seal stamps.
+     - Slide-in toast notifications with traditional chime audio when achievements unlock.
+
+
+  5. **True 3D WebGL Spatial Atelier Engine (Three.js Spatial Architecture):**
+      - **WebGL Architecture:** Implemented via [js/world3d.js](file:///c:/Users/user/Desktop/portfolio/js/world3d.js) and local [js/three.min.js](file:///c:/Users/user/Desktop/portfolio/js/three.min.js), providing a full 3D spatial canvas running behind the handcrafted washi paper interface.
+      - **Interactive 3D Shoji Entrance Doors (門):** Dual sliding wooden paper doors with vermilion Hanko seal markings (`知`) and Japanese Torii gate frame. Pressing `Enter ↵` or clicking "ENTER 3D SPATIAL ATELIER →" smoothly slides the doors open with quintic easing and dollies the camera into the spatial rooms.
+      - **Spatial World Zones & Waypoints:**
+        - **Atelier Desk (略):** Dark cedar desk with an unrolled calligraphy scroll, bamboo brush (Fude), inkstone (Suzuri), Andon paper lantern, and rotating floating kanji sculptures (`知`, `創`, `道`, `技`).
+        - **Clothesline Gallery (廊):** Sagging 3D catenary rope suspending 4 hanging project blueprint canvases swaying in harmonic wind physics.
+        - **Retro CRT Terminal Lab (工):** Workstation with 3 curved CRT monitors displaying green phosphor scanlines and orbiting wireframe polyhedral code cubes.
+        - **Zen Chronicle Garden (歴):** Stone stepping path with granite milestone monoliths.
+        - **Ocean Dock & Boat (港):** Wooden pier extending over animated sine-wave water with a bobbing 3D origami paper boat.
+        - **Atmospheric Particles:** 350 gently drifting 3D Sakura cherry blossom petals and warm washi fog (`THREE.FogExp2`).
+      - **Dynamic Camera Synchronization:** Interacting with nav buttons, chapter overlays, or blueprint map nodes dollies the 3D camera to frame that room behind the translucent paper overlays.
+      - **Spatial HUD & Raycaster:** Features a monospace zone indicator pill, quick room teleport rail (`[門 Entrance] [略 Atelier] [廊 Gallery] [工 CRT Lab] [歴 Garden] [港 Dock]`), controls hint, and tactile camera reset. Raycaster detects hover and clicks directly on 3D objects.

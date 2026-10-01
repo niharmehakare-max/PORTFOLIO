@@ -18,9 +18,18 @@ function initProjects() {
     if (aboutOverlay) aboutOverlay.classList.remove('active');
     if (experienceOverlay) experienceOverlay.classList.remove('active');
     if (contactOverlay) contactOverlay.classList.remove('active');
+    const gamingOverlay = document.getElementById('gaming-overlay');
+    const spotifyOverlay = document.getElementById('spotify-overlay');
+    if (gamingOverlay) gamingOverlay.classList.remove('active');
+    if (spotifyOverlay) spotifyOverlay.classList.remove('active');
     projectsOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (projectsScroll) projectsScroll.scrollTop = 0;
+    const projectsReturn3D = document.getElementById('projects-return-3d');
+
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('projects');
+    }
   }
 
   function closeProjects() {
@@ -28,6 +37,13 @@ function initProjects() {
     projectsOverlay.classList.remove('active');
     document.body.style.overflow = '';
     if (projectsHeaderBg) projectsHeaderBg.classList.remove('visible');
+    // Return seamlessly to 3D Clothesline Gallery zone!
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('projects');
+      if (window.spatialWorld.audioEngine) {
+        window.spatialWorld.audioEngine.playTempleGong(150);
+      }
+    }
   }
 
   window.openProjects = openProjects;
@@ -51,6 +67,14 @@ function initProjects() {
 
     if (projectsClose) {
       projectsClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeProjects();
+      });
+    }
+
+    const prjReturnBtn = document.getElementById('projects-return-3d');
+    if (prjReturnBtn) {
+      prjReturnBtn.addEventListener('click', (e) => {
         e.preventDefault();
         closeProjects();
       });

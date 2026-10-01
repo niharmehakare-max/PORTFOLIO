@@ -18,9 +18,16 @@ function initContact() {
     if (aboutOverlay) aboutOverlay.classList.remove('active');
     if (projectsOverlay) projectsOverlay.classList.remove('active');
     if (experienceOverlay) experienceOverlay.classList.remove('active');
+    const gamingOverlay = document.getElementById('gaming-overlay');
+    const spotifyOverlay = document.getElementById('spotify-overlay');
+    if (gamingOverlay) gamingOverlay.classList.remove('active');
+    if (spotifyOverlay) spotifyOverlay.classList.remove('active');
     contactOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     if (contactScroll) contactScroll.scrollTop = 0;
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('contact');
+    }
 
     // Trigger title scramble effect if available
     const mainTitle = contactOverlay.querySelector('.contact-main-title');
@@ -33,6 +40,13 @@ function initContact() {
     if (!contactOverlay) return;
     contactOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    // Return seamlessly to 3D Ocean Dock zone!
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('contact');
+      if (window.spatialWorld.audioEngine) {
+        window.spatialWorld.audioEngine.playTempleGong(160);
+      }
+    }
   }
 
   window.openContact = openContact;
@@ -41,6 +55,15 @@ function initContact() {
 
   if (contactBtn && contactOverlay) {
     contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      openContact();
+    });
+  }
+
+  const heroContactQuickBtn = document.getElementById('hero-contact-quick-btn');
+  if (heroContactQuickBtn && contactOverlay) {
+    heroContactQuickBtn.addEventListener('click', (e) => {
       e.preventDefault();
       e.stopPropagation();
       openContact();
@@ -60,6 +83,14 @@ function initContact() {
 
   if (contactClose) {
     contactClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeContact();
+    });
+  }
+
+  const contactReturnBtn = document.getElementById('contact-return-3d');
+  if (contactReturnBtn) {
+    contactReturnBtn.addEventListener('click', (e) => {
       e.preventDefault();
       closeContact();
     });

@@ -71,9 +71,9 @@ function initExperience() {
     const itemCount = experiencesData.length;
     const startX = 140;
     const spacingX = 340; // Horizontal spacing between nodes
-    const trackHeight = 650; // Full track height
-    const centerY = 340; // Baseline centerline for the wave
-    const amplitude = 110; // Height of wave peaks and valleys
+    const trackHeight = 850; // Full track height
+    const centerY = 420; // Baseline centerline for the wave
+    const amplitude = 120; // Height of wave peaks and valleys
 
     // Calculate total track width dynamically
     const totalWidth = startX + (itemCount + 1) * spacingX + 260;
@@ -101,12 +101,12 @@ function initExperience() {
       const p1 = nodes[i];
       const p2 = nodes[i + 1];
       const dx = (p2.x - p1.x) * 0.5;
-      
+
       const cx1 = p1.x + dx;
       const cy1 = p1.y;
       const cx2 = p2.x - dx;
       const cy2 = p2.y;
-      
+
       pathD += ` C ${cx1} ${cy1}, ${cx2} ${cy2}, ${p2.x} ${p2.y}`;
     }
 
@@ -128,7 +128,7 @@ function initExperience() {
       setTimeout(() => {
         pathEl.style.strokeDashoffset = '0';
       }, 50);
-    } catch(e) {}
+    } catch (e) { }
 
     // End Arrow Head (pointing up-right)
     const arrowHead = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -201,9 +201,9 @@ function initExperience() {
       if (node.type === 'top' || node.type === 'bottom') {
         const item = node.data;
         const isTop = node.type === 'top';
-        
-        const cardTopY = isTop ? (node.y - 120) : (node.y + 40);
-        const dashedLineY2 = isTop ? (node.y - 35) : (node.y + 35);
+
+        const cardTopY = isTop ? (node.y - 200) : (node.y + 45);
+        const dashedLineY2 = isTop ? (node.y - 38) : (node.y + 38);
 
         // Dashed Connector Line
         const dashedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
@@ -352,15 +352,29 @@ function initExperience() {
     if (projectsOverlay) projectsOverlay.classList.remove('active');
     const contactOverlay = document.getElementById('contact-overlay');
     if (contactOverlay) contactOverlay.classList.remove('active');
+    const gamingOverlay = document.getElementById('gaming-overlay');
+    const spotifyOverlay = document.getElementById('spotify-overlay');
+    if (gamingOverlay) gamingOverlay.classList.remove('active');
+    if (spotifyOverlay) spotifyOverlay.classList.remove('active');
     experienceOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
     renderPaperTimeline();
     if (expViewport) expViewport.scrollLeft = 0;
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('experience');
+    }
   }
 
   function closeExperience() {
     experienceOverlay.classList.remove('active');
     document.body.style.overflow = '';
+    // Return seamlessly to 3D Chronicle Garden zone!
+    if (window.spatialWorld && typeof window.spatialWorld.navigateToZone === 'function') {
+      window.spatialWorld.navigateToZone('experience');
+      if (window.spatialWorld.audioEngine) {
+        window.spatialWorld.audioEngine.playTempleGong(140);
+      }
+    }
   }
 
   window.openExperience = openExperience;
@@ -375,6 +389,14 @@ function initExperience() {
 
     if (experienceClose) {
       experienceClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeExperience();
+      });
+    }
+
+    const expReturnBtn = document.getElementById('experience-return-3d');
+    if (expReturnBtn) {
+      expReturnBtn.addEventListener('click', (e) => {
         e.preventDefault();
         closeExperience();
       });
@@ -395,8 +417,12 @@ function initExperience() {
       journeyToContact.addEventListener('click', (e) => {
         e.preventDefault();
         closeExperience();
-        const contactBtn = document.getElementById('nav-contact-btn');
-        if (contactBtn) contactBtn.click();
+        if (typeof window.openContact === 'function') {
+          window.openContact();
+        } else {
+          const contactBtn = document.getElementById('nav-contact-btn');
+          if (contactBtn) contactBtn.click();
+        }
       });
     }
 

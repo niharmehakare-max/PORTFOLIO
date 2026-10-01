@@ -22,7 +22,11 @@ const mimeTypes = {
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
   '.mp4': 'video/mp4',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
+  '.glb': 'model/gltf-binary',
+  '.gltf': 'model/gltf+json',
+  '.bin': 'application/octet-stream',
+  '.webp': 'image/webp'
 };
 
 const server = http.createServer(async (req, res) => {
