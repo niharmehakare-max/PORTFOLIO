@@ -416,9 +416,13 @@
           <span class="char-card-rank">NO. 09 // 侍</span>
         </div>
 
-        <!-- Character Portrait with Framing -->
+        <!-- Character Portrait with Responsive WebP Picture -->
         <div class="character-portrait-wrap">
-          <img src="assets/CHAR1.png" alt="Nihar Mehakare — AI/ML Engineer" class="character-img" id="character-img">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/CHAR1-mob.webp" type="image/webp">
+            <source srcset="assets/CHAR1.webp" type="image/webp">
+            <img src="assets/CHAR1.webp" alt="Nihar Mehakare — AI/ML Engineer" class="character-img" id="character-img" fetchpriority="high" decoding="async">
+          </picture>
           <div class="char-portrait-scrim"></div>
         </div>
 
@@ -477,7 +481,7 @@
 
     <!-- Ink Splatter Overlay -->
     <div class="ink-overlay">
-      <img src="assets/ink-splatter.png" alt="">
+      <img src="assets/ink-splatter.webp" alt="" loading="lazy" decoding="async">
     </div>
 
     <!-- Dynamic Ink System (populated by JS) -->
@@ -2822,7 +2826,7 @@
           <!-- Game 1: Valorant -->
           <div class="game-parchment-card">
             <div class="game-card-media">
-              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Valorant Tactical Shooter">
+              <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800&auto=format&fit=crop&q=80" alt="Valorant Tactical Shooter" loading="lazy" decoding="async">
               <span class="game-platform-badge">PC / RIOT</span>
               <span class="game-status-stamp"><span class="game-status-dot"></span>ACTIVE MAIN</span>
             </div>
@@ -2843,7 +2847,7 @@
           <!-- Game 2: Elden Ring -->
           <div class="game-parchment-card">
             <div class="game-card-media">
-              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80" alt="Elden Ring Lands Between">
+              <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80" alt="Elden Ring Lands Between" loading="lazy" decoding="async">
               <span class="game-platform-badge">PC / STEAM</span>
               <span class="game-status-stamp"><span class="game-status-dot"></span>CLEARED + DLC</span>
             </div>
@@ -2864,7 +2868,7 @@
           <!-- Game 3: Cyberpunk 2077 -->
           <div class="game-parchment-card">
             <div class="game-card-media">
-              <img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=800&auto=format&fit=crop&q=80" alt="Cyberpunk 2077 Night City">
+              <img src="https://images.unsplash.com/photo-1579373903781-fd5c0c30c4cd?w=800&auto=format&fit=crop&q=80" alt="Cyberpunk 2077 Night City" loading="lazy" decoding="async">
               <span class="game-platform-badge">PC / GOG</span>
               <span class="game-status-stamp"><span class="game-status-dot"></span>COMPLETED</span>
             </div>
@@ -2959,7 +2963,7 @@
               <div class="track-row">
                 <div class="track-left">
                   <div class="track-cover-wrapper">
-                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="Paranoid Android" class="track-cover">
+                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="Paranoid Android" class="track-cover" loading="lazy" decoding="async">
                     <span class="track-play-btn">▶</span>
                   </div>
                   <div class="track-meta">
@@ -2972,7 +2976,7 @@
               <div class="track-row">
                 <div class="track-left">
                   <div class="track-cover-wrapper">
-                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="Resonance" class="track-cover">
+                    <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="Resonance" class="track-cover" loading="lazy" decoding="async">
                     <span class="track-play-btn">▶</span>
                   </div>
                   <div class="track-meta">
@@ -2985,7 +2989,7 @@
               <div class="track-row">
                 <div class="track-left">
                   <div class="track-cover-wrapper">
-                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Midnight City" class="track-cover">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Midnight City" class="track-cover" loading="lazy" decoding="async">
                     <span class="track-play-btn">▶</span>
                   </div>
                   <div class="track-meta">
@@ -3027,7 +3031,7 @@
               <div class="rank-row">
                 <span class="rank-num">01</span>
                 <div class="rank-track-info">
-                  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Weird Fishes" class="rank-cover">
+                  <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Weird Fishes" class="rank-cover" loading="lazy" decoding="async">
                   <div class="rank-meta">
                     <h5 class="rank-title">Weird Fishes / Arpeggi</h5>
                     <span class="rank-artist">Radiohead</span>
@@ -3039,7 +3043,7 @@
               <div class="rank-row">
                 <span class="rank-num">02</span>
                 <div class="rank-track-info">
-                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="After Dark" class="rank-cover">
+                  <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=120" alt="After Dark" class="rank-cover" loading="lazy" decoding="async">
                   <div class="rank-meta">
                     <h5 class="rank-title">After Dark</h5>
                     <span class="rank-artist">Mr. Kitty</span>
@@ -3051,7 +3055,7 @@
               <div class="rank-row">
                 <span class="rank-num">03</span>
                 <div class="rank-track-info">
-                  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="Ylang Ylang" class="rank-cover">
+                  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=120" alt="Ylang Ylang" class="rank-cover" loading="lazy" decoding="async">
                   <div class="rank-meta">
                     <h5 class="rank-title">Ylang Ylang</h5>
                     <span class="rank-artist">FKJ</span>
@@ -3069,7 +3073,7 @@
           <div class="now-playing-left">
             <span class="currently-script">Currently listening →</span>
             <div class="now-playing-track">
-              <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Radiohead" class="now-playing-cover">
+              <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=120" alt="Radiohead" class="now-playing-cover" loading="lazy" decoding="async">
               <div class="now-playing-meta">
                 <h5 class="now-playing-title">Everything In Its Right Place</h5>
                 <span class="now-playing-artist">Radiohead</span>
@@ -3486,10 +3490,8 @@
     <span class="ink-cursor-icon" id="ink-cursor-icon"></span>
   </div>
 
-  <!-- True 3D WebGL Engine (Three.js & Japanese Spatial World) -->
-  <script src="js/three.min.js"></script>
-  <script src="js/OrbitControls.js"></script>
-  <script src="js/world3d.js"></script>
+  <!-- Lazy 3D WebGL Engine Loader (On-demand for mobile, idle-prefetched for desktop) -->
+  <script src="js/lazy-3d-loader.js" defer></script>
 
   <!-- Section-Based Modular Scripts -->
   <script src="js/hero.js"></script>

@@ -438,6 +438,15 @@ class SpatialWorld3D {
     this.mouse = new THREE.Vector2(-1000, -1000);
     this.normalizedMouse = { x: 0, y: 0 };
     
+    // Mobile Detection & Render Throttling
+    this.isMobile =
+      window.innerWidth <= 768 ||
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+      (navigator.maxTouchPoints > 1 && window.innerWidth <= 1024);
+    this.isPaused = this.isMobile ? true : false;
+    this.animationFrameId = null;
+    this.isHeroInView = true;
+
     // Spatial Zones & Waypoints
     this.zoneOrder = ['hero', 'about', 'projects', 'gaming', 'studio', 'spotify', 'experience', 'contact'];
     this.waypoints = {
@@ -584,7 +593,11 @@ class SpatialWorld3D {
     this.buildPathEnergyBeacons();
 
     this.bindEvents();
+    this.isPaused = false;
     this.animate();
+    if (this.isMobile && !this.isFull3DMode) {
+      this.pauseAnimation();
+    }
     this.isInitialized = true;
     console.log('✓ SpatialWorld3D: Museum-Grade Connected Japanese Atelier Engine Ready.');
   }
@@ -1460,14 +1473,21 @@ class SpatialWorld3D {
 
     this.renderer = new THREE.WebGLRenderer({
       canvas: this.canvas,
-      antialias: true,
+      antialias: !this.isMobile,
       alpha: true,
-      powerPreference: 'high-performance'
+      powerPreference: this.isMobile ? 'default' : 'high-performance',
+      precision: this.isMobile ? 'mediump' : 'highp'
     });
     this.renderer.setSize(width, height);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.setPixelRatio(
+      this.isMobile ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 2)
+    );
+    if (!this.isMobile) {
+      this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    } else {
+      this.renderer.shadowMap.enabled = false;
+    }
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
     this.renderer.toneMappingExposure = 1.08;
   }
@@ -5825,7 +5845,7 @@ class SpatialWorld3D {
     this.candleLights.push(dockLanternLight);
 
     // 3. Expansive Multi-Wave Ocean Water Plane (280m x 160m)
-    const waterGeo = new THREE.PlaneGeometry(280, 160, 64, 48);
+    const waterGeo = new THREE.PlaneGeometry(280, 160, this.isMobile ? 24 : 64, this.isMobile ? 16 : 48);
     const waterMat = new THREE.MeshStandardMaterial({
       color: 0x3d7ecc,
       roughness: 0.12,
@@ -6685,7 +6705,7 @@ class SpatialWorld3D {
      PARTICLE FX: SAKURA, FIREFLIES, INCENSE & STEAM
      ============================================ */
   buildSakuraParticles() {
-    const count = 350;
+    const count = this.isMobile ? 70 : 350;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const speeds = new Float32Array(count);
@@ -6724,7 +6744,7 @@ class SpatialWorld3D {
   }
 
   buildHotaruParticles() {
-    const count = 65;
+    const count = this.isMobile ? 25 : 65;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(count * 3);
     const phases = new Float32Array(count);
@@ -7409,6 +7429,7 @@ class SpatialWorld3D {
     const hintDesc = document.querySelector('.webgl-controls-hint .hint-desc');
 
     if (this.isFull3DMode) {
+      this.resumeAnimation();
       container.classList.add('cinematic-3d-active');
       if (toggleBtn) toggleBtn.classList.add('active');
       document.body.classList.add('mode-3d-fullscreen');
@@ -7439,6 +7460,9 @@ class SpatialWorld3D {
       if (reticle) reticle.classList.remove('visible');
       if (this.canvas) this.canvas.style.cursor = 'default';
       this.navigateToZone('hero');
+      if (this.isMobile || !this.isHeroInView) {
+        this.pauseAnimation();
+      }
     }
 
     if (window.achievementsManager) {
@@ -7457,6 +7481,37 @@ class SpatialWorld3D {
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(w, h);
     });
+
+    // Pause rendering when tab is hidden or backgrounded
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        this.pauseAnimation();
+      } else {
+        if (this.isFull3DMode || (!this.isMobile && this.isHeroInView)) {
+          this.resumeAnimation();
+        }
+      }
+    });
+
+    // Pause rendering when Hero is scrolled out of view (unless in Full 3D mode)
+    const heroEl = document.getElementById('hero');
+    if (heroEl && 'IntersectionObserver' in window) {
+      const heroObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          this.isHeroInView = entry.isIntersecting;
+          if (!this.isFull3DMode) {
+            if (entry.isIntersecting) {
+              if (!this.isMobile) {
+                this.resumeAnimation();
+              }
+            } else {
+              this.pauseAnimation();
+            }
+          }
+        });
+      }, { threshold: 0.05 });
+      heroObserver.observe(heroEl);
+    }
 
     const reticle = document.getElementById('webgl-interaction-reticle');
     const reticleLabel = document.getElementById('reticle-label');
@@ -7933,8 +7988,28 @@ class SpatialWorld3D {
   /* ============================================
      RENDER LOOP & DYNAMIC PHYSICS
      ============================================ */
+  pauseAnimation() {
+    this.isPaused = true;
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+  }
+
+  resumeAnimation() {
+    if (!this.isPaused && this.animationFrameId) return;
+    this.isPaused = false;
+    if (!this.animationFrameId) {
+      this.animationFrameId = requestAnimationFrame(() => this.animate());
+    }
+  }
+
   animate() {
-    requestAnimationFrame(() => this.animate());
+    if (this.isPaused) {
+      this.animationFrameId = null;
+      return;
+    }
+    this.animationFrameId = requestAnimationFrame(() => this.animate());
 
     const delta = this.clock.getDelta();
     const time = this.clock.getElapsedTime();

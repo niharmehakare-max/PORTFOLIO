@@ -1207,3 +1207,95 @@ body.mode-3d-fullscreen .webgl-interaction-reticle.visible {
   }
 }
 
+/* 3D Lazy Loading Indicator */
+.spatial-lazy-indicator {
+  position: fixed;
+  top: 5rem;
+  right: 2rem;
+  z-index: 10001;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px) scale(0.96);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+}
+
+.spatial-lazy-indicator.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.lazy-badge-card {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: rgba(22, 19, 16, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 18px rgba(212, 175, 55, 0.2);
+  padding: 0.7rem 1.25rem;
+  border-radius: 9999px;
+  color: #f5ede0;
+}
+
+.lazy-badge-kanji {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: #c8102e;
+  color: #fff;
+  font-family: var(--font-jp, serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+.lazy-badge-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.lazy-badge-title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #d4af37;
+}
+
+.lazy-badge-sub {
+  font-size: 0.68rem;
+  color: #a89f91;
+  font-family: var(--font-sans, sans-serif);
+}
+
+.lazy-badge-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(212, 175, 55, 0.25);
+  border-top-color: #d4af37;
+  border-radius: 50%;
+  animation: lazySpin 0.8s linear infinite;
+}
+
+@keyframes lazySpin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .spatial-lazy-indicator {
+    top: auto;
+    bottom: 2rem;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, 15px) scale(0.96);
+  }
+  .spatial-lazy-indicator.active {
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
