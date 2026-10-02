@@ -497,8 +497,10 @@ function initMicroInteractions() {
       navClock.innerHTML = '<span class="telemetry-kanji">印</span> PUNE 15:45 IST';
     }
   }
-  updateWorldClock();
-  setInterval(updateWorldClock, 1000);
+  if (navClock) {
+    updateWorldClock();
+    setInterval(updateWorldClock, 1000);
+  }
 
   // ============================================
   // 7. SCHOLAR'S DISPATCH & MANUSCRIPT HUD (Bleibtgleich style / Washi Theme)
@@ -640,7 +642,7 @@ function initMicroInteractions() {
 
     const key = e.key.toLowerCase();
 
-    if (e.key === '/' || (e.ctrlKey && key === 'k')) {
+    if ((e.key === '/' || (e.ctrlKey && key === 'k')) && cmdHud) {
       e.preventDefault();
       openCommandHud();
     } else if (key === '1') {

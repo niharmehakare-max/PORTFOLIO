@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof initContact === 'function') initContact();
     if (typeof initGaming === 'function') initGaming();
     if (typeof initSpotify === 'function') initSpotify();
-    if (typeof initAchievements === 'function') initAchievements();
     if (typeof initBlueprintMap === 'function') initBlueprintMap();
     if (typeof initStudioLab === 'function') initStudioLab();
   }
@@ -32,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     '#nav-experience-btn', '#mob-nav-experience-btn',
     '#nav-contact-btn', '#mob-nav-contact-btn',
     '#nav-gaming-btn', '#nav-spotify-btn',
-    '#nav-achievements-btn', '#nav-map-btn', '#nav-studio-btn'
+    '#nav-map-btn', '#nav-studio-btn'
   ];
 
   function onFirstNavInteraction(e) {

@@ -52,17 +52,6 @@
   <nav class="nav" id="main-nav">
     <a href="#" class="nav-logo">NIHAR<span class="dot"></span></a>
 
-    <!-- Parchment Registry & Telemetry Bar (Vintage Journal / 2xA style) -->
-    <div class="nav-telemetry" id="nav-telemetry">
-      <span class="telemetry-item time-clock" id="nav-clock" title="Live time in Pune, India"><span
-          class="telemetry-kanji">印</span> PUNE 15:45 IST</span>
-      <span class="telemetry-separator">/</span>
-      <span class="telemetry-item scroll-speed" id="nav-velocity"><span class="telemetry-kanji">速</span> 0 px/s</span>
-      <span class="telemetry-separator">/</span>
-      <span class="telemetry-item status-pill"><span class="status-ping"></span>ACTIVE</span>
-      <kbd class="nav-kbd-hint" id="nav-cmd-trigger" title="Open Scholar's Dispatch (or press /)">巻 /</kbd>
-    </div>
-
     <ul class="nav-links" id="nav-links">
       <li><a href="#" id="nav-about-btn">About</a></li>
       <li><a href="#" id="nav-projects-btn">Projects</a></li>
@@ -72,7 +61,7 @@
       <li><a href="#" id="nav-contact-btn">Contact</a></li>
     </ul>
 
-    <!-- Amey Pattar Inspired Map & Achievements Nav Triggers -->
+    <!-- 3D & Map Nav Triggers -->
     <div class="nav-gamified-actions">
       <button class="nav-action-pill nav-3d-btn" id="nav-3d-toggle" aria-label="Toggle Full 3D Spatial Canvas"
         title="Toggle Full 3D Spatial Canvas">
@@ -83,11 +72,6 @@
         title="Open Manuscript Blueprint Map">
         <span class="pill-glyph">🗺️</span>
         <span class="pill-text">MAP</span>
-      </button>
-      <button class="nav-action-pill nav-achievements-btn" id="nav-achievements-btn"
-        aria-label="Exploration Achievements" title="View Exploration Achievements">
-        <span class="pill-glyph">🏆</span>
-        <span class="achievements-badge-count" id="achievements-count">0/6</span>
       </button>
     </div>
 
@@ -125,9 +109,7 @@
             <span class="mob-arrow">↗</span></a></li>
         <li><a href="#" id="mob-nav-map-btn" class="mobile-nav-item"><span class="mob-item-num">07</span> Blueprint Map
             🗺️ <span class="mob-arrow">↗</span></a></li>
-        <li><a href="#" id="mob-nav-achievements-btn" class="mobile-nav-item"><span class="mob-item-num">08</span>
-            Achievements 🏆 <span class="mob-arrow">↗</span></a></li>
-        <li><a href="#" id="mob-nav-3d-btn" class="mobile-nav-item"><span class="mob-item-num">09</span> 3D Spatial
+        <li><a href="#" id="mob-nav-3d-btn" class="mobile-nav-item"><span class="mob-item-num">08</span> 3D Spatial
             Atelier ⛩️ <span class="mob-arrow">↗</span></a></li>
       </ul>
       <div class="mobile-nav-footer">
@@ -219,11 +201,6 @@
       </div>
 
       <div class="webgl-hud-bottom">
-        <div class="webgl-controls-hint">
-          <span class="hint-key">ENTER ↵</span>
-          <span class="hint-desc">Slide Open 3D Shoji Doors &amp; Explore</span>
-        </div>
-
         <div class="webgl-room-rail">
           <button class="webgl-rail-btn active" data-rail-zone="hero"
             onclick="if(window.spatialWorld) window.spatialWorld.navigateToZone('hero');"><span
@@ -283,6 +260,23 @@
           <span>RESET VIEW</span>
         </button>
       </div>
+    </div>
+
+    <!-- Mobile Touch Virtual Movement Joystick Controller -->
+    <div class="webgl-touch-controls" id="webgl-touch-controls" aria-label="Mobile Movement Joystick">
+      <div class="joystick-base" id="joystick-base">
+        <span class="joystick-guide-arrow up">▲</span>
+        <span class="joystick-guide-arrow down">▼</span>
+        <span class="joystick-guide-arrow left">◀</span>
+        <span class="joystick-guide-arrow right">▶</span>
+        <div class="joystick-stick" id="joystick-stick">
+          <span class="joystick-kanji">歩</span>
+        </div>
+      </div>
+      <button class="touch-sprint-btn" id="touch-sprint-btn" aria-label="Toggle Sprint Run">
+        <span class="sprint-icon">⚡</span>
+        <span class="sprint-label">RUN</span>
+      </button>
     </div>
   </div>
 
@@ -380,24 +374,13 @@
           RAG · LLMs · VISION // STATUS: ACTIVE</span>
       </div>
 
-      <!-- Hero 3D Spatial World CTA & Direct Contact Bridge -->
+      <!-- Hero 3D Spatial World CTA -->
       <div class="hero-3d-enter-wrapper">
-        <div class="hero-cta-button-row">
-          <button class="hero-3d-enter-btn" id="hero-3d-enter-btn" aria-label="Enter 3D Spatial Atelier">
-            <span class="enter-btn-kanji">開門</span>
-            <span class="enter-btn-label">ENTER 3D SPATIAL ATELIER</span>
-            <span class="enter-btn-arrow">→</span>
-          </button>
-          <button class="hero-contact-quick-btn" id="hero-contact-quick-btn" aria-label="Open Contact Chapter">
-            <span class="contact-btn-kanji">連絡</span>
-            <span>GET IN TOUCH</span>
-            <span style="font-size: 0.85rem;">↗</span>
-          </button>
-        </div>
-        <div class="hero-3d-hint">
-          <kbd class="kbd-pill">Enter ↵</kbd>
-          <span>or click to slide open 3D Shoji doors</span>
-        </div>
+        <button class="hero-3d-enter-btn" id="hero-3d-enter-btn" aria-label="Enter 3D Spatial Atelier">
+          <span class="enter-btn-kanji">開門</span>
+          <span class="enter-btn-label">ENTER 3D SPATIAL ATELIER</span>
+          <span class="enter-btn-arrow">→</span>
+        </button>
       </div>
     </div>
 
@@ -506,15 +489,6 @@
       </div>
       <span class="sound-label">SFX</span>
     </button>
-    <!-- Continuous Calligraphic Ink Ribbon Marquee (Ollivere & Danilo De Marco style) -->
-    <div class="calligraphy-ribbon-strip" id="calligraphy-ribbon">
-      <div class="ribbon-track">
-        <span class="ribbon-text">創造と技術 ★ AI/ML ENGINEERING ★ RAG SEMANTIC SEARCH ★ DISTRIBUTED SYSTEMS ★ VIT PUNE ★ LLM
-          ARCHITECTURES ★ COMPUTER VISION ★ 2026 ★&nbsp;&nbsp;</span>
-        <span class="ribbon-text">創造と技術 ★ AI/ML ENGINEERING ★ RAG SEMANTIC SEARCH ★ DISTRIBUTED SYSTEMS ★ VIT PUNE ★ LLM
-          ARCHITECTURES ★ COMPUTER VISION ★ 2026 ★&nbsp;&nbsp;</span>
-      </div>
-    </div>
 
     <!-- Pinned Tactile Socials & Media Dock (Always directly visible on Desktop Hero) -->
     <aside class="hero-social-dock" id="hero-social-dock" aria-label="Direct Social Channels and Media Lounges">
@@ -3177,68 +3151,6 @@
     </div>
   </div>
 
-  <!-- Rotating Vermilion Seal Stamp (朱印鑑 - Niccolò Miranda / Vintage Journal) -->
-  <div class="rotating-scroll-badge" id="rotating-scroll-badge" role="button" tabindex="0"
-    title="Scholar's Dispatch (or press /)">
-    <svg class="stamp-svg" viewBox="0 0 140 140">
-      <defs>
-        <path id="stamp-text-circle" d="M 70, 70 m -50, 0 a 50,50 0 1,1 100,0 a 50,50 0 1,1 -100,0" />
-      </defs>
-      <circle cx="70" cy="70" r="66" class="stamp-outer-ring" fill="none" stroke="#8c2a22" stroke-width="1.6"
-        stroke-dasharray="5, 3" />
-      <circle cx="70" cy="70" r="62" class="stamp-outer-subring" fill="none" stroke="#8c2a22" stroke-width="0.8" />
-      <text class="stamp-text">
-        <textPath href="#stamp-text-circle" startOffset="0%">
-          ★ NIHAR MEHAKARE ★ 創造と技術 ★ VIT PUNE ★ 2026 ★
-        </textPath>
-      </text>
-      <circle cx="70" cy="70" r="32" class="stamp-inner-circle" />
-      <text x="70" y="76" class="stamp-center-glyph">知</text>
-    </svg>
-  </div>
-
-  <!-- Scholar's Dispatch & Manuscript Index HUD (Bleibtgleich style / Vintage Journal Theme) -->
-  <div class="quick-cmd-hud" id="quick-cmd-hud" aria-hidden="true">
-    <div class="cmd-hud-backdrop" id="cmd-hud-backdrop"></div>
-    <div class="cmd-hud-window paper-parchment-window">
-      <!-- Vintage Deckle Corner Marks -->
-      <div class="parchment-corner top-left"></div>
-      <div class="parchment-corner top-right"></div>
-      <div class="parchment-corner bottom-left"></div>
-      <div class="parchment-corner bottom-right"></div>
-
-      <div class="cmd-hud-header">
-        <div class="cmd-hud-title-group">
-          <span class="cmd-hud-seal">印</span>
-          <span class="cmd-hud-title">SCHOLAR'S DISPATCH // 筆記録</span>
-        </div>
-        <span class="cmd-hud-esc">ESC to close [閉]</span>
-      </div>
-      <div class="cmd-hud-input-row">
-        <span class="cmd-prompt-glyph">✒</span>
-        <input type="text" id="cmd-input" class="cmd-input"
-          placeholder="Type a chapter (/about, /projects) or write a note..." autocomplete="off" spellcheck="false">
-      </div>
-      <div class="cmd-hud-suggestions">
-        <button class="cmd-chip" data-cmd="/about"><span class="chip-num">01</span> About // 略歴</button>
-        <button class="cmd-chip" data-cmd="/projects"><span class="chip-num">02</span> Projects // 制作</button>
-        <button class="cmd-chip" data-cmd="/experience"><span class="chip-num">03</span> Experience // 経歴</button>
-        <button class="cmd-chip" data-cmd="/gaming"><span class="chip-num">04</span> Gaming Dojo // 🎮</button>
-        <button class="cmd-chip" data-cmd="/spotify"><span class="chip-num">05</span> Spotify Lounge // 🎧</button>
-        <button class="cmd-chip" data-cmd="/contact"><span class="chip-num">06</span> Contact // 連絡</button>
-        <button class="cmd-chip" data-cmd="/sound">♫ SFX Toggle</button>
-        <button class="cmd-chip" data-cmd="/matrix">墨 Kanji Shimmer</button>
-      </div>
-      <div class="cmd-hud-output" id="cmd-output">Journal index ready. Press "/" anywhere to summon dispatch.</div>
-      <div class="cmd-hud-shortcuts-bar">
-        <span class="cmd-shortcut-tag"><kbd>1-4</kbd> 章 Chapters</span>
-        <span class="cmd-shortcut-tag"><kbd>S</kbd> 墨音 Sound</span>
-        <span class="cmd-shortcut-tag"><kbd>M</kbd> 墨印 Shimmer</span>
-        <span class="cmd-shortcut-tag"><kbd>/</kbd> 筆 Dispatch</span>
-        <span class="cmd-shortcut-tag"><kbd>Esc</kbd> 閉じる Return</span>
-      </div>
-    </div>
-  </div>
 
   <!-- Manuscript Blueprint Map Modal (Inspired by Amey Pattar Portfolio Map) -->
   <div class="manuscript-map-modal" id="manuscript-map-modal" aria-hidden="true">
@@ -3446,44 +3358,6 @@
     </div>
   </div>
 
-  <!-- Exploration Achievements Drawer (Inspired by Amey Pattar Portfolio Achievements) -->
-  <div class="achievements-drawer" id="achievements-drawer" aria-hidden="true">
-    <div class="achievements-backdrop" id="achievements-backdrop"></div>
-    <div class="achievements-panel paper-parchment-window">
-      <div class="achievements-header">
-        <div class="ach-header-left">
-          <span class="ach-trophy-badge">🏆</span>
-          <div>
-            <h3 class="ach-header-title">EXPLORATION ACHIEVEMENTS</h3>
-            <span class="ach-header-sub">探求の皆伝 // Curated Milestones</span>
-          </div>
-        </div>
-        <button class="ach-close-btn" id="achievements-close" aria-label="Close Achievements">✕</button>
-      </div>
-
-      <!-- Progress Bar -->
-      <div class="achievements-progress-container">
-        <div class="ach-progress-labels">
-          <span class="ach-prog-title">Exploration Progress</span>
-          <span class="ach-prog-count" id="ach-drawer-count">0 of 6 Unlocked</span>
-        </div>
-        <div class="ach-progress-bar-track">
-          <div class="ach-progress-bar-fill" id="achievements-progress-fill"></div>
-        </div>
-      </div>
-
-      <!-- Achievements List (Populated dynamically by js/achievements.js) -->
-      <div class="achievements-list" id="achievements-list">
-        <!-- Dynamic list -->
-      </div>
-
-      <div class="achievements-footer">
-        <p class="ach-footer-note">※ Every manuscript chapter, blueprint, and 3D terminal holds secrets. Explore freely.
-        </p>
-      </div>
-    </div>
-  </div>
-
   <!-- Custom Paper Ink Cursor Elements -->
   <div class="ink-cursor-dot" id="ink-cursor-dot"></div>
   <div class="ink-cursor-circle" id="ink-cursor-circle">
@@ -3501,7 +3375,6 @@
   <script src="js/contact.js"></script>
   <script src="js/gaming.js"></script>
   <script src="js/spotify.js"></script>
-  <script src="js/achievements.js"></script>
   <script src="js/blueprint-map.js"></script>
   <script src="js/studio-lab.js"></script>
   <script src="js/micro-interactions.js"></script>

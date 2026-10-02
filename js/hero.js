@@ -473,10 +473,12 @@ function initHero() {
   // ---------- Scan Line Effect ----------
   function startScanLine() {
     const scanLine = document.querySelector('.scan-line');
+    if (!scanLine) return;
     scanLine.style.opacity = '1';
 
     function runScan() {
       const heroR = document.querySelector('.hero-right');
+      if (!heroR) return;
       const height = heroR.offsetHeight;
 
       scanLine.style.transition = 'none';
@@ -502,6 +504,7 @@ function initHero() {
   // ---------- Particles ----------
   function initParticles() {
     const container = document.querySelector('.particles');
+    if (!container) return;
     const count = 20;
 
     for (let i = 0; i < count; i++) {

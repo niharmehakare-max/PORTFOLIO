@@ -447,6 +447,15 @@ class SpatialWorld3D {
     this.animationFrameId = null;
     this.isHeroInView = true;
 
+    // Mobile Virtual Touch Movement Joystick
+    this.touchJoystick = {
+      active: false,
+      touchId: null,
+      x: 0,
+      y: 0,
+      sprint: false
+    };
+
     // Spatial Zones & Waypoints
     this.zoneOrder = ['hero', 'about', 'projects', 'gaming', 'studio', 'spotify', 'experience', 'contact'];
     this.waypoints = {
@@ -7425,16 +7434,12 @@ class SpatialWorld3D {
     const container = document.getElementById('webgl-container');
     const toggleBtn = document.getElementById('nav-3d-toggle');
     const reticle = document.getElementById('webgl-interaction-reticle');
-    const hintKey = document.querySelector('.webgl-controls-hint .hint-key');
-    const hintDesc = document.querySelector('.webgl-controls-hint .hint-desc');
 
     if (this.isFull3DMode) {
       this.resumeAnimation();
       container.classList.add('cinematic-3d-active');
       if (toggleBtn) toggleBtn.classList.add('active');
       document.body.classList.add('mode-3d-fullscreen');
-      if (hintKey) hintKey.textContent = 'WASD / ARROWS';
-      if (hintDesc) hintDesc.textContent = 'Walk & Explore  •  Drag to Look  •  Shift: Sprint';
       if (this.controls) {
         this.controls.enabled = true;
         const fwd = new THREE.Vector3();
@@ -7452,8 +7457,6 @@ class SpatialWorld3D {
       document.body.classList.remove('mode-3d-fullscreen');
       this.autoTourActive = false;
       this.hideDiegeticInspection();
-      if (hintKey) hintKey.textContent = 'ENTER ↵';
-      if (hintDesc) hintDesc.textContent = 'Slide Open 3D Shoji Doors & Explore';
       if (this.controls) {
         this.controls.enabled = false;
       }
@@ -7823,6 +7826,136 @@ class SpatialWorld3D {
         }
       });
     }
+
+    // Initialize Mobile Touch Virtual Movement Joystick
+    this.setupTouchControls();
+  }
+
+  /* ============================================
+     MOBILE VIRTUAL TOUCH JOYSTICK CONTROLS
+     ============================================ */
+  setupTouchControls() {
+    const base = document.getElementById('joystick-base');
+    const stick = document.getElementById('joystick-stick');
+    const sprintBtn = document.getElementById('touch-sprint-btn');
+    if (!base || !stick) return;
+
+    let activeTouchId = null;
+    let baseRect = null;
+    const maxRadius = 36; // px travel distance
+
+    const updateStick = (clientX, clientY) => {
+      if (!baseRect) baseRect = base.getBoundingClientRect();
+      const centerX = baseRect.left + baseRect.width / 2;
+      const centerY = baseRect.top + baseRect.height / 2;
+
+      let dx = clientX - centerX;
+      let dy = clientY - centerY;
+      const dist = Math.hypot(dx, dy);
+
+      if (dist > maxRadius) {
+        dx = (dx / dist) * maxRadius;
+        dy = (dy / dist) * maxRadius;
+      }
+
+      stick.style.transform = `translate(${dx}px, ${dy}px)`;
+
+      // Normalized coordinates (-1 to 1)
+      this.touchJoystick.x = dx / maxRadius;
+      this.touchJoystick.y = -dy / maxRadius; // negative dy = forward (+Z direction)
+      this.touchJoystick.active = true;
+    };
+
+    const resetStick = () => {
+      activeTouchId = null;
+      stick.style.transform = 'translate(0px, 0px)';
+      this.touchJoystick.x = 0;
+      this.touchJoystick.y = 0;
+      this.touchJoystick.active = false;
+      baseRect = null;
+      base.classList.remove('touch-active');
+    };
+
+    // Native Touch Events
+    base.addEventListener('touchstart', (e) => {
+      if (!this.isFull3DMode) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const touch = e.changedTouches[0];
+      activeTouchId = touch.identifier;
+      baseRect = base.getBoundingClientRect();
+      base.classList.add('touch-active');
+      updateStick(touch.clientX, touch.clientY);
+    }, { passive: false });
+
+    window.addEventListener('touchmove', (e) => {
+      if (activeTouchId === null) return;
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        if (e.changedTouches[i].identifier === activeTouchId) {
+          e.preventDefault();
+          e.stopPropagation();
+          updateStick(e.changedTouches[i].clientX, e.changedTouches[i].clientY);
+          break;
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', (e) => {
+      if (activeTouchId === null) return;
+      for (let i = 0; i < e.changedTouches.length; i++) {
+        if (e.changedTouches[i].identifier === activeTouchId) {
+          resetStick();
+          break;
+        }
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchcancel', () => {
+      resetStick();
+    });
+
+    // Pointer / Mouse fallback for desktop browser testing / touch simulation
+    let isPointerDragging = false;
+    base.addEventListener('pointerdown', (e) => {
+      if (!this.isFull3DMode || e.pointerType === 'touch') return;
+      isPointerDragging = true;
+      baseRect = base.getBoundingClientRect();
+      base.classList.add('touch-active');
+      updateStick(e.clientX, e.clientY);
+      e.preventDefault();
+      e.stopPropagation();
+    });
+
+    window.addEventListener('pointermove', (e) => {
+      if (!isPointerDragging) return;
+      e.preventDefault();
+      e.stopPropagation();
+      updateStick(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('pointerup', () => {
+      if (isPointerDragging) {
+        isPointerDragging = false;
+        resetStick();
+      }
+    });
+
+    // Mobile Run / Sprint Toggle Button
+    if (sprintBtn) {
+      sprintBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.touchJoystick.sprint = !this.touchJoystick.sprint;
+        if (this.touchJoystick.sprint) {
+          sprintBtn.classList.add('active');
+        } else {
+          sprintBtn.classList.remove('active');
+        }
+        if (navigator.vibrate) {
+          navigator.vibrate(25);
+        }
+      });
+    }
   }
 
   /* ============================================
@@ -8054,7 +8187,8 @@ class SpatialWorld3D {
 
     // 2. Ground-Level Movement Translation (Active Only in 3D Mode)
     if (this.isFull3DMode) {
-      const sprint = (this.keys.ShiftLeft || this.keys.ShiftRight) ? 1.6 : 1.0;
+      const isSprint = (this.keys.ShiftLeft || this.keys.ShiftRight || (this.touchJoystick && this.touchJoystick.sprint));
+      const sprint = isSprint ? 1.6 : 1.0;
       const moveSpeed = 7.5 * sprint * delta;
       forward.y = 0;
       if (forward.lengthSq() > 0.001) forward.normalize();
@@ -8066,6 +8200,16 @@ class SpatialWorld3D {
       if (this.keys.KeyS || this.keys.ArrowDown) moveDelta.addScaledVector(forward, -moveSpeed);
       if (this.keys.KeyA || this.keys.ArrowLeft) moveDelta.addScaledVector(right, -moveSpeed);
       if (this.keys.KeyD || this.keys.ArrowRight) moveDelta.addScaledVector(right, moveSpeed);
+
+      // Touch Virtual Joystick Translation (Left Thumb)
+      if (this.touchJoystick && this.touchJoystick.active) {
+        if (Math.abs(this.touchJoystick.y) > 0.04) {
+          moveDelta.addScaledVector(forward, this.touchJoystick.y * moveSpeed);
+        }
+        if (Math.abs(this.touchJoystick.x) > 0.04) {
+          moveDelta.addScaledVector(right, this.touchJoystick.x * moveSpeed);
+        }
+      }
 
       if (moveDelta.lengthSq() > 0) {
         // User is manually moving: interrupt any active camera transition instantly
