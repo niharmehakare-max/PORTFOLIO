@@ -50,33 +50,43 @@
 
   <!-- Navigation -->
   <nav class="nav" id="main-nav">
-    <a href="#" class="nav-logo">NIHAR<span class="dot"></span></a>
+    <a href="#" class="nav-logo" aria-label="Nihar Mehakare Homepage">
+      <span class="logo-hanko-seal" title="印 Hanko Seal: 仁 (Benevolence / Humanity)">仁</span>
+      <div class="logo-text-group">
+        <span class="logo-brand-name">NIHAR<span class="dot"></span></span>
+        <span class="logo-brand-sub">STUDIO // 空間工房</span>
+      </div>
+    </a>
 
     <ul class="nav-links" id="nav-links">
-      <li><a href="#" id="nav-about-btn">About</a></li>
-      <li><a href="#" id="nav-projects-btn">Projects</a></li>
-      <li><a href="#" id="nav-experience-btn">Experience</a></li>
-      <li><a href="#" id="nav-gaming-btn" title="Gaming Dojo - Currently Playing">Gaming</a></li>
-      <li><a href="#" id="nav-spotify-btn" title="Spotify - What I Listen To">Spotify</a></li>
-      <li><a href="#" id="nav-contact-btn">Contact</a></li>
+      <li><a href="#" id="nav-about-btn"><span class="nav-num">01</span><span class="nav-label">About</span></a></li>
+      <li><a href="#" id="nav-projects-btn"><span class="nav-num">02</span><span class="nav-label">Projects</span></a></li>
+      <li><a href="#" id="nav-experience-btn"><span class="nav-num">03</span><span class="nav-label">Experience</span></a></li>
+      <li><a href="#" id="nav-gaming-btn" title="Gaming Dojo - Currently Playing"><span class="nav-num">04</span><span class="nav-label">Gaming</span></a></li>
+      <li><a href="#" id="nav-spotify-btn" title="Spotify - What I Listen To"><span class="nav-num">05</span><span class="nav-label">Spotify</span></a></li>
+      <li><a href="#" id="nav-contact-btn"><span class="nav-num">06</span><span class="nav-label">Contact</span></a></li>
     </ul>
 
     <!-- 3D & Map Nav Triggers -->
     <div class="nav-gamified-actions">
       <button class="nav-action-pill nav-3d-btn" id="nav-3d-toggle" aria-label="Toggle Full 3D Spatial Canvas"
         title="Toggle Full 3D Spatial Canvas">
-        <span class="pill-glyph">⛩️</span>
-        <span class="pill-text">3D MODE</span>
+        <span class="pill-seal">⛩</span>
+        <span class="pill-text">3D ATELIER</span>
+        <span class="pill-pulse-dot"></span>
       </button>
       <button class="nav-action-pill nav-map-btn" id="nav-map-btn" aria-label="Open Manuscript Blueprint Map"
         title="Open Manuscript Blueprint Map">
-        <span class="pill-glyph">🗺️</span>
-        <span class="pill-text">MAP</span>
+        <span class="pill-seal">図</span>
+        <span class="pill-text">BLUEPRINT</span>
       </button>
     </div>
 
     <div class="nav-cta">
-      <a href="mailto:niharmehakare@gmail.com">Get In Touch ↗</a>
+      <a href="mailto:niharmehakare@gmail.com" class="nav-cta-link">
+        <span class="cta-label">Get In Touch</span>
+        <span class="cta-arrow-icon">↗</span>
+      </a>
     </div>
     <!-- Mobile Hamburger Toggle -->
     <button class="nav-mobile-toggle" id="nav-mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
@@ -329,27 +339,24 @@
 
     <!-- Subtle Grid BG via CSS ::before -->
 
-    <!-- Center Divider Line -->
-    <div class="center-divider"></div>
-
-    <!-- Cross Decorations -->
-    <div class="cross-deco c1"></div>
-    <div class="cross-deco c2"></div>
-    <div class="cross-deco c3"></div>
-
-    <!-- Left Panel — Text & Stats -->
+    <!-- Hero Left Editorial Showcase -->
     <div class="hero-left">
+      <div class="hero-scrim" aria-hidden="true"></div>
+
       <div class="stats-row">
         <div class="stat-item" id="stat-1">
+          <div class="stat-top-accent"></div>
           <div class="stat-number" data-target="3"><span class="plus">+</span>0</div>
-          <div class="stat-label">Projects shipped</div>
+          <div class="stat-label">Projects Shipped</div>
         </div>
         <div class="stat-item" id="stat-2">
+          <div class="stat-top-accent"></div>
           <div class="stat-number" data-target="3"><span class="plus">+</span>0</div>
-          <div class="stat-label">Industry collabs</div>
+          <div class="stat-label">Industry Collabs</div>
         </div>
         <div class="stat-item" id="stat-3">
-          <div class="stat-number" data-target="9.13"><span class="plus">★</span>9.13</div>
+          <div class="stat-top-accent"></div>
+          <div class="stat-number" data-target="9.13"><span class="plus star">★</span>9.13</div>
           <div class="stat-label">CGPA // VIT Pune</div>
         </div>
       </div>
@@ -362,14 +369,16 @@
       </div>
 
       <div class="hero-subtitle">
-        <div class="subtitle-dash"></div>
-        <p class="subtitle-text">AI Systems Architect — Engineering intelligent distributed systems</p>
+        <span class="subtitle-badge">AI SYSTEMS ARCHITECT</span>
+        <p class="subtitle-text">Engineering resilient distributed intelligence, agentic RAG &amp; spatial computing.</p>
       </div>
 
       <div class="role-tag">
-        <div class="role-tag-dot"></div>
-        <span class="role-tag-text" data-text="AI TEAM LEAD // RAG · LLMs · VISION // STATUS: ACTIVE">AI TEAM LEAD //
-          RAG · LLMs · VISION // STATUS: ACTIVE</span>
+        <span class="status-beacon">
+          <span class="beacon-core"></span>
+          <span class="beacon-ring"></span>
+        </span>
+        <span class="role-tag-text">ACTIVE SPEC // RAG · LLMs · DISTRIBUTED SYSTEMS</span>
       </div>
 
       <!-- Hero 3D Spatial World CTA -->
@@ -377,83 +386,8 @@
         <button class="hero-3d-enter-btn" id="hero-3d-enter-btn" aria-label="Enter 3D Spatial Atelier">
           <span class="enter-btn-kanji">開門</span>
           <span class="enter-btn-label">ENTER 3D SPATIAL ATELIER</span>
-          <span class="enter-btn-arrow">→</span>
+          <span class="enter-btn-arrow-wrap"><span class="enter-btn-arrow">→</span></span>
         </button>
-      </div>
-    </div>
-
-    <!-- Right Panel — Character Manuscript Dossier -->
-    <div class="hero-right">
-      <div class="character-card" id="character-card">
-        <!-- Top Dossier Header -->
-        <div class="char-card-header">
-          <div class="char-card-seal-wrap">
-            <span class="char-seal">印</span>
-            <div class="char-card-meta">
-              <span class="char-card-badge">DOSSIER // 人物目録</span>
-              <span class="char-card-title">SYSTEM ARCHITECT</span>
-            </div>
-          </div>
-          <span class="char-card-rank">NO. 09 // 侍</span>
-        </div>
-
-        <!-- Character Portrait with Responsive WebP Picture -->
-        <div class="character-portrait-wrap">
-          <picture>
-            <source media="(max-width: 768px)" srcset="assets/CHAR1-mob.webp" type="image/webp">
-            <source srcset="assets/CHAR1.webp" type="image/webp">
-            <img src="assets/CHAR1.webp" alt="Nihar Mehakare — AI/ML Engineer" class="character-img" id="character-img" fetchpriority="high" decoding="async">
-          </picture>
-          <div class="char-portrait-scrim"></div>
-        </div>
-
-        <!-- Character Data Card Overlay -->
-        <div class="char-data-overlay">
-          <div class="char-data-top-row">
-            <div class="char-class-tag">
-              <span class="char-tag-dot"></span>
-              <span class="char-tag-text">AI / ML SYSTEMS LEAD</span>
-            </div>
-            <span class="char-academics-pill">B.TECH CSE '26</span>
-          </div>
-
-          <div class="char-skills-stack">
-            <div class="char-skill-bar-row">
-              <div class="skill-label-group">
-                <span class="skill-name">LLMs &amp; RAG Architecture</span>
-                <span class="skill-num">95%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill accent" data-width="95%"></div>
-              </div>
-            </div>
-
-            <div class="char-skill-bar-row">
-              <div class="skill-label-group">
-                <span class="skill-name">Distributed Backend &amp; Python</span>
-                <span class="skill-num">90%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="90%"></div>
-              </div>
-            </div>
-
-            <div class="char-skill-bar-row">
-              <div class="skill-label-group">
-                <span class="skill-name">Computer Vision &amp; WebGL</span>
-                <span class="skill-num">85%</span>
-              </div>
-              <div class="skill-bar-track">
-                <div class="skill-bar-fill" data-width="85%"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="char-card-footer-motto">
-            <span class="motto-kanji">切磋琢磨</span>
-            <span class="motto-text">Continuous Self-Refinement through Systems &amp; Art</span>
-          </div>
-        </div>
       </div>
     </div>
 

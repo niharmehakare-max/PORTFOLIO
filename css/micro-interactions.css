@@ -1099,30 +1099,72 @@
 .nav-action-pill {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  background: rgba(247, 241, 230, 0.85);
-  border: 1px solid rgba(60, 50, 40, 0.24);
-  padding: 0.28rem 0.65rem;
-  border-radius: 16px;
-  font-family: var(--font-mono);
+  gap: 0.45rem;
+  padding: 0.36rem 0.85rem;
+  border-radius: 100px;
+  font-family: var(--font-mono, monospace);
   font-size: 0.68rem;
-  font-weight: 700;
-  color: #2c2825;
+  font-weight: 800;
+  letter-spacing: 0.08em;
   cursor: pointer;
-  transition: all 0.2s var(--ease-out-expo);
-  box-shadow: 0 1px 3px rgba(44, 38, 30, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
 }
 
-.nav-action-pill:hover {
-  background: #fdfbf7;
-  border-color: #8c2a22;
-  color: #8c2a22;
-  transform: translateY(-1px);
-  box-shadow: 0 3px 8px rgba(140, 42, 34, 0.12);
+/* 3D Atelier Button - Vermilion Urushi Lacquer & Gold */
+.nav-action-pill.nav-3d-btn {
+  background: linear-gradient(135deg, #9e1425 0%, #6e0e1a 100%);
+  color: #ffffff;
+  border: 1px solid rgba(212, 175, 55, 0.65);
+  box-shadow: 0 3px 12px rgba(158, 20, 37, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
-.pill-glyph {
-  font-size: 0.75rem;
+.nav-action-pill.nav-3d-btn:hover {
+  background: linear-gradient(135deg, #c8102e 0%, #8c1020 100%);
+  border-color: #d4af37;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(200, 16, 46, 0.45), 0 0 14px rgba(212, 175, 55, 0.35);
+}
+
+.nav-action-pill.nav-3d-btn .pill-seal {
+  font-size: 0.82rem;
+  color: #ffd700;
+  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.6));
+}
+
+.pill-pulse-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 6px #ffd700;
+  animation: pulse-dot 1.8s infinite;
+}
+
+/* Blueprint Map Button - Washi & Indigo Ink */
+.nav-action-pill.nav-map-btn {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #1a2233;
+  border: 1px solid rgba(40, 60, 90, 0.22);
+  box-shadow: 0 2px 8px rgba(35, 28, 20, 0.05);
+}
+
+.nav-action-pill.nav-map-btn:hover {
+  background: #ffffff;
+  border-color: #1a2233;
+  color: #0d131f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(30, 41, 59, 0.16);
+}
+
+.nav-action-pill.nav-map-btn .pill-seal {
+  font-family: var(--font-jp, serif);
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #1a2233;
 }
 
 .achievements-badge-count {

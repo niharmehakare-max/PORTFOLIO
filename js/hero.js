@@ -376,14 +376,16 @@ function initHero() {
     // Character data overlay
     setTimeout(() => {
       const overlay = document.querySelector('.char-data-overlay');
-      overlay.style.transition = 'opacity 0.8s ease';
-      overlay.style.opacity = '1';
+      if (overlay) {
+        overlay.style.transition = 'opacity 0.8s ease';
+        overlay.style.opacity = '1';
 
-      setTimeout(() => {
-        document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-          bar.style.width = bar.dataset.width;
-        });
-      }, 300);
+        setTimeout(() => {
+          document.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
+        }, 300);
+      }
     }, 1600);
 
     // Scan line

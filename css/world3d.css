@@ -358,16 +358,16 @@ body.mode-3d-fullscreen .webgl-hud-overlay {
 .hero-3d-enter-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.75rem 1.4rem;
-  background: linear-gradient(135deg, #1f1b18 0%, #0a0a0a 100%);
-  color: #f7f5f0;
-  border: 1px solid rgba(200, 16, 46, 0.4);
-  border-radius: 4px;
+  gap: 0.95rem;
+  padding: 0.5rem 0.55rem 0.5rem 0.55rem;
+  background: linear-gradient(135deg, #181512 0%, #0a0908 100%);
+  color: #f8f6f0;
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 100px;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(200, 16, 46, 0.15);
+  box-shadow: 0 10px 28px -4px rgba(10, 8, 6, 0.35), 0 0 18px rgba(200, 16, 46, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.15);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   text-decoration: none;
 }
@@ -376,9 +376,9 @@ body.mode-3d-fullscreen .webgl-hud-overlay {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
   transform: translateX(-100%);
-  transition: transform 0.7s ease;
+  transition: transform 0.75s ease;
 }
 
 .hero-3d-enter-btn:hover::before {
@@ -386,10 +386,10 @@ body.mode-3d-fullscreen .webgl-hud-overlay {
 }
 
 .hero-3d-enter-btn:hover {
-  background: linear-gradient(135deg, #c8102e 0%, #900c20 100%);
-  border-color: #f7f5f0;
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(200, 16, 46, 0.35);
+  background: linear-gradient(135deg, #241f1a 0%, #12100d 100%);
+  border-color: rgba(212, 175, 55, 0.9);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 38px -4px rgba(200, 16, 46, 0.35), 0 0 25px rgba(212, 175, 55, 0.35);
   color: #ffffff;
 }
 
@@ -400,28 +400,45 @@ body.mode-3d-fullscreen .webgl-hud-overlay {
 
 .hero-3d-enter-btn .enter-btn-kanji {
   font-family: var(--font-jp, serif);
-  font-size: 0.85rem;
-  padding: 0.2rem 0.45rem;
-  background: rgba(200, 16, 46, 0.25);
-  color: #ff9999;
-  border-radius: 2px;
-  border: 1px solid rgba(200, 16, 46, 0.4);
-  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 0.85rem;
+  background: linear-gradient(135deg, #c8102e 0%, #8c1020 100%);
+  color: #ffffff;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 2px 8px rgba(200, 16, 46, 0.45);
   transition: all 0.3s ease;
 }
 
 .hero-3d-enter-btn:hover .enter-btn-kanji {
-  background: #ffffff;
-  color: #c8102e;
-  border-color: #ffffff;
+  background: linear-gradient(135deg, #e01538 0%, #a81226 100%);
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.6);
 }
 
 .hero-3d-enter-btn .enter-btn-label {
   font-family: var(--font-mono, monospace);
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  color: #fcfbfa;
+  padding-left: 0.2rem;
+}
+
+.enter-btn-arrow-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: #f7f4ee;
+  margin-right: 0.2rem;
 }
 
 .hero-3d-enter-btn .enter-btn-arrow {
@@ -429,8 +446,11 @@ body.mode-3d-fullscreen .webgl-hud-overlay {
   transition: transform 0.3s ease;
 }
 
-.hero-3d-enter-btn:hover .enter-btn-arrow {
-  transform: translateX(4px);
+.hero-3d-enter-btn:hover .enter-btn-arrow-wrap {
+  background: #c8102e;
+  border-color: #c8102e;
+  transform: translateX(3px);
+  box-shadow: 0 0 10px rgba(200, 16, 46, 0.6);
 }
 
 .hero-3d-hint {
