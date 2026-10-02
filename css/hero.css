@@ -558,13 +558,14 @@ body.mode-3d-fullscreen .global-scroll-progress {
 .hero-title {
   font-family: var(--font-display, "Playfair Display", Georgia, serif);
   font-weight: 800;
-  font-size: clamp(3.2rem, 6.8vw, 6.2rem);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.2rem, 3.8vw, 3.9rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
   color: #141210;
   position: relative;
   overflow: hidden;
   text-shadow: 0 2px 24px rgba(246, 241, 232, 0.85);
+  white-space: nowrap;
 }
 
 .hero-title .line {
@@ -2106,9 +2107,10 @@ body.mode-3d-fullscreen .global-scroll-progress {
   }
 
   .hero-title {
-    font-size: clamp(2.8rem, 7.5vw, 5rem);
+    font-size: clamp(1.8rem, 6.5vw, 3.2rem);
     text-align: center;
-    line-height: 1;
+    line-height: 1.1;
+    white-space: normal;
   }
 
   .jp-accent {
