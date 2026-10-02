@@ -1554,7 +1554,10 @@ class SpatialWorld3D {
     if (typeof THREE.OrbitControls !== 'undefined') {
       this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
       this.controls.enableDamping = true;
-      this.controls.dampingFactor = 0.055;
+      this.controls.dampingFactor = 0.08;
+      this.controls.rotateSpeed = 0.48; // Calibrated low look sensitivity (preventing jerky swings)
+      this.controls.panSpeed = 0.5;
+      this.controls.zoomSpeed = 0.6;
       this.controls.maxPolarAngle = Math.PI / 2 + 0.02;
       this.controls.minPolarAngle = Math.PI / 4;
       this.controls.minDistance = 0.5;
@@ -8177,19 +8180,19 @@ class SpatialWorld3D {
     } else if (this.isFull3DMode && this.controls) {
       this.controls.update();
     } else if (!this.isFull3DMode) {
-      // Elegant 2.5D background mouse parallax in 2D mode without interfering with DOM UI
-      const targetX = this.waypoints.hero.pos.x + this.normalizedMouse.x * 1.4;
-      const targetY = this.waypoints.hero.pos.y - this.normalizedMouse.y * 0.8;
-      this.camera.position.x = THREE.MathUtils.lerp(this.camera.position.x, targetX, 0.05);
-      this.camera.position.y = THREE.MathUtils.lerp(this.camera.position.y, targetY, 0.05);
+      // Elegant, subtle 2.5D background mouse parallax in 2D mode
+      const targetX = this.waypoints.hero.pos.x + this.normalizedMouse.x * 0.75;
+      const targetY = this.waypoints.hero.pos.y - this.normalizedMouse.y * 0.45;
+      this.camera.position.x = THREE.MathUtils.lerp(this.camera.position.x, targetX, 0.035);
+      this.camera.position.y = THREE.MathUtils.lerp(this.camera.position.y, targetY, 0.035);
       this.camera.lookAt(this.waypoints.hero.look);
     }
 
     // 2. Ground-Level Movement Translation (Active Only in 3D Mode)
     if (this.isFull3DMode) {
       const isSprint = (this.keys.ShiftLeft || this.keys.ShiftRight || (this.touchJoystick && this.touchJoystick.sprint));
-      const sprint = isSprint ? 1.6 : 1.0;
-      const moveSpeed = 7.5 * sprint * delta;
+      const sprint = isSprint ? 1.45 : 1.0;
+      const moveSpeed = 4.2 * sprint * delta;
       forward.y = 0;
       if (forward.lengthSq() > 0.001) forward.normalize();
       else forward.set(0, 0, -1);

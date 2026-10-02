@@ -641,6 +641,38 @@ function initHero() {
 
   window.closeMobileNav = closeMobileNav;
 
+  // ---------- Mobile Quick Realm Buttons ----------
+  const mobRealmProjects = document.getElementById('mob-realm-projects');
+  if (mobRealmProjects) {
+    mobRealmProjects.addEventListener('click', (e) => {
+      e.preventDefault();
+      const projBtn = document.getElementById('nav-projects-btn');
+      if (projBtn) projBtn.click();
+    });
+  }
+
+  const mobRealmExperience = document.getElementById('mob-realm-experience');
+  if (mobRealmExperience) {
+    mobRealmExperience.addEventListener('click', (e) => {
+      e.preventDefault();
+      const expBtn = document.getElementById('nav-experience-btn');
+      if (expBtn) expBtn.click();
+    });
+  }
+
+  const mobRealmLounges = document.getElementById('mob-realm-lounges');
+  if (mobRealmLounges) {
+    mobRealmLounges.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (typeof window.openGamingOverlay === 'function') {
+        window.openGamingOverlay();
+      } else {
+        const gamingBtn = document.getElementById('nav-gaming-btn');
+        if (gamingBtn) gamingBtn.click();
+      }
+    });
+  }
+
   // ---------- Mouse Follower ----------
   const follower = document.querySelector('.cursor-follower');
   let mouseX = 0, mouseY = 0;
